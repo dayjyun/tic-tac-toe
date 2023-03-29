@@ -1,4 +1,5 @@
 console.log('JS Loaded')
+
 // Have an object to store name and cpu info
 // this also stores the wins for player 1 and player 2
 // date ?

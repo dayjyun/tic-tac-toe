@@ -40,21 +40,33 @@
     </main>
     <section>
       <div class="player-info-container">
-        <form>
-          <input type="text" name="player-one-name" class='name-input' placeholder="Player One" />(X)
-        </form>
-        <div class="turn-info-container">
-          <div>Turn</div>
-          <div>{Value}</div>
+        <div class="player-one-info">
+          <input
+            type="text"
+            name="player-one-name"
+            class="name-input"
+            placeholder="Player One"
+          />(X)
+          <div>Wins: #</div>
         </div>
-        <form>
-          <input type="text" name="player-two-name" class='name-input' placeholder="Player Two" />(O)
-        </form>
-      </div>
-      <div class="game-points-container">
-        <div>Wins: #</div>
-        <div>Ties: #</div>
-        <div>Wins: #</div>
+        <div class="turn-info-container">
+          <div>
+            <div>Turn</div>
+            <div>{$}</div>
+          </div>
+          <div>
+            <div>Ties: #</div>
+          </div>
+        </div>
+        <div class="player-two-info">
+          <input
+            type="text"
+            name="player-two-name"
+            class="name-input"
+            placeholder="Player Two"
+          />(O)
+          <div>Wins: #</div>
+        </div>
       </div>
       <div class="reset-score-container">
         <button class="reset-score">Reset Score</button>
