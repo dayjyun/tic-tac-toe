@@ -13,30 +13,34 @@
   </head>
   <body>
     <header>
-      <h1>Tic Tac Toe</h1>
+      <div>
+        <h1>Tic Tac Toe</h1>
+      </div>
+      <nav>
+        <button class="new-game-button">New Game</button>
+      </nav>
     </header>
-    <nav>
-      <button class="new-game-button">New Game</button>
-    </nav>
     <main>
       <h2>Player Turns Name</h2>
-      <table>
-        <tr>
-          <td>0</td>
-          <td>1</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>4</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>7</td>
-          <td>8</td>
-        </tr>
-      </table>
+      <div class="table-container">
+        <table>
+          <tr class="table-top">
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+          </tr>
+          <tr class="table-mid">
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+          </tr>
+          <tr class="table-end">
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+          </tr>
+        </table>
+      </div>
     </main>
     <section>
       <div class="player-info-container">
@@ -46,16 +50,13 @@
             name="player-one-name"
             class="name-input"
             placeholder="Player One"
-          />(X)
-          <div>Wins: #</div>
+          />
+          (X)
         </div>
         <div class="turn-info-container">
           <div>
             <div>Turn</div>
             <div>{$}</div>
-          </div>
-          <div>
-            <div>Ties: #</div>
           </div>
         </div>
         <div class="player-two-info">
@@ -64,7 +65,14 @@
             name="player-two-name"
             class="name-input"
             placeholder="Player Two"
-          />(O)
+          />
+          (O)
+        </div>
+        <div class="game-score-info">
+          <div>Wins: #</div>
+          <div>
+            <div>Ties: #</div>
+          </div>
           <div>Wins: #</div>
         </div>
       </div>
