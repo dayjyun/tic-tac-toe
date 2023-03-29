@@ -22,6 +22,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: rgb(233, 233, 233);
 }
 
 h1 {
@@ -32,19 +33,35 @@ h1 {
 table {
   /* border: 2px solid red; */ /* ! */
   display: grid;
-  /* grid-tem */
+  /* search MDN how to set up grid */
 }
 
-tr td {
+td {
   /* border: 2px solid yellowgreen; */ /* ! */
+  /* search MDN how to set up grid box size */
+}
+
+td:hover {
+  cursor: pointer;
 }
 
 /* Section */
 section {
-  border: 2px solid gray;
+  background-color:#ffffff;
+  border-radius: 10px;
+  padding: 3rem /* *** */
+}
+
+.player-info-container {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.name-input {
+  border: 1px solid rgb(83, 83, 83);
+  border-radius: 3px;
+  width: 5rem;
 }
 
 /* Footer */

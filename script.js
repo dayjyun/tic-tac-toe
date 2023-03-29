@@ -16,6 +16,19 @@ console.log('JS Loaded')
 // grab player 2 icon
 // add event listener when clicked, it toggles to live person play
 
+// ! Find a way to preserve the name when enter is pressed
+const nameInputBox = document.querySelector('.name-input')
+nameInputBox.addEventListener('keydown', (e) => {
+    if(e.keyCode === 13){
+        e.preventDefault()
+        nameInputBox.disabled = true;
+        nameInputBox.disabled = false;
+
+        // Will need to send the name to the win display function
+        const playerOneName = nameInputBox.value
+        console.log(playerOneName)
+    }
+})
 
 // Extra
 // Local Storage?

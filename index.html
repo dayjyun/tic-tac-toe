@@ -40,12 +40,16 @@
     </main>
     <section>
       <div class="player-info-container">
-        <button>Player One <span>(X)</span></button>
+        <form>
+          <input type="text" name="player-one-name" class='name-input' placeholder="Player One" />(X)
+        </form>
         <div class="turn-info-container">
           <div>Turn</div>
-          <div>X</div>
+          <div>{Value}</div>
         </div>
-        <button>Player Two <span>(O)</span></button>
+        <form>
+          <input type="text" name="player-two-name" class='name-input' placeholder="Player Two" />(O)
+        </form>
       </div>
       <div class="game-points-container">
         <div>Wins: #</div>
@@ -61,9 +65,11 @@
       <div>&copy Kevin Barrios. All Rights Reserved</div>
       <div class="personal-links-container">
         <a href="https://github.com/dayjyun">
-          <i class="fa-brands fa-github"></i></a>
+          <i class="fa-brands fa-github"></i
+        ></a>
         <a href="https://www.linkedin.com/in/kevinbarrios12/">
-          <i class="fa-brands fa-linkedin"></i></a>
+          <i class="fa-brands fa-linkedin"></i
+        ></a>
       </div>
     </footer>
     <script src="script.js"></script>
