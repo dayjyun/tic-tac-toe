@@ -52,12 +52,12 @@ main {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 1.2px #747474bf;
+  min-width: 25rem;
+  min-height: 10rem;
+  text-align: center;
   padding: 1.5rem;
   width: 25rem;
   margin: 0 auto;
-  min-width: 25rem;
-  min-height: 2rem;
-  text-align: center;
 }
 
 .table-container {
@@ -106,22 +106,21 @@ td:hover {
 /* *********************************** Section ********************************* */
 
 section {
-  border: 2px solid cyan;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 1.2px #747474bf;
   min-width: 25rem;
   min-height: 10rem;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  /* flex-direction: column; */
-  text-align: center;
   width: 25rem;
+  margin: 1rem auto;
 }
 
 .player-info-container {
-  background-color: #ffffff;
-  border-radius: 5px;
-  box-shadow: 0 0 1.2px #747474bf;
   width: 25rem;
   justify-content: space-between;
   align-items: center;
@@ -147,7 +146,6 @@ section {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 2px solid orange
 }
 
 .reset-score-button {
@@ -164,7 +162,7 @@ section {
 /* ************************************ Footer ********************************* */
 
 footer {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   color: #1f1e1e;
   display: flex;
   justify-content: space-evenly;
