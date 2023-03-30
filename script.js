@@ -9,6 +9,7 @@ let playerOne = {
   mainColor: mainBlue,
   secondaryColor: aliceBlue,
   value: "X",
+  wins: 0,
 };
 
 let playerTwo = {
@@ -16,6 +17,7 @@ let playerTwo = {
   mainColor: mainOrange,
   secondaryColor: apricot,
   value: "O",
+  wins: 0,
 };
 let currentPlayer = playerOne; // starts game with player one
 // let currentPlayer = playerTwo; // starts game with player two
@@ -117,9 +119,6 @@ tdTags.forEach((tdTag) => {
 });
 
 // Section
-// TODO Add event listener to clear out the number of wins and ties back to zero ***
-const resetScoreButton = document.querySelector(".reset-score-button");
-
 const nameInputBoxes = document.querySelectorAll(".name-input");
 nameInputBoxes.forEach((nameInputBox) => {
   nameInputBox.addEventListener("click", (e) => {
@@ -135,6 +134,7 @@ nameInputBoxes.forEach((nameInputBox) => {
   //   }
   //   playerName = e.target.value || e.target.placeholder
   // })
+  // TODO When focus is removed from the input boxes, how to save? ***
 
   nameInputBox.addEventListener("blur", (e) => {
     if (e.target.placeholder !== "") {
@@ -165,13 +165,18 @@ nameInputBoxes.forEach((nameInputBox) => {
   });
 });
 
+
+// TODO Add event listener to clear out the number of wins and ties back to zero ***
+const resetScoreButton = document.querySelector(".reset-score-button");
+
+
 // !DELETE *************************************************
 let object = document.createElement("button");
 object.innerText = "OBJECT";
 object.addEventListener("click", (e) => {
   e.preventDefault();
-  // console.log("ONE", playerOne);
-  // console.log("TWO", playerTwo);
+  console.log("ONE", playerOne);
+  console.log("TWO", playerTwo);
   console.log("Current Player", currentPlayer);
 });
 newGameButton.insertAdjacentElement("afterend", object);
