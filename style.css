@@ -193,10 +193,20 @@ footer {
 
 } */
 
+/* Hover */
 .aliceBlue {
   background-color: #F0F8FF;
 }
 
 .apricot {
   background-color: #F5D6B8;
+}
+
+/* Click */
+.lightBlue {
+  background-color: #B6DBFC;
+}
+
+.lightOrange {
+  background-color: #F8C28E;
 }

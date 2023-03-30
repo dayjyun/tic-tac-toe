@@ -34,20 +34,23 @@ const turnNameDisplay = document.querySelector(".turn-name-display");
 
 tdTags.forEach((tdTag) => {
   tdTag.addEventListener("mouseover", (e) => {
-    if (e.target.value === undefined) {
+    // the ligthBlue and aliceBlue will need to be dynamic to the current player's color
+    if (!e.target.classList.contains('lightBlue')) {
       e.target.classList.add('aliceBlue');
     }
   });
 
+//   the aliceBlue would represent the variable of current player
   tdTag.addEventListener("mouseout", (e) => {
     if (e.target.classList.contains('aliceBlue')) {
-      e.target.style.backgroundColor = 'white';
+      e.target.classList.remove('aliceBlue');
     }
   });
 
   tdTag.addEventListener("click", (e) => {
-    if (e.target.style.backgroundColor === 'white') {
-      e.target.classList.add('blue');
+    if (!e.target.classList.contains('lightBlue') || !e.target.classList.contains('lightOrange')) {
+        // change lightBlue to the current player's variable
+      e.target.classList.add('lightBlue');
     }
   });
 });
