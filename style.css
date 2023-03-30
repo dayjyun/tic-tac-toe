@@ -17,11 +17,13 @@ button {
 }
 
 body {
-  background-color: rgb(233, 233, 233);
+  background-color: #e9e9e9;
   min-width: 30rem;
 }
 
+
 /* ******************************** Top ************************************* */
+
 header {
   padding: 1rem 0;
   text-align: center;
@@ -43,7 +45,9 @@ h1 {
   background: linear-gradient(#2dabf9, #0688fa);
 }
 
+
 /* * ******************************* Main *************************************  */
+
 main {
   background-color: #fff;
   border-radius: 5px;
@@ -98,7 +102,9 @@ td:hover {
   border-left: none
 }
 
+
 /* *********************************** Section ********************************* */
+
 section {
   border: 2px solid cyan;
   min-width: 25rem;
@@ -106,6 +112,8 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
   text-align: center;
   width: 25rem;
 }
@@ -113,15 +121,35 @@ section {
 .player-info-container {
   background-color: #ffffff;
   border-radius: 5px;
-  box-shadow: 0 0 1.2px rgba(116, 116, 116, 0.75);
+  box-shadow: 0 0 1.2px #747474bf;
   width: 25rem;
+  justify-content: space-between;
+  align-items: center;
 }
 
+.game-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid orange
+}
+
+.reset-score-button {
+  width: 6rem;
+  height: 2rem;
+  border-width:1px;
+  color:#fff;
+  border-color:#0b0e07;
+  border-radius: 3px;
+  box-shadow:inset 0px -3px 7px 0px #f5a623;
+  background:linear-gradient(#f5a623, #f5a623);
+}
 
 /* ************************************ Footer ********************************* */
+
 footer {
   border: 2px solid red;
-  color: rgb(31, 30, 30);
+  color: #1f1e1e;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -130,7 +158,7 @@ footer {
   width: 60%;
   min-width: 20rem;
   margin: 0 auto;
-  /* Add footer to bottom of page */
+  /* Add footer to bottom center of page */
 }
 
 .personal-links-container {
@@ -149,4 +177,26 @@ footer {
 
 .fa-linkedin:hover {
   color: #0e76a8;
+}
+
+
+/* ************************************ Symbols ********************************* */
+
+.circle {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  border: 15px solid blue;
+}
+
+/* .x {
+
+} */
+
+.aliceBlue {
+  background-color: #F0F8FF;
+}
+
+.apricot {
+  background-color: #F5D6B8;
 }
