@@ -1,13 +1,14 @@
 console.log("JS Loaded");
 
 const tdTags = document.querySelectorAll("td");
-
 const aliceBlue = "#F0F8FF";
 const apricot = "#F5D6B8";
+const players = document.querySelectorAll(".player-info");
+const playerOne = document.querySelector(".player-one");
+const playerTwo = document.querySelector(".player-two");
+let playerOneName = "";
+let playerTwoName = "";
 
-const playerInfoList = document.querySelectorAll(".player-info");
-
-// let playerName = "";
 
 // Header
 const newGameButton = document.querySelector(".new-game-button");
@@ -20,10 +21,6 @@ newGameButton.addEventListener("click", () => {
 
 // Main
 const turnNameDisplay = document.querySelector(".turn-name-display");
-
-// You hover over it, it changes the background color
-// You hover away from it, it removes the background color
-// You click the box, it changes the background color to the designated color
 
 function mouseOver(e) {
   // TODO  the aliceBlue would represent the variable of current player
@@ -55,50 +52,43 @@ tdTags.forEach((tdTag) => {
 });
 
 // Section
-// Add event listener to clear out the number of wins and ties back to zero
+// TODO Add event listener to clear out the number of wins and ties back to zero
 const resetScoreButton = document.querySelector(".reset-score-button");
 
 // Have an object to store name and cpu info
 // this also stores the wins for player 1 and player 2
 // date ?
 
-// loop through table divArr
-// mouseover event for the block to highlight a background color
-// background color will be based on player's turn
-// when clicked, player's mark will be placed on div
+const nameInputBoxes = document.querySelectorAll(".name-input");
 
-// grab player 1 box
-// add an event listener when clicked, it opens up a form
-// the form allows users to update the name
-// when pressing enter or clicking away, it save the name
+nameInputBoxes.forEach((nameInputBox) => {
+  nameInputBox.addEventListener("click", (e) => {
+    e.target.placeholder = "";
+  });
+
+  nameInputBox.addEventListener("blur", (e) => {
+    if (e.target.placeholder === "") {
+      e.target.placeholder = "Player One";
+    }
+  });
+
+  nameInputBox.addEventListener("keydown", (e) => {
+    e.target.placeholder = "";
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      nameInputBox.disabled = true;
+      nameInputBox.disabled = false;
+
+      // Will need to send the name to the name holder for win display and turn player display
+      playerOneName = nameInputBox.value;
+    }
+  });
+});
+
+
 
 // grab player 2 icon
 // add event listener when clicked, it toggles to live person play
-
-const nameInputBox = document.querySelector(".name-input");
-nameInputBox.addEventListener("click", (e) => {
-  e.target.placeholder = "";
-  // console.log(e.target.placeholder)
-});
-
-nameInputBox.addEventListener("blur", (e) => {
-  if (e.target.placeholder === "") {
-    e.target.placeholder = "Player One";
-  }
-});
-
-nameInputBox.addEventListener("keydown", (e) => {
-  e.target.placeholder = "";
-  if (e.keyCode === 13) {
-    e.preventDefault();
-    nameInputBox.disabled = true;
-    nameInputBox.disabled = false;
-
-    // Will need to send the name to the name holder for win display and turn player display
-    const playerOneName = nameInputBox.value;
-    console.log(playerOneName);
-  }
-});
 
 // Extra
 // Local Storage?
