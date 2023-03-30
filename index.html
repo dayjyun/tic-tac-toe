@@ -44,34 +44,38 @@
     </main>
     <section>
       <div class="player-info-container">
-        <div class="player-info">
-          <input
-            type="text"
-            name="player-name"
-            class="name-input player-name"
-            placeholder="Player One"
-          />
-          (X)
-        </div>
-        <div class="turn-info-container">
-          <div>
-            <div>Turn</div>
-            <div>{$}</div>
+        <div class="player-info-top">
+          <div class="player-info">
+            <input
+              type="text"
+              name="player-name"
+              class="name-input player-name"
+              placeholder="Player One"
+            />
+            (X)
+          </div>
+          <div class="turn-info-container">
+            <div>
+              <div>Turn</div>
+              <div>{$}</div>
+            </div>
+          </div>
+          <div class="player-info">
+            <input
+              type="text"
+              name="player-name"
+              class="name-input player-name"
+              placeholder="Player Two"
+            />
+            (O)
           </div>
         </div>
-        <div class="player-info">
-          <input
-            type="text"
-            name="player-name"
-            class="name-input player-name"
-            placeholder="Player Two"
-          />
-          (O)
-        </div>
-        <div class="game-stats">
-          <div class="player-one-wins">Wins: 0</div>
-          <div class="game-ties">Ties: 0</div>
-          <div class="player-two-wins">Wins: 0</div>
+        <div class="player-info-bottom">
+          <div class="game-stats">
+            <div class="player-one-wins">Wins: 0</div>
+            <div class="game-ties">Ties: 0</div>
+            <div class="player-two-wins">Wins: 0</div>
+          </div>
         </div>
       </div>
       <div class="reset-score-container">

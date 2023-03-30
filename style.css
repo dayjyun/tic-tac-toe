@@ -127,6 +127,22 @@ section {
   align-items: center;
 }
 
+.player-info-top {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.name-input {
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 2px 5px
+}
+
+.name-input:focus {
+  outline: 2px solid gray;
+}
+
 .game-stats {
   display: flex;
   justify-content: space-around;
@@ -181,17 +197,6 @@ footer {
 
 
 /* ************************************ Symbols ********************************* */
-
-.circle {
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  border: 15px solid blue;
-}
-
-/* .x {
-
-} */
 
 /* Hover */
 .aliceBlue {
