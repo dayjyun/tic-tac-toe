@@ -3,12 +3,14 @@ console.log("JS Loaded");
 const tdTags = document.querySelectorAll("td");
 const aliceBlue = "#F0F8FF";
 const apricot = "#F5D6B8";
+const lightBlue = "#B6DBFC"
+const lightOrange = "#F8C28E"
 const players = document.querySelectorAll(".player-info");
 const playerOne = document.querySelector(".player-one");
 const playerTwo = document.querySelector(".player-two");
-let playerOneName = "";
-let playerTwoName = "";
-
+let playerOneObj = {name: "" || "Player One", mainColor: aliceBlue, secondColor: lightBlue, value: "X"}
+let playerTwoObj = {name: "" || "Player Two", mainColor: apricot, secondColor: lightOrange, value: "O"}
+// let currentPlayer = playerOneName;
 
 // Header
 const newGameButton = document.querySelector(".new-game-button");
@@ -19,8 +21,26 @@ newGameButton.addEventListener("click", () => {
   });
 });
 
+// H1
+const currentPlayerHeading = document.querySelector('current-player')
+
 // Main
 const turnNameDisplay = document.querySelector(".turn-name-display");
+
+/*
+max amount of times a user can select is 5
+1 blue 1 orange
+2 blue 2 orange
+3 blue 3 orange
+4 blue 4 orange
+
+loop through td arr
+if (blue className count > orange className count){
+  orange turn
+} else {
+  blue turn
+}
+*/
 
 function mouseOver(e) {
   // TODO  the aliceBlue would represent the variable of current player
@@ -55,36 +75,49 @@ tdTags.forEach((tdTag) => {
 // TODO Add event listener to clear out the number of wins and ties back to zero
 const resetScoreButton = document.querySelector(".reset-score-button");
 
-// Have an object to store name and cpu info
-// this also stores the wins for player 1 and player 2
-// date ?
-
 const nameInputBoxes = document.querySelectorAll(".name-input");
-
 nameInputBoxes.forEach((nameInputBox) => {
   nameInputBox.addEventListener("click", (e) => {
     e.target.placeholder = "";
   });
 
   nameInputBox.addEventListener("blur", (e) => {
-    if (e.target.placeholder === "") {
-      e.target.placeholder = "Player One";
+    if (e.target.placeholder !== "") {
+      if(e.target.id === "player-one"){
+        playerOneObj.name = e.target.value;
+      } else {
+        playerTwoObj.name = e.target.value;
+      }
+    } else if(e.target.id === 'player-one'){
+      e.target.placeholder = "Player One"
+    } else {
+      e.target.placeholder = "Player Two"
     }
   });
 
   nameInputBox.addEventListener("keydown", (e) => {
-    e.target.placeholder = "";
     if (e.keyCode === 13) {
       e.preventDefault();
       nameInputBox.disabled = true;
       nameInputBox.disabled = false;
 
-      // Will need to send the name to the name holder for win display and turn player display
-      playerOneName = nameInputBox.value;
+      if(e.target.id === "player-one"){
+        playerOneObj.name = nameInputBox.value || "Player One";
+      } else {
+        playerTwoObj.name = nameInputBox.value
+      }
+      console.log("One Obj", playerOneObj)
+      console.log("Two Obj", playerTwoObj)
     }
   });
 });
 
+// Player Display
+/*
+H1 Tag should show current player's name
+When a user changes their name, it updates the h1 tag
+
+*/
 
 
 // grab player 2 icon
