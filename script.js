@@ -1,18 +1,9 @@
 const tdTags = document.querySelectorAll("td");
-const aliceBlue = "aliceBlue";
-const apricot = "apricot";
-const mainBlue = "mainBlue";
-const mainOrange = "mainColor";
-
-const bgLightOne = "#F0F8FF";
-const bgLightTwo = "#FFF6EC";
-const bgMainOne = "#B6DBFC";
-const bgMainTwo = "#F8C28E";
 
 let playerOne = {
   name: "" || "Player One",
   mainColor: "#B6DBFC",
-  secondaryColor: "#F0F8FF",
+  hoverColor: "#F0F8FF",
   value: "X",
   wins: 0,
 };
@@ -20,13 +11,13 @@ let playerOne = {
 let playerTwo = {
   name: "" || "Player Two",
   mainColor: "#F8C28E",
-  secondaryColor: "#FFF6EC",
+  hoverColor: "#FFF6EC",
   value: "O",
   wins: 0,
 };
 
-// let currentPlayer = playerOne; // starts game with player one
-let currentPlayer = playerTwo; // starts game with player two
+let currentPlayer = playerOne;
+// let currentPlayer = playerTwo;
 
 // Header
 let nameDisplay = document.querySelector(".player-name");
@@ -35,8 +26,6 @@ nameDisplay.innerText = currentPlayer.name;
 const newGameButton = document.querySelector(".new-game-button");
 newGameButton.addEventListener("click", () => {
   tdTags.forEach((tdTag) => {
-    // tdTag.classList.remove("bgMainOne");
-    // tdTag.classList.remove("bgMainTwo");
     tdTag.style.background = "white";
     currentPlayer = playerOne;
   });
@@ -71,62 +60,47 @@ if (blue className count > orange className count){
 /*
 let playerOne = {
   mainColor: "#B6DBFC",
-  secondaryColor: "#F0F8FF" || bgLightOne
+  hoverColor: "#F0F8FF" || bgLightOne
 };
 
 let playerTwo = {
   mainColor: "#F8C28E",
-  secondaryColor: "#FFF6EC" || bgLightTwo
+  hoverColor: "#FFF6EC" || bgLightTwo
 };
 */
 
 function mouseOver(e) {
-  // TODO  the bgLightOne would represent the variable of current player ***
-  if ((currentPlayer === playerOne && !e.target.style.backgroundColor !== playerOne.secondaryColor) ||
-    e.target.style.backgroundColor !== playerTwo.secondaryColor) {
-    e.target.style.backgroundColor = playerOne.secondaryColor; // change to currentPlayer.secondaryColor
-  } else {
-    e.target.style.backgroundColor = playerTwo.secondaryColor;
+  if (
+    e.target.style.backgroundColor === playerOne.mainColor &&
+    e.target.style.backgroundColor === playerTwo.mainColor
+  ) {
+    e.target.style.backgroundColor =
+      currentPlayer === playerOne ? playerOne.hoverColor : playerTwo.hoverColor;
   }
 }
 
 function mouseOut(e) {
   // TODO  the bgLightOne would represent the variable of current player ***
-  // if (e.target.classList.contains("bgLightOne")) {
-  //   e.target.classList.remove("bgLightOne");
-  // } else if (e.target.classList.contains("bgLightTwo")) {
-  //   e.target.classList.remove("bgLightTwo");
-  // }
+  if (e.target.style.backgroundColor === playerOne.mainColor ||
+      e.target.style.backgroundColor === playerTwo.mainColor) {
+    e.target.style.backgroundColor = "white";
+  }
+}
 
-  // if (e.target.style.backgroundColor === playerOne.secondaryColor || e.target.style.backgroundColor === playerTwo.secondaryColor) {
-  //   e.target.style.backgroundColor = "white";
-  // }
-
-  if(e.target.style.backgroundColor !== 'white'){
-    e.target.style.backgroundColor = 'white'
+function clickColor(e) {
+  if (!e.target.style.backgroundColor &&
+    e.target.style.backgroundColor !== playerOne.mainColor &&
+    e.target.style.backgroundColor !== playerTwo.mainColor
+  ) {
+    e.target.style.backgroundColor = currentPlayer.mainColor;
+    switchPlayer();
   }
 }
 
 tdTags.forEach((tdTag) => {
   tdTag.addEventListener("mouseover", mouseOver);
   tdTag.addEventListener("mouseout", mouseOut);
-
-  tdTag.addEventListener("click", (e) => {
-    if (
-      currentPlayer === playerOne &&
-      (!e.target.classList.contains(playerOne.mainColor) ||
-        !e.target.classList.contains(playerTwo.mainColor)) &&
-      !e.target.classList.contains(playerOne.secondaryColor)
-    ) {
-      // TODO change bgMainOne to the current player's variable ***
-      // if(currentPlayer === playerOne){
-      e.target.classList.add("bgMainOne"); // currentPlayer.mainColor
-    } else {
-      e.target.classList.add("bgMainTwo");
-      // }
-    }
-    switchPlayer();
-  });
+  tdTag.addEventListener("click", clickColor);
 });
 
 // Section
