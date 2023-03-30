@@ -1,9 +1,14 @@
 const tdTags = document.querySelectorAll("td");
-const aliceBlue = "#F0F8FF";
-const apricot = "#FFF6EC";
-const mainBlue = "#B6DBFC";
-const mainOrange = "#F8C28E";
-const players = document.querySelectorAll(".player-info");
+const aliceBlue = "aliceBlue";
+const apricot = "apricot";
+const mainBlue = "mainBlue";
+const mainOrange = "mainColor";
+
+const bgLightOne = "#F0F8FF"
+const bgLightTwo = "#FFF6EC";
+const bgMainOne = "#B6DBFC";
+const bgMainTwo = "#F8C28E";
+
 let playerOne = {
   name: "" || "Player One",
   mainColor: mainBlue,
@@ -19,11 +24,14 @@ let playerTwo = {
   value: "O",
   wins: 0,
 };
+
 let currentPlayer = playerOne; // starts game with player one
 // let currentPlayer = playerTwo; // starts game with player two
-let nameDisplay = document.querySelector(".player-name");
 
 // Header
+let nameDisplay = document.querySelector(".player-name");
+nameDisplay.innerText = currentPlayer.name;
+
 const newGameButton = document.querySelector(".new-game-button");
 newGameButton.addEventListener("click", () => {
   tdTags.forEach((tdTag) => {
@@ -43,7 +51,6 @@ function switchPlayer() {
 
 // Main
 // TODO Have a listener for the .current-player to update based on who's turn it is ***
-nameDisplay.innerText = currentPlayer.name;
 
 /*
 max amount of times a user can select is 5
@@ -81,7 +88,7 @@ function mouseOver(e) {
     !e.target.classList.contains(playerOne.secondaryColor) ||
     e.target.classList.contains(playerTwo.secondaryColor))
   ) {
-    e.target.classList.add("aliceBlue"); // change to currentPlayer.secondaryColor
+    e.target.classList.add(playerOne.secondaryColor); // change to currentPlayer.secondaryColor
   } else {
     e.target.classList.add("apricot");
   }
@@ -101,18 +108,17 @@ tdTags.forEach((tdTag) => {
   tdTag.addEventListener("mouseout", mouseOut);
 
   tdTag.addEventListener("click", (e) => {
-    if (
+    if (currentPlayer === playerOne &&
       (!e.target.classList.contains(playerOne.mainColor) ||
       !e.target.classList.contains(playerTwo.mainColor)) &&
-      (!e.target.classList.contains(playerOne.secondaryColor) ||
-      !e.target.classList.contains(playerTwo.secondaryColor))
+      (!e.target.classList.contains(playerOne.secondaryColor))
     ) {
       // TODO change mainBlue to the current player's variable ***
-      if(currentPlayer === playerOne){
+      // if(currentPlayer === playerOne){
         e.target.classList.add("mainBlue"); // currentPlayer.mainColor
       } else {
         e.target.classList.add('mainOrange')
-      }
+      // }
     }
     switchPlayer();
   });
@@ -125,15 +131,16 @@ nameInputBoxes.forEach((nameInputBox) => {
     e.target.placeholder = "";
   });
 
-  // nameInputBox.addEventListener('change', (e) => {
-  //   e.preventDefault()
-  //   if(e.target.id === "player-one"){
-  //     playerName = playerOne.name;
-  //   } else {
-  //     playerName = playerTwo.name;
-  //   }
-  //   playerName = e.target.value || e.target.placeholder
-  // })
+  nameInputBox.addEventListener('input', (e) => {
+    console.log(e)
+    e.preventDefault()
+    if(e.target.id === "player-one"){
+      playerOne.name = e.target.value
+    } else {
+      playerTwo.name = e.target.value
+    }
+    playerName = e.target.value || e.target.placeholder
+  })
   // TODO When focus is removed from the input boxes, how to save? ***
 
   nameInputBox.addEventListener("blur", (e) => {
@@ -194,7 +201,6 @@ When a user changes their name, it updates the h1 tag
 
 // Extra
 // Local Storage?
-// Hold name values in a players object
 // if name exists, then populate score values for player 1 and player 2
 // else create a new instance of the player in the players object
 

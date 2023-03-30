@@ -194,19 +194,18 @@ footer {
 }
 
 
-/* ************************************ Misc ********************************* */
+/* ************************************ Game Data ********************************* */
 
-/* Hover */
+/* Hover Event */
 .aliceBlue {
   background-color: #F0F8FF;
 }
 
-/* apricot */
 .apricot {
   background-color: #FFF6EC;
 }
 
-/* Click */
+/* Click Event */
 .mainBlue {
   background-color: #B6DBFC;
 }
