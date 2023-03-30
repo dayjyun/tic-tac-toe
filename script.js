@@ -1,17 +1,26 @@
-console.log("JS Loaded");
-
 const tdTags = document.querySelectorAll("td");
 const aliceBlue = "#F0F8FF";
-const apricot = "#F5D6B8";
-const lightBlue = "#B6DBFC"
-const lightOrange = "#F8C28E"
+const apricot = "#FFF6EC";
+const lightBlue = "#B6DBFC";
+const lightOrange = "#F8C28E";
 const players = document.querySelectorAll(".player-info");
-const playerOne = document.querySelector(".player-one");
-const playerTwo = document.querySelector(".player-two");
-let playerOneObj = {name: "" || "Player One", mainColor: aliceBlue, secondColor: lightBlue, value: "X"}
-let playerTwoObj = {name: "" || "Player Two", mainColor: apricot, secondColor: lightOrange, value: "O"}
-let currentPlayer = playerOneObj; // starts game with player one
-// let currentPlayer = playerTwoObj; // starts game with player two
+// const playerOne = document.querySelector(".player-one");
+// const playerTwo = document.querySelector(".player-two");
+let playerOne = {
+  name: "" || "Player One",
+  mainColor: aliceBlue,
+  secondaryColor: lightBlue,
+  value: "X",
+};
+
+let playerTwo = {
+  name: "" || "Player Two",
+  mainColor: apricot,
+  secondaryColor: lightOrange,
+  value: "O",
+};
+let currentPlayer = playerOne; // starts game with player one
+// let currentPlayer = playerTwo; // starts game with player two
 let nameDisplay = document.querySelector(".player-name");
 
 // Header
@@ -24,17 +33,16 @@ newGameButton.addEventListener("click", () => {
 });
 
 function switchPlayer() {
-  if (currentPlayer === playerOneObj) {
-    currentPlayer = playerTwoObj;
+  if (currentPlayer === playerOne) {
+    currentPlayer = playerTwo;
   } else {
-    currentPlayer = playerOneObj;
+    currentPlayer = playerOne;
   }
 }
 
 // Main
 // TODO Have a listener for the .current-player to update based on who's turn it is ***
-nameDisplay.innerText = currentPlayer.name
-
+nameDisplay.innerText = currentPlayer.name;
 
 /*
 max amount of times a user can select is 5
@@ -51,10 +59,30 @@ if (blue className count > orange className count){
 }
 */
 
+/*
+let playerOne = {
+  mainColor: aliceBlue,
+  secondaryColor: lightBlue,
+  value: "X",
+};
+
+let playerTwo = {
+  mainColor: apricot,
+  secondaryColor: lightOrange,
+  value: "O",
+};
+*/
+
 function mouseOver(e) {
   // TODO  the aliceBlue would represent the variable of current player ***
-  if (!e.target.classList.contains(currentPlayer.secondColor) || !e.target.classList.contains(playerOneObj.mainColor) || e.target.classList.contains(playerTwoObj.mainColor)) {
-    e.target.classList.add("aliceBlue"); // change to currentPlayer.secondCOlor
+  if (currentPlayer === playerOne &&
+    (!e.target.classList.contains(currentPlayer.secondaryColor) ||
+    !e.target.classList.contains(playerOne.mainColor) ||
+    e.target.classList.contains(playerTwo.mainColor))
+  ) {
+    e.target.classList.add("aliceBlue"); // change to currentPlayer.mainColor
+  } else {
+    e.target.classList.add("apricot");
   }
 }
 
@@ -62,6 +90,8 @@ function mouseOut(e) {
   // TODO  the aliceBlue would represent the variable of current player ***
   if (e.target.classList.contains("aliceBlue")) {
     e.target.classList.remove("aliceBlue");
+  } else if (e.target.classList.contains("apricot")) {
+    e.target.classList.remove("apricot");
   }
 }
 
@@ -71,13 +101,17 @@ tdTags.forEach((tdTag) => {
 
   tdTag.addEventListener("click", (e) => {
     if (
-      !e.target.classList.contains("lightBlue") || // playerOneObj.secondColor
-      !e.target.classList.contains("lightOrange") // playerTwoObj.secondColor
+      !e.target.classList.contains(playerOne.secondaryColor) || // playerOne.secondaryColor
+      !e.target.classList.contains(playerTwo.secondaryColor) // playerTwo.secondaryColor
     ) {
       // TODO change lightBlue to the current player's variable ***
-      e.target.classList.add("lightBlue");
-      switchPlayer()
+      if(currentPlayer === playerOne){
+        e.target.classList.add("lightBlue"); // currentPlayer.secondaryColor
+      } else {
+        e.target.classList.add('lightOrange')
+      }
     }
+    switchPlayer();
   });
 });
 
@@ -94,24 +128,24 @@ nameInputBoxes.forEach((nameInputBox) => {
   // nameInputBox.addEventListener('change', (e) => {
   //   e.preventDefault()
   //   if(e.target.id === "player-one"){
-  //     playerName = playerOneObj.name;
+  //     playerName = playerOne.name;
   //   } else {
-  //     playerName = playerTwoObj.name;
+  //     playerName = playerTwo.name;
   //   }
   //   playerName = e.target.value || e.target.placeholder
   // })
 
   nameInputBox.addEventListener("blur", (e) => {
     if (e.target.placeholder !== "") {
-      if(e.target.id === "player-one"){
-        playerOneObj.name = e.target.value;
+      if (e.target.id === "player-one") {
+        playerOne.name = e.target.value;
       } else {
-        playerTwoObj.name = e.target.value;
+        playerTwo.name = e.target.value;
       }
-    } else if(e.target.id === 'player-one'){
-      e.target.placeholder = "Player One"
+    } else if (e.target.id === "player-one") {
+      e.target.placeholder = "Player One";
     } else {
-      e.target.placeholder = "Player Two"
+      e.target.placeholder = "Player Two";
     }
   });
 
@@ -121,25 +155,25 @@ nameInputBoxes.forEach((nameInputBox) => {
       nameInputBox.disabled = true;
       nameInputBox.disabled = false;
 
-      if(e.target.id === "player-one"){
-        playerOneObj.name = nameInputBox.value || "Player One";
+      if (e.target.id === "player-one") {
+        playerOne.name = nameInputBox.value || "Player One";
       } else {
-        playerTwoObj.name = nameInputBox.value || "Player Two"
+        playerTwo.name = nameInputBox.value || "Player Two";
       }
     }
   });
 });
 
 // !DELETE *************************************************
-let object = document.createElement('button')
-object.innerText = "OBJECT"
-object.addEventListener('click', (e) => {
-  e.preventDefault()
-  console.log("ONE", playerOneObj)
-  console.log("TWO", playerTwoObj)
-  console.log("Current Player", currentPlayer)
-})
-newGameButton.insertAdjacentElement("afterend",object)
+let object = document.createElement("button");
+object.innerText = "OBJECT";
+object.addEventListener("click", (e) => {
+  e.preventDefault();
+  // console.log("ONE", playerOne);
+  // console.log("TWO", playerTwo);
+  console.log("Current Player", currentPlayer);
+});
+newGameButton.insertAdjacentElement("afterend", object);
 // !DELETE END *********************************************
 
 // Player Display
@@ -148,7 +182,6 @@ H1 Tag should show current player's name
 When a user changes their name, it updates the h1 tag
 
 */
-
 
 // grab player 2 icon
 // add event listener when clicked, it toggles to live person play
