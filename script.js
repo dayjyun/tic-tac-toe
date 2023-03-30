@@ -36,10 +36,10 @@ newGameButton.addEventListener("click", () => {
 function switchPlayer() {
   if (currentPlayer === playerOne) {
     currentPlayer = playerTwo;
-    secondPlayer = playerOne
+    // secondPlayer = playerOne
   } else {
     currentPlayer = playerOne;
-    secondPlayer = playerTwo
+    // secondPlayer = playerTwo
   }
 }
 
@@ -61,14 +61,14 @@ if (blue className count > orange className count){
 */
 
 // function mouseOver(e) {
-//   let boxColor = e.target.style.backgroundColor;
-//   if (boxColor === "white") {
-//     console.log('white')
-//     boxColor = currentPlayer.hoverColor;
-//     console.log(currentPlayer.hoverColor)
+//   if (e.target.style.backgroundColor === "white") {
+//     e.target.style.backgroundColor = currentPlayer.hoverColor;
 //   }
-//   console.log('mouseOver', boxColor)
 // }
+
+function mouseOver(e) {
+  e.target.style.backgroundColor = currentPlayer.hoverColor;
+}
 
 // function mouseOut(e) {
 //   // TODO  the bgLightOne would represent the variable of current player ***
@@ -86,18 +86,27 @@ if (blue className count > orange className count){
 // }
 
 function clickColor(e) {
-  if (e.target.style.backgroundColor === "white") {
-    e.target.style.backgroundColor = currentPlayer.mainColor;
-    switchPlayer()
-  }
-  // if (
-  //   boxColor !== playerOne.mainColor &&
-  //   boxColor !== playerTwo.mainColor
-  // ) {
-  //   boxColor = currentPlayer.mainColor;
-  //   switchPlayer();
+  // if (e.target.style.backgroundColor === "white") {
+  //   e.target.style.backgroundColor = currentPlayer.mainColor;
+  //   switchPlayer()
   // }
-  // console.log("clickColor", boxColor)
+  console.log(e.target)
+
+  if (currentPlayer === playerOne &&
+    e.target.style.backgroundColor === "white" &&
+    // e.target.style.backgroundColor !== playerOne.hoverColor ||
+    e.target.style.backgroundColor !== playerTwo.mainColor
+  ) {
+    e.target.style.backgroundColor = playerOne.mainColor;
+    currentPlayer = playerTwo
+  } else if(currentPlayer === playerTwo &&
+    e.target.style.backgroundColor === "white" &&
+    // e.target.style.backgroundColor !== playerTwo.hoverColor ||
+    e.target.style.backgroundColor !== playerOne.mainColor
+  ) {
+    e.target.style.backgroundColor = playerTwo.mainColor;
+    currentPlayer = playerOne
+  }
 }
 
 tdTags.forEach((tdTag) => {
