@@ -4,19 +4,17 @@ const apricot = "#FFF6EC";
 const mainBlue = "#B6DBFC";
 const mainOrange = "#F8C28E";
 const players = document.querySelectorAll(".player-info");
-// const playerOne = document.querySelector(".player-one");
-// const playerTwo = document.querySelector(".player-two");
 let playerOne = {
   name: "" || "Player One",
-  mainColor: aliceBlue,
-  secondaryColor: mainBlue,
+  mainColor: mainBlue,
+  secondaryColor: aliceBlue,
   value: "X",
 };
 
 let playerTwo = {
   name: "" || "Player Two",
-  mainColor: apricot,
-  secondaryColor: mainOrange,
+  mainColor: mainOrange,
+  secondaryColor: apricot,
   value: "O",
 };
 let currentPlayer = playerOne; // starts game with player one
@@ -54,22 +52,22 @@ max amount of times a user can select is 5
 
 loop through td arr
 if (blue className count > orange className count){
-  orange turn
+  currentPlayer = playerTwo
 } else { // it will equal therefore blue's turn
-  blue turn
+  currentPlayer = playerOne
 }
 */
 
 /*
 let playerOne = {
-  mainColor: aliceBlue,
-  secondaryColor: mainBlue,
+  mainColor: mainBlue,
+  secondaryColor: aliceBlue,
   value: "X",
 };
 
 let playerTwo = {
-  mainColor: apricot,
-  secondaryColor: mainOrange,
+  mainColor: mainOrange,
+  secondaryColor: apricot,
   value: "O",
 };
 */
@@ -77,11 +75,11 @@ let playerTwo = {
 function mouseOver(e) {
   // TODO  the aliceBlue would represent the variable of current player ***
   if (currentPlayer === playerOne &&
-    (!e.target.classList.contains(currentPlayer.secondaryColor) ||
-    !e.target.classList.contains(playerOne.mainColor) ||
-    e.target.classList.contains(playerTwo.mainColor))
+    (!e.target.classList.contains(currentPlayer.mainColor) ||
+    !e.target.classList.contains(playerOne.secondaryColor) ||
+    e.target.classList.contains(playerTwo.secondaryColor))
   ) {
-    e.target.classList.add("aliceBlue"); // change to currentPlayer.mainColor
+    e.target.classList.add("aliceBlue"); // change to currentPlayer.secondaryColor
   } else {
     e.target.classList.add("apricot");
   }
@@ -102,14 +100,14 @@ tdTags.forEach((tdTag) => {
 
   tdTag.addEventListener("click", (e) => {
     if (
-      (!e.target.classList.contains(playerOne.secondaryColor) ||
-      !e.target.classList.contains(playerTwo.secondaryColor)) &&
       (!e.target.classList.contains(playerOne.mainColor) ||
-      !e.target.classList.contains(playerTwo.mainColor))
+      !e.target.classList.contains(playerTwo.mainColor)) &&
+      (!e.target.classList.contains(playerOne.secondaryColor) ||
+      !e.target.classList.contains(playerTwo.secondaryColor))
     ) {
       // TODO change mainBlue to the current player's variable ***
       if(currentPlayer === playerOne){
-        e.target.classList.add("mainBlue"); // currentPlayer.secondaryColor
+        e.target.classList.add("mainBlue"); // currentPlayer.mainColor
       } else {
         e.target.classList.add('mainOrange')
       }
