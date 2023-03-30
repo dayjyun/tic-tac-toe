@@ -10,7 +10,9 @@ const playerOne = document.querySelector(".player-one");
 const playerTwo = document.querySelector(".player-two");
 let playerOneObj = {name: "" || "Player One", mainColor: aliceBlue, secondColor: lightBlue, value: "X"}
 let playerTwoObj = {name: "" || "Player Two", mainColor: apricot, secondColor: lightOrange, value: "O"}
-// let currentPlayer = playerOneName;
+let currentPlayer = playerOneObj; // starts game with player one
+// let currentPlayer = playerTwoObj; // starts game with player two
+let nameDisplay = document.querySelector(".player-name");
 
 // Header
 const newGameButton = document.querySelector(".new-game-button");
@@ -21,11 +23,18 @@ newGameButton.addEventListener("click", () => {
   });
 });
 
-// H1
-const currentPlayerHeading = document.querySelector('current-player')
+function switchPlayer() {
+  if (currentPlayer === playerOneObj) {
+    currentPlayer = playerTwoObj;
+  } else {
+    currentPlayer = playerOneObj;
+  }
+}
 
 // Main
-const turnNameDisplay = document.querySelector(".turn-name-display");
+// TODO Have a listener for the .current-player to update based on who's turn it is ***
+nameDisplay.innerText = currentPlayer.name
+
 
 /*
 max amount of times a user can select is 5
@@ -37,20 +46,20 @@ max amount of times a user can select is 5
 loop through td arr
 if (blue className count > orange className count){
   orange turn
-} else {
+} else { // it will equal therefore blue's turn
   blue turn
 }
 */
 
 function mouseOver(e) {
-  // TODO  the aliceBlue would represent the variable of current player
-  if (!e.target.classList.contains("lightBlue")) {
-    e.target.classList.add("aliceBlue");
+  // TODO  the aliceBlue would represent the variable of current player ***
+  if (!e.target.classList.contains(currentPlayer.secondColor) || !e.target.classList.contains(playerOneObj.mainColor) || e.target.classList.contains(playerTwoObj.mainColor)) {
+    e.target.classList.add("aliceBlue"); // change to currentPlayer.secondCOlor
   }
 }
 
 function mouseOut(e) {
-  // TODO  the aliceBlue would represent the variable of current player
+  // TODO  the aliceBlue would represent the variable of current player ***
   if (e.target.classList.contains("aliceBlue")) {
     e.target.classList.remove("aliceBlue");
   }
@@ -62,17 +71,18 @@ tdTags.forEach((tdTag) => {
 
   tdTag.addEventListener("click", (e) => {
     if (
-      !e.target.classList.contains("lightBlue") ||
-      !e.target.classList.contains("lightOrange")
+      !e.target.classList.contains("lightBlue") || // playerOneObj.secondColor
+      !e.target.classList.contains("lightOrange") // playerTwoObj.secondColor
     ) {
-      // TODO change lightBlue to the current player's variable
+      // TODO change lightBlue to the current player's variable ***
       e.target.classList.add("lightBlue");
+      switchPlayer()
     }
   });
 });
 
 // Section
-// TODO Add event listener to clear out the number of wins and ties back to zero
+// TODO Add event listener to clear out the number of wins and ties back to zero ***
 const resetScoreButton = document.querySelector(".reset-score-button");
 
 const nameInputBoxes = document.querySelectorAll(".name-input");
@@ -80,6 +90,16 @@ nameInputBoxes.forEach((nameInputBox) => {
   nameInputBox.addEventListener("click", (e) => {
     e.target.placeholder = "";
   });
+
+  // nameInputBox.addEventListener('change', (e) => {
+  //   e.preventDefault()
+  //   if(e.target.id === "player-one"){
+  //     playerName = playerOneObj.name;
+  //   } else {
+  //     playerName = playerTwoObj.name;
+  //   }
+  //   playerName = e.target.value || e.target.placeholder
+  // })
 
   nameInputBox.addEventListener("blur", (e) => {
     if (e.target.placeholder !== "") {
@@ -104,13 +124,23 @@ nameInputBoxes.forEach((nameInputBox) => {
       if(e.target.id === "player-one"){
         playerOneObj.name = nameInputBox.value || "Player One";
       } else {
-        playerTwoObj.name = nameInputBox.value
+        playerTwoObj.name = nameInputBox.value || "Player Two"
       }
-      console.log("One Obj", playerOneObj)
-      console.log("Two Obj", playerTwoObj)
     }
   });
 });
+
+// !DELETE *************************************************
+let object = document.createElement('button')
+object.innerText = "OBJECT"
+object.addEventListener('click', (e) => {
+  e.preventDefault()
+  console.log("ONE", playerOneObj)
+  console.log("TWO", playerTwoObj)
+  console.log("Current Player", currentPlayer)
+})
+newGameButton.insertAdjacentElement("afterend",object)
+// !DELETE END *********************************************
 
 // Player Display
 /*
