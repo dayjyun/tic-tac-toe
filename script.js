@@ -2,22 +2,20 @@ console.log("JS Loaded");
 
 const tdTags = document.querySelectorAll("td");
 
-const aliceBlue = '#F0F8FF'
-const apricot = '#F5D6B8'
+const aliceBlue = "#F0F8FF";
+const apricot = "#F5D6B8";
 
 const playerInfoList = document.querySelectorAll(".player-info");
 
 // let playerName = "";
 
-
-
 // Header
 const newGameButton = document.querySelector(".new-game-button");
 newGameButton.addEventListener("click", () => {
-  tdTags.forEach(tdTag => {
-    tdTag.classList.remove('lightBlue')
-    tdTag.classList.remove('lightOrange')
-  })
+  tdTags.forEach((tdTag) => {
+    tdTag.classList.remove("lightBlue");
+    tdTag.classList.remove("lightOrange");
+  });
 });
 
 // Main
@@ -34,11 +32,11 @@ function mouseOver(e) {
   }
 }
 
-function mouseOut(e){
-    // TODO  the aliceBlue would represent the variable of current player
-    if (e.target.classList.contains("aliceBlue")) {
-      e.target.classList.remove("aliceBlue");
-    }
+function mouseOut(e) {
+  // TODO  the aliceBlue would represent the variable of current player
+  if (e.target.classList.contains("aliceBlue")) {
+    e.target.classList.remove("aliceBlue");
+  }
 }
 
 tdTags.forEach((tdTag) => {
@@ -46,9 +44,12 @@ tdTags.forEach((tdTag) => {
   tdTag.addEventListener("mouseout", mouseOut);
 
   tdTag.addEventListener("click", (e) => {
-    if (!e.target.classList.contains('lightBlue') || !e.target.classList.contains('lightOrange')) {
-        // TODO change lightBlue to the current player's variable
-      e.target.classList.add('lightBlue');
+    if (
+      !e.target.classList.contains("lightBlue") ||
+      !e.target.classList.contains("lightOrange")
+    ) {
+      // TODO change lightBlue to the current player's variable
+      e.target.classList.add("lightBlue");
     }
   });
 });
@@ -75,7 +76,19 @@ const resetScoreButton = document.querySelector(".reset-score-button");
 // add event listener when clicked, it toggles to live person play
 
 const nameInputBox = document.querySelector(".name-input");
+nameInputBox.addEventListener("click", (e) => {
+  e.target.placeholder = "";
+  // console.log(e.target.placeholder)
+});
+
+nameInputBox.addEventListener("blur", (e) => {
+  if (e.target.placeholder === "") {
+    e.target.placeholder = "Player One";
+  }
+});
+
 nameInputBox.addEventListener("keydown", (e) => {
+  e.target.placeholder = "";
   if (e.keyCode === 13) {
     e.preventDefault();
     nameInputBox.disabled = true;
