@@ -1,22 +1,22 @@
 const tdTags = document.querySelectorAll("td");
 const aliceBlue = "#F0F8FF";
 const apricot = "#FFF6EC";
-const lightBlue = "#B6DBFC";
-const lightOrange = "#F8C28E";
+const mainBlue = "#B6DBFC";
+const mainOrange = "#F8C28E";
 const players = document.querySelectorAll(".player-info");
 // const playerOne = document.querySelector(".player-one");
 // const playerTwo = document.querySelector(".player-two");
 let playerOne = {
   name: "" || "Player One",
   mainColor: aliceBlue,
-  secondaryColor: lightBlue,
+  secondaryColor: mainBlue,
   value: "X",
 };
 
 let playerTwo = {
   name: "" || "Player Two",
   mainColor: apricot,
-  secondaryColor: lightOrange,
+  secondaryColor: mainOrange,
   value: "O",
 };
 let currentPlayer = playerOne; // starts game with player one
@@ -27,8 +27,9 @@ let nameDisplay = document.querySelector(".player-name");
 const newGameButton = document.querySelector(".new-game-button");
 newGameButton.addEventListener("click", () => {
   tdTags.forEach((tdTag) => {
-    tdTag.classList.remove("lightBlue");
-    tdTag.classList.remove("lightOrange");
+    tdTag.classList.remove("mainBlue");
+    tdTag.classList.remove("mainOrange");
+    currentPlayer = playerOne;
   });
 });
 
@@ -62,13 +63,13 @@ if (blue className count > orange className count){
 /*
 let playerOne = {
   mainColor: aliceBlue,
-  secondaryColor: lightBlue,
+  secondaryColor: mainBlue,
   value: "X",
 };
 
 let playerTwo = {
   mainColor: apricot,
-  secondaryColor: lightOrange,
+  secondaryColor: mainOrange,
   value: "O",
 };
 */
@@ -101,14 +102,16 @@ tdTags.forEach((tdTag) => {
 
   tdTag.addEventListener("click", (e) => {
     if (
-      !e.target.classList.contains(playerOne.secondaryColor) || // playerOne.secondaryColor
-      !e.target.classList.contains(playerTwo.secondaryColor) // playerTwo.secondaryColor
+      (!e.target.classList.contains(playerOne.secondaryColor) ||
+      !e.target.classList.contains(playerTwo.secondaryColor)) &&
+      (!e.target.classList.contains(playerOne.mainColor) ||
+      !e.target.classList.contains(playerTwo.mainColor))
     ) {
-      // TODO change lightBlue to the current player's variable ***
+      // TODO change mainBlue to the current player's variable ***
       if(currentPlayer === playerOne){
-        e.target.classList.add("lightBlue"); // currentPlayer.secondaryColor
+        e.target.classList.add("mainBlue"); // currentPlayer.secondaryColor
       } else {
-        e.target.classList.add('lightOrange')
+        e.target.classList.add('mainOrange')
       }
     }
     switchPlayer();
