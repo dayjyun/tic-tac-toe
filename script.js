@@ -1,5 +1,22 @@
 console.log('JS Loaded')
 
+// Header
+// Add event listener to clear out board values
+const newGameButton = document.querySelector('.new-game-button')
+
+
+
+// Main
+const turnNameDisplay = document.querySelector('.turn-name-display')
+
+const tableTopBoxes = document.querySelectorAll('.table-top')
+const tableMidBoxes = document.querySelectorAll('.table-mid')
+const tableEndBoxes = document.querySelectorAll('.table-end')
+
+// Section
+// Add event listener to clear out the number of wins and ties back to zero
+const resetScoreButton = document.querySelector('.reset-score-button')
+
 // Have an object to store name and cpu info
 // this also stores the wins for player 1 and player 2
 // date ?
@@ -17,7 +34,6 @@ console.log('JS Loaded')
 // grab player 2 icon
 // add event listener when clicked, it toggles to live person play
 
-// ! Find a way to preserve the name when enter is pressed
 const nameInputBox = document.querySelector('.name-input')
 nameInputBox.addEventListener('keydown', (e) => {
     if(e.keyCode === 13){

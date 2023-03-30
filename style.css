@@ -17,20 +17,20 @@ button {
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   background-color: rgb(233, 233, 233);
+  min-width: 30rem;
 }
 
-/* *********************************************************************Top */
+/* ******************************** Top ************************************* */
 header {
   padding: 1rem 0;
   text-align: center;
   line-height: 40px;
 }
 
+h1 {
+  font-size: 3rem;
+}
 
 .new-game-button {
   width: 6rem;
@@ -40,18 +40,20 @@ header {
   border-color: #0b0e07;
   border-radius: 3px;
   box-shadow: inset 0px -3px 7px 0px #29bbff;
-  background:linear-gradient(#2dabf9, #0688fa);
+  background: linear-gradient(#2dabf9, #0688fa);
 }
 
-/* *********************************************************************Main */
+/* * ******************************* Main *************************************  */
 main {
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 1.2px rgba(116, 116, 116, 0.75);
-  text-align: center;
+  box-shadow: 0 0 1.2px #747474bf;
   padding: 1.5rem;
+  width: 25rem;
+  margin: 0 auto;
   min-width: 25rem;
   min-height: 2rem;
+  text-align: center;
 }
 
 .table-container {
@@ -67,7 +69,6 @@ td {
   border: 2px solid #adadad;
   height: 5rem;
   width: 5rem;
-  text-align: center;
 }
 
 td:hover {
@@ -76,6 +77,12 @@ td:hover {
 
 .table-top td {
   border-top: none;
+  border-left: none;
+}
+
+.table-top td:last-child,
+.table-end td:last-child {
+  border-right: none;
 }
 
 .table-mid td {
@@ -88,48 +95,42 @@ td:hover {
 
 .table-end td {
   border-bottom: none;
+  border-left: none
 }
 
-/* ********************************************************************Section */
+/* *********************************** Section ********************************* */
 section {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 0 1.2px rgba(116, 116, 116, 0.75);
-  padding: 1.5rem;
+  border: 2px solid cyan;
   min-width: 25rem;
-  min-height: 2rem;
-  line-height: 25px;
+  min-height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 25rem;
 }
 
 .player-info-container {
-  border: 2px solid red;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  text-align: center;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 1.2px rgba(116, 116, 116, 0.75);
+  width: 25rem;
 }
 
-.name-input {
-  border: 1px solid #535353;
-  border-radius: 3px;
-  width: 5rem;
-}
 
-.reset-score-container {
-  /* border: 2px solid blue; */
-  text-align: center;
-}
-
-/* *********************************************************************Footer */
+/* ************************************ Footer ********************************* */
 footer {
+  border: 2px solid red;
+  color: rgb(31, 30, 30);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   bottom: 0;
-  color: rgb(31, 30, 30);
   height: 4rem;
   width: 60%;
-  position: absolute;
+  min-width: 20rem;
+  margin: 0 auto;
+  /* Add footer to bottom of page */
 }
 
 .personal-links-container {
