@@ -161,9 +161,16 @@ section {
 }
 
 /* ************************************ Footer ********************************* */
+/* footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  text-align: center;
+} */
 
-footer {
-  /* border: 2px solid red; */
+.footer-container {
+  border: 2px solid red;
   color: #1f1e1e;
   display: flex;
   justify-content: space-evenly;
@@ -174,6 +181,7 @@ footer {
   min-width: 20rem;
   margin: 0 auto;
   /* Add footer to bottom center of page */
+  /* position: absolute; */
 }
 
 .personal-links-container {

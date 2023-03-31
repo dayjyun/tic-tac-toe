@@ -4,7 +4,7 @@ const currentPlayerName = document.querySelector(".current-player.name");
 const currentPlayerColor = document.querySelector('.current-player.color')
 let playerOneWins = document.querySelector(".player-one-wins");
 let playerTwoWins = document.querySelector(".player-two-wins");
-let gameTies = document.querySelector(".game-ties");
+let gameTies = +document.querySelector(".game-ties");
 
 let playerOne = {
   name: "Player One",
@@ -44,10 +44,7 @@ function switchPlayer() {
 
 // Header
 let resetGame = newGameButton.addEventListener("click", () => {
-  tdTags.forEach((tdTag) => {
-    tdTag.style.backgroundColor = "white";
-  });
-
+  tdTags.forEach((tdTag) => tdTag.style.backgroundColor = "white");
   checkPlayer();
   currentPlayer = firstPlayer
   currentPlayerName.innerText = firstPlayer.name
@@ -55,11 +52,11 @@ let resetGame = newGameButton.addEventListener("click", () => {
 
 // Main
 function mouseOver(e) {
-  const isWhite = e.target.style.backgroundColor === "white";
+  const bgIsWhite = e.target.style.backgroundColor === "white";
 
-  if (currentPlayer === playerOne && isWhite) {
+  if (currentPlayer === playerOne && bgIsWhite) {
     e.target.style.backgroundColor = playerOne.hoverColor;
-  } else if (currentPlayer === playerTwo && isWhite) {
+  } else if (currentPlayer === playerTwo && bgIsWhite) {
     e.target.style.backgroundColor = playerTwo.hoverColor;
   }
 }
@@ -71,10 +68,10 @@ function mouseOut(e) {
     currentColor !== playerOne.mainColor &&
     currentColor !== playerTwo.mainColor) {
       e.target.style.backgroundColor = "white";
-  } else if (
-    currentColor !== playerOne.mainColor &&
-    currentColor !== playerTwo.mainColor) {
-      e.target.style.backgroundColor = "white";
+  // } else if (
+  //   currentColor !== playerOne.mainColor &&
+  //   currentColor !== playerTwo.mainColor) {
+  //     e.target.style.backgroundColor = "white";
   }
 }
 
@@ -158,18 +155,57 @@ start();
 function checkWinner(){
   const rows = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
   const cols = [[0, 3, 6], [1, 4, 7], [2, 5, 8]]
-  const cross = [[1, 4, 5], [2, 4, 6]]
+  const cross = [[0, 4, 8], [2, 4, 6]]
 
   const wins = [...rows, ...cols, ...cross]
 
-  // resetGame() // place under newGameButton event listener. Probably in modal
+  for(let i = 0; i < wins.length; i++){
+    const [a, b, c] = wins[i];
+        const cellA = tdTags[a];
+        const cellB = tdTags[b];
+        const cellC = tdTags[c];
+
+
+        if (
+          cellA.style.backgroundColor === currentPlayer.mainColor &&
+          cellB.style.backgroundColor === currentPlayer.mainColor &&
+          cellC.style.backgroundColor === currentPlayer.mainColor
+          ) {
+            currentPlayer.wins++;
+            if (currentPlayer === playerOne) {
+            switchPlayer()
+            // playerOne.wins++
+            playerOneWins.innerText = playerOne.wins;
+          } else {
+            switchPlayer();
+            // playerTwo.wins++
+            playerTwoWins.innerText = playerTwo.wins;
+          }
+          // Modal
+          setTimeout(() => {
+            alert(`${currentPlayer.name} wins!`);
+          }, 0);
+        } else {
+
+          // TODO Work on TIE GAME if modal doesn't fix ***
+        const whiteBoxArr = Array.from(tdTags).filter((td) => {
+          return td.style.backgroundColor === "white";
+        });
+
+        if (whiteBoxArr.length === 0) {
+          tieGame();
+        }}
+  }
 }
 
 function tieGame(){
-  // display tie message
+  // display tie message in modal
   // h2 Tie!
-  // resetGame() // place under newGameButton event listener
+  // resetGame()
   +gameTies.innerText++
+  alert(`tie game`)
+  return;
+  // resetGame
 }
 
 
@@ -186,19 +222,20 @@ newGameButton.insertAdjacentElement("afterend", object);
 // !DELETE END *********************************************
 
 
-// grab player 2 icon
-// add event listener when clicked, it toggles to live person play
 
 // Extra
+// Create a user icon in the nav bar.
+// grab player 2 icon
+// add event listener when clicked, it toggles the CPU to play
+
+// IF THERE'S LOCAL STORAGE
+// This loads all the saved names for player two
+
 // Local Storage?
 // if name exists, then populate score values for player 1 and player 2
 // resetGame()
 
-// button to save game
+// Class to save game
 // saves playerOne obj (name, wins, mainColor, hoverColor, color)
 // saves playerTwo obj (name, wins, mainColor, hoverColor, color)
 // else create a new instance of the player in the players object
-
-// IF THERE'S LOCAL STORAGE
-// Create a user icon in the nav bar.
-// This loads all the saved names for player two
