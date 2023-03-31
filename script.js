@@ -10,7 +10,6 @@ let playerOne = {
   name: "Player One",
   mainColor: "blue",
   hoverColor: "lightblue",
-  value: "X",
   wins: 3,
 };
 
@@ -18,7 +17,6 @@ let playerTwo = {
   name: "Player Two",
   mainColor: "red",
   hoverColor: "pink",
-  value: "O",
   wins: 2,
 };
 
@@ -39,15 +37,12 @@ function switchPlayer() {
 }
 
 // Header
-// function resetGame(){
-  newGameButton.addEventListener("click", () => {
-    tdTags.forEach((tdTag) => tdTag.style.backgroundColor = "white");
-    checkPlayer();
-    currentPlayer = firstPlayer
-    currentPlayerName.innerText = firstPlayer.name
-  });
-  // newGameButton.dispatchEvent(new Event('click'))
-// }
+newGameButton.addEventListener("click", () => {
+  tdTags.forEach((tdTag) => tdTag.style.backgroundColor = "white");
+  checkPlayer();
+  currentPlayer = firstPlayer
+  currentPlayerName.innerText = firstPlayer.name
+});
 
 // Main
 function mouseOver(e) {
@@ -82,8 +77,6 @@ function clickColor(e) {
     checkWinner(playerTwo)
     switchPlayer();
   }
-
-  console.log(e)
 }
 
 tdTags.forEach((tdTag) => {
@@ -174,10 +167,6 @@ function checkWinner(){
           } else {
             playerTwoWins.innerText = playerTwo.wins;
           }
-          // switchPlayer()
-          // setTimeout(() => {
-            //   alert(`${currentPlayer.name} wins!`);
-            // }, 0);
 
           // Modal
           const modal = document.querySelector(".modal-container")
