@@ -8,8 +8,6 @@ let gameTies = +document.querySelector(".game-ties");
 
 let playerOne = {
   name: "Player One",
-  // mainColor: "#b6dbfc",
-  // hoverColor: "#f0f8ff",
   mainColor: "blue",
   hoverColor: "lightblue",
   value: "X",
@@ -18,8 +16,6 @@ let playerOne = {
 
 let playerTwo = {
   name: "Player Two",
-  // mainColor: "#f8c28e",
-  // hoverColor: "#fff6ec",
   mainColor: "red",
   hoverColor: "pink",
   value: "O",
@@ -86,6 +82,8 @@ function clickColor(e) {
     checkWinner(playerTwo)
     switchPlayer();
   }
+
+  console.log(e)
 }
 
 tdTags.forEach((tdTag) => {
@@ -172,23 +170,25 @@ function checkWinner(){
           ) {
             currentPlayer.wins++;
             if (currentPlayer === playerOne) {
-            // switchPlayer()
             playerOneWins.innerText = playerOne.wins;
           } else {
-            // switchPlayer();
             playerTwoWins.innerText = playerTwo.wins;
           }
-          // Modal
           // switchPlayer()
-          // !resetGame()
-          setTimeout(() => {
-            alert(`${currentPlayer.name} wins!`);
-          }, 0);
-          return;
-        }
+          // setTimeout(() => {
+            //   alert(`${currentPlayer.name} wins!`);
+            // }, 0);
 
+          // Modal
+          const modal = document.querySelector(".modal-container")
+          modal.style.display = "block"
+
+          const winnerText = document.querySelector(".winner-info")
+          winnerText.innerText = `${currentPlayer.name} won!`
+          // return;
+        }
       }
-      // TODO Work on TIE GAME if modal doesn't fix ***
+
     const whiteBoxArr = Array.from(tdTags).filter((td) => {
       return td.style.backgroundColor === "white";
     });
@@ -199,11 +199,16 @@ function checkWinner(){
 }
 
 function tieGame(){
+  // Modal
+  const modal = document.querySelector(".modal-container");
+  modal.style.display = "block";
+
+  const winnerText = document.querySelector(".winner-info");
+  winnerText.innerText = `Tie!`;
   // display tie message in modal
   // h2 Tie!
   // resetGame()
-  ties++
-  alert(`tie game`)
+  ties++;
   return;
 }
 
