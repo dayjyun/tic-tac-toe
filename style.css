@@ -25,7 +25,6 @@ body {
   height: 100vh;
 }
 
-
 /* ******************************** Top ************************************* */
 
 header {
@@ -38,7 +37,7 @@ h1 {
   font-size: 3rem;
 }
 
-.new-game-button {
+.clear-board-button {
   width: 6rem;
   height: 2rem;
   border-width: 1px;
@@ -48,7 +47,6 @@ h1 {
   box-shadow: inset 0px -3px 7px 0px #29bbff;
   background: linear-gradient(#2dabf9, #0688fa);
 }
-
 
 /* * ******************************* Main *************************************  */
 
@@ -103,9 +101,8 @@ td:hover {
 
 .table-end td {
   border-bottom: none;
-  border-left: none
+  border-left: none;
 }
-
 
 /* *********************************** Section ********************************* */
 
@@ -140,7 +137,7 @@ section {
   border: 1px solid lightgray;
   border-radius: 3px;
   height: 25px;
-  padding: 2px 4px
+  padding: 2px 4px;
 }
 
 .name-input:focus {
@@ -156,12 +153,12 @@ section {
 .reset-score-button {
   width: 6rem;
   height: 2rem;
-  border-width:1px;
-  color:#fff;
-  border-color:#0b0e07;
+  border-width: 1px;
+  color: #fff;
+  border-color: #0b0e07;
   border-radius: 3px;
-  box-shadow:inset 0px -3px 7px 0px #f5a623;
-  background:linear-gradient(#f5a623, #f5a623);
+  box-shadow: inset 0px -3px 7px 0px #f5a623;
+  background: linear-gradient(#f5a623, #f5a623);
 }
 
 /* ************************************ Modal ********************************** */
@@ -175,7 +172,7 @@ section {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-info {
@@ -214,13 +211,6 @@ section {
 }
 
 /* ************************************ Footer ********************************* */
-/* footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  text-align: center;
-} */
 
 .footer-container {
   color: #1f1e1e;
@@ -232,8 +222,6 @@ section {
   width: 60%;
   min-width: 20rem;
   margin: 0 auto;
-  /* Add footer to bottom center of page */
-  /* position: absolute; */
 }
 
 .personal-links-container {
@@ -254,16 +242,15 @@ section {
   color: #0e76a8;
 }
 
-
 /* ************************************ Game Data ********************************* */
 
 /* Hover Event */
 .aliceBlue {
-  background-color: #F0F8FF;
+  background-color: #f0f8ff;
 }
 
 .apricot {
-  background-color: #FFF6EC;
+  background-color: #fff6ec;
 }
 
 /* Click Event */
@@ -272,5 +259,5 @@ section {
 }
 
 .mainOrange {
-  background-color: #F8C28E;
+  background-color: #f8c28e;
 }
