@@ -21,7 +21,7 @@
       </nav>
     </header>
     <main>
-      <h2 class="turn-name-display"><span class="player-name current-player">Player One</span>'s Turn</h2>
+      <h2><span class="current-player name">Player One</span>'s Turn</h2>
       <div class="table-container">
         <table>
           <tr class="table-top">
@@ -50,15 +50,15 @@
               type="text"
               name="player-name"
               id="player-one"
-              class="name-input player-name"
+              class="name-input"
               placeholder="Player One"
             />
-            (X)
+            <!-- (X) -->
           </div>
           <div class="turn-info-container">
             <div>
               <div>Turn</div>
-              <div class="current-player">{$}</div>
+              <div class="current-player color">{$}</div>
             </div>
           </div>
           <div class="player-info">
@@ -66,17 +66,17 @@
               type="text"
               name="player-name"
               id="player-two"
-              class="name-input player-name"
+              class="name-input"
               placeholder="Player Two"
             />
-            (O)
+            <!-- (O) -->
           </div>
         </div>
         <div class="player-info-bottom">
           <div class="game-stats">
-            <div class="player-one-wins">Wins: 0</div>
-            <div class="game-ties">Ties: 0</div>
-            <div class="player-two-wins">Wins: 0</div>
+            <div class="wins">Wins: <span class="player-one-wins points">0</span></div>
+            <div class="ties">Ties: <span class="game-ties points">0</span></div>
+            <div class="wins">Wins: <span class="player-two-wins points">0</span></div>
           </div>
         </div>
       </div>
