@@ -2,16 +2,20 @@ const tdTags = document.querySelectorAll("td");
 
 let playerOne = {
   name: "" || "Player One",
-  mainColor: "#B6DBFC",
-  hoverColor: "#F0F8FF",
+  // mainColor: "#B6DBFC",
+  mainColor: "blue",
+  // hoverColor: "#F0F8FF",
+  hoverColor: "lightblue",
   value: "X",
   wins: 0,
 };
 
 let playerTwo = {
   name: "" || "Player Two",
-  mainColor: "#F8C28E",
-  hoverColor: "#FFF6EC",
+  // mainColor: "#F8C28E",
+  mainColor: "red",
+  // hoverColor: "#FFF6EC",
+  hoverColor: "pink",
   value: "O",
   wins: 0,
 };
@@ -60,16 +64,18 @@ if (blue className count > orange className count){
 }
 */
 
-// function mouseOver(e) {
-//   if (e.target.style.backgroundColor === "white") {
-//     e.target.style.backgroundColor = currentPlayer.hoverColor;
-//   }
-// }
-
 function mouseOver(e) {
-  e.target.style.backgroundColor = currentPlayer.hoverColor;
+  if (currentPlayer === playerOne &&
+     (e.target.style.backgroundColor !== playerOne.mainColor &&
+      e.target.style.backgroundColor !== playerTwo.mainColor)) {
+      e.target.style.backgroundColor = playerOne.hoverColor;
+  } else if (
+    currentPlayer === playerTwo &&
+    (e.target.style.backgroundColor !== playerOne.mainColor &&
+     e.target.style.backgroundColor !== playerTwo.mainColor)) {
+     e.target.style.backgroundColor = playerTwo.hoverColor;
+  }
 }
-
 // function mouseOut(e) {
 //   // TODO  the bgLightOne would represent the variable of current player ***
 //   let boxColor = e.target.style.backgroundColor;
@@ -90,28 +96,30 @@ function clickColor(e) {
   //   e.target.style.backgroundColor = currentPlayer.mainColor;
   //   switchPlayer()
   // }
-  console.log(e.target)
+  console.log(e.target);
 
-  if (currentPlayer === playerOne &&
-    e.target.style.backgroundColor === "white" &&
-    // e.target.style.backgroundColor !== playerOne.hoverColor ||
+  if (
+    currentPlayer === playerOne &&
+    (e.target.style.backgroundColor === "white" ||
+      e.target.style.backgroundColor === playerOne.hoverColor) &&
     e.target.style.backgroundColor !== playerTwo.mainColor
   ) {
     e.target.style.backgroundColor = playerOne.mainColor;
-    currentPlayer = playerTwo
-  } else if(currentPlayer === playerTwo &&
-    e.target.style.backgroundColor === "white" &&
-    // e.target.style.backgroundColor !== playerTwo.hoverColor ||
+    currentPlayer = playerTwo;
+  } else if (
+    currentPlayer === playerTwo &&
+    (e.target.style.backgroundColor === "white" ||
+      e.target.style.backgroundColor === currentPlayer.hoverColor) &&
     e.target.style.backgroundColor !== playerOne.mainColor
   ) {
     e.target.style.backgroundColor = playerTwo.mainColor;
-    currentPlayer = playerOne
+    currentPlayer = playerOne;
   }
 }
 
 tdTags.forEach((tdTag) => {
-  tdTag.style.backgroundColor = "white"
-  // tdTag.addEventListener("mouseover", mouseOver);
+  tdTag.style.backgroundColor = "white";
+  tdTag.addEventListener("mouseover", mouseOver);
   // tdTag.addEventListener("mouseout", mouseOut);
   tdTag.addEventListener("click", clickColor);
 });
