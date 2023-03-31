@@ -67,20 +67,29 @@ if (blue className count > orange className count){
 */
 
 function mouseOver(e) {
-  if (
-    currentPlayer === playerOne &&
-    e.target.style.backgroundColor !== playerOne.mainColor &&
-    e.target.style.backgroundColor !== playerTwo.mainColor
-  ) {
+  const isWhite = e.target.style.backgroundColor === 'white';
+
+  // if (
+  //   currentPlayer === playerOne &&
+  //   currentColor !== playerOne.mainColor &&
+  //   currentColor !== playerTwo.mainColor
+  // ) {
+  //   e.target.style.backgroundColor = playerOne.hoverColor;
+  // } else if (
+  //   currentPlayer === playerTwo &&
+  //   currentColor !== playerOne.mainColor &&
+  //   currentColor !== playerTwo.mainColor
+  // ) {
+  //   e.target.style.backgroundColor = playerTwo.hoverColor;
+  // }
+
+  if(isWhite && currentPlayer === playerOne){
     e.target.style.backgroundColor = playerOne.hoverColor;
-  } else if (
-    currentPlayer === playerTwo &&
-    e.target.style.backgroundColor !== playerOne.mainColor &&
-    e.target.style.backgroundColor !== playerTwo.mainColor
-  ) {
+  } else if(isWhite && currentPlayer === playerTwo) {
     e.target.style.backgroundColor = playerTwo.hoverColor;
   }
 }
+
 function mouseOut(e) {
   if (
     currentPlayer === playerOne &&
@@ -100,18 +109,10 @@ function mouseOut(e) {
 function clickColor(e) {
   const currentColor = e.target.style.backgroundColor;
 
-  if (
-    // currentPlayer === playerOne &&
-    currentColor === playerOne.hoverColor
-    // && currentColor !== playerTwo.mainColor
-  ) {
+  if (currentColor === playerOne.hoverColor) {
     e.target.style.backgroundColor = playerOne.mainColor;
     switchPlayer();
-  } else if (
-    // currentPlayer === playerTwo &&
-    currentColor === currentPlayer.hoverColor
-    // && currentColor !== playerOne.mainColor
-  ) {
+  } else if (currentColor === currentPlayer.hoverColor) {
     e.target.style.backgroundColor = playerTwo.mainColor;
     switchPlayer();
   }
