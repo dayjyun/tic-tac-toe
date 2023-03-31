@@ -135,7 +135,8 @@ section {
 .name-input {
   border: 1px solid lightgray;
   border-radius: 3px;
-  padding: 2px 5px
+  height: 25px;
+  padding: 2px 4px
 }
 
 .name-input:focus {

@@ -1,5 +1,8 @@
 const tdTags = document.querySelectorAll("td");
-const playerTurn = document.querySelector(".current-player");
+const currentPlayerTurn = document.querySelector(".current-player");
+let playerOneWins = document.querySelector(".player-one-wins");
+let playerTwoWins = document.querySelector(".player-two-wins");
+let gameTies = document.querySelector(".game-ties");
 
 let playerOne = {
   name: "Player One",
@@ -8,7 +11,7 @@ let playerOne = {
   mainColor: "blue",
   hoverColor: "lightblue",
   value: "X",
-  wins: 0,
+  wins: 3,
 };
 
 let playerTwo = {
@@ -18,33 +21,31 @@ let playerTwo = {
   mainColor: "red",
   hoverColor: "pink",
   value: "O",
-  wins: 0,
+  wins: 2,
 };
-
 let currentPlayer = playerOne;
 // let currentPlayer = playerTwo;
+let firstPlayer = currentPlayer
 
-// Header
-// TODO Have a listener for the .current-player to update based on who's turn it is *** let playerTurn
+function start(){
+  playerOneWins.innerText = playerOne.wins;
+  playerTwoWins.innerText = playerTwo.wins;
+  checkPlayer()
+}
+start()
 
-
-const newGameButton = document.querySelector(".new-game-button");
-newGameButton.addEventListener("click", () => {
-  tdTags.forEach((tdTag) => {
-    tdTag.style.backgroundColor = "white";
-  });
-  currentPlayer = playerOne;
-  playerTurn.innerText = currentPlayer.name
-});
-
-function switchPlayer() {
-  currentPlayer = currentPlayer === playerOne ?
-  playerTwo : playerOne
-  playerTurn.innerText = currentPlayer.name
+function checkPlayer() {
+  currentPlayer === playerOne ?
+  currentPlayerTurn.innerText = playerOne.name :
+  currentPlayerTurn.innerText = playerTwo.name;
 }
 
-// Main
+function switchPlayer() {
+  currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
+  currentPlayerTurn.innerText = currentPlayer.name;
+}
 
+// Game Logic
 /*
 max amount of times a user can select is 5
 1 blue 1 orange
@@ -60,6 +61,24 @@ if (blue className count > orange className count){
 }
 */
 
+
+function tieGame(){
+  +gameTies.innerText++
+}
+
+// Header
+const newGameButton = document.querySelector(".new-game-button");
+newGameButton.addEventListener("click", () => {
+  tdTags.forEach((tdTag) => {
+    tdTag.style.backgroundColor = "white";
+  });
+
+  checkPlayer();
+  currentPlayer = firstPlayer
+  currentPlayerTurn.innerText = firstPlayer.name
+});
+
+// Main
 function mouseOver(e) {
   const isWhite = e.target.style.backgroundColor === "white";
 
@@ -104,69 +123,76 @@ tdTags.forEach((tdTag) => {
 });
 
 // Section
-// playerTurn.innerText = currentPlayer.name ||;
+// currentPlayerTurn.innerText = currentPlayer.name ||;
 
-
-// playerTurn.addEventListener('input', (e) => {
+// currentPlayerTurn.addEventListener('input', (e) => {
 //   if(currentPlayer === playerOne) {
-//     playerTurn.innerText = playerOne.name || e.target.placeholder
+//     currentPlayerTurn.innerText = playerOne.name || e.target.placeholder
 //   } else {
-//     playerTurn.innerText = playerTwo.name || e.target.placeholder
+//     currentPlayerTurn.innerText = playerTwo.name || e.target.placeholder
 //   }
 // })
 
 
 function changeName(e){
-    if (e.target.id === "player-one") {
-      playerOne.name = e.target.value;
-    } else {
-      playerTwo.name = e.target.value;
-    }
+  if (e.target.id === "player-one") {
+    playerOne.name = e.target.value;
+  } else {
+    playerTwo.name = e.target.value;
+  }
 
-    if (currentPlayer === playerOne) {
-      playerTurn.innerText = playerOne.name || e.target.placeholder;
-    } else {
-      playerTurn.innerText = playerTwo.name || e.target.placeholder;
-    }
+  checkPlayer()
+  // if (currentPlayer === playerOne) {
+  //   currentPlayerTurn.innerText = playerOne.name;
+  // } else {
+  //   currentPlayerTurn.innerText = playerTwo.name;
+  // }
+
+  // TODO Fix user input name when name is returned to empty ***
+  // if(!e.target.value || e.target.value === ""){
+  //   currentPlayerTurn.innerText = e.target.placeholder
+  // }
+
+  // if(e.keyCode === 8 && !e.target.value){
+  //   currentPlayerTurn.innerText = e.target.placeholder;
+  // }
+}
+
+function pressedEnter(e){
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    e.target.disabled = true;
+    e.target.disabled = false;
+  }
 }
 
 const nameInputBoxes = document.querySelectorAll(".name-input");
 nameInputBoxes.forEach((nameInputBox) => {
   nameInputBox.addEventListener("input", changeName);
+  nameInputBox.addEventListener("keydown", pressedEnter);
 
   // *
   nameInputBox.addEventListener("blur", (e) => {
-    if (e.target.placeholder !== "") {
-      if (e.target.id === "player-one") {
-        playerOne.name = e.target.value;
-      } else {
-        playerTwo.name = e.target.value;
-      }
-    } else if (e.target.id === "player-one") {
+    if (e.target.placeholder === "" && e.target.id === "player-one") {
       e.target.placeholder = "Player One";
-    } else {
+    } else if (e.target.placeholder === "" && e.target.id === "player-two") {
       e.target.placeholder = "Player Two";
-    }
-  });
-
-  // *
-  nameInputBox.addEventListener("keydown", (e) => {
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      nameInputBox.disabled = true;
-      nameInputBox.disabled = false;
-
-      if (e.target.id === "player-one") {
-        playerOne.name = nameInputBox.value || "Player One";
-      } else {
-        playerTwo.name = nameInputBox.value || "Player Two";
-      }
     }
   });
 });
 
-// TODO Add event listener to clear out the number of wins and ties back to zero ***
+
 const resetScoreButton = document.querySelector(".reset-score-button");
+resetScoreButton.addEventListener('click', (e) => {
+  e.preventDefault()
+  playerOne.wins = 0
+  playerTwo.wins = 0
+  playerOneWins.innerText = 0
+  playerTwoWins.innerText = 0
+  gameTies.innerText = 0
+  start()
+})
+
 
 // !DELETE *************************************************
 let object = document.createElement("button");
@@ -180,12 +206,6 @@ object.addEventListener("click", (e) => {
 newGameButton.insertAdjacentElement("afterend", object);
 // !DELETE END *********************************************
 
-// Player Display
-/*
-H1 Tag should show current player's name
-When a user changes their name, it updates the h1 tag
-
-*/
 
 // grab player 2 icon
 // add event listener when clicked, it toggles to live person play
