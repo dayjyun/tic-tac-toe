@@ -42,31 +42,7 @@ function switchPlayer() {
 }
 
 // Game Logic
-/*
-max amount of times a user can select is 5
-1 blue 1 orange
-2 blue 2 orange
-3 blue 3 orange
-4 blue 4 orange
-5 blue -> tie game
 
-winning conditions
-[0, 1, 2],
-[3, 4, 5],
-[6, 7, 8],
-[0, 3, 6],
-[1, 4, 7],
-[2, 5, 8],
-[1, 4, 5],
-[2, 4, 6]
-
-loop through td arr
-if (blue className count > orange className count){
-  currentPlayer = playerTwo
-} else { // it will equal therefore blue's turn
-  currentPlayer = playerOne
-}
-*/
 
 function winner(){
   // resetGame() // place under newGameButton event listener
