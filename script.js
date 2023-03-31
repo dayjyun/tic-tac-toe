@@ -2,16 +2,20 @@ const tdTags = document.querySelectorAll("td");
 
 let playerOne = {
   name: "" || "Player One",
-  mainColor: "#B6DBFC",
-  hoverColor: "#F0F8FF",
+  // mainColor: "#b6dbfc",
+  mainColor: "blue",
+  // hoverColor: "#f0f8ff",
+  hoverColor: "lightblue",
   value: "X",
   wins: 0,
 };
 
 let playerTwo = {
   name: "" || "Player Two",
-  mainColor: "#F8C28E",
-  hoverColor: "#FFF6EC",
+  mainColor: "red",
+  // mainColor: "#f8c28e",
+  hoverColor: "pink",
+  // hoverColor: "#fff6ec",
   value: "O",
   wins: 0,
 };
@@ -20,15 +24,21 @@ let currentPlayer = playerOne;
 // let currentPlayer = playerTwo;
 
 // Header
+// TODO Have a listener for the .current-player to update based on who's turn it is ***
+// TODO Check if currentPlayer assignement in conditional is working ***
 let nameDisplay = document.querySelector(".player-name");
 nameDisplay.innerText = currentPlayer.name;
 
 const newGameButton = document.querySelector(".new-game-button");
 newGameButton.addEventListener("click", () => {
   tdTags.forEach((tdTag) => {
-    tdTag.style.background = "white";
-    currentPlayer = playerOne;
+    tdTag.style.backgroundColor = "white";
   });
+  if(currentPlayer === playerOne) {
+    currentPlayer = playerOne;
+  } else {
+    currentPlayer = playerTwo
+  }
 });
 
 function switchPlayer() {
@@ -40,7 +50,6 @@ function switchPlayer() {
 }
 
 // Main
-// TODO Have a listener for the .current-player to update based on who's turn it is ***
 
 /*
 max amount of times a user can select is 5
@@ -57,47 +66,52 @@ if (blue className count > orange className count){
 }
 */
 
-/*
-let playerOne = {
-  mainColor: "#B6DBFC",
-  hoverColor: "#F0F8FF" || bgLightOne
-};
-
-let playerTwo = {
-  mainColor: "#F8C28E",
-  hoverColor: "#FFF6EC" || bgLightTwo
-};
-*/
-
 function mouseOver(e) {
-  if (
-    e.target.style.backgroundColor === playerOne.mainColor &&
-    e.target.style.backgroundColor === playerTwo.mainColor
-  ) {
-    e.target.style.backgroundColor =
-      currentPlayer === playerOne ? playerOne.hoverColor : playerTwo.hoverColor;
+  if (currentPlayer === playerOne &&
+     (e.target.style.backgroundColor !== playerOne.mainColor &&
+      e.target.style.backgroundColor !== playerTwo.mainColor)) {
+      e.target.style.backgroundColor = playerOne.hoverColor;
+  } else if (
+    currentPlayer === playerTwo &&
+    (e.target.style.backgroundColor !== playerOne.mainColor &&
+     e.target.style.backgroundColor !== playerTwo.mainColor)) {
+     e.target.style.backgroundColor = playerTwo.hoverColor;
   }
 }
-
 function mouseOut(e) {
-  // TODO  the bgLightOne would represent the variable of current player ***
-  if (e.target.style.backgroundColor === playerOne.mainColor ||
-      e.target.style.backgroundColor === playerTwo.mainColor) {
-    e.target.style.backgroundColor = "white";
+  if(currentPlayer === playerOne &&
+    (e.target.style.backgroundColor !== playerOne.mainColor &&
+     e.target.style.backgroundColor !== playerTwo.mainColor)) {
+     e.target.style.backgroundColor = 'white'
+  } else if (currentPlayer === playerTwo &&
+    (e.target.style.backgroundColor !== playerOne.mainColor &&
+     e.target.style.backgroundColor !== playerTwo.mainColor)) {
+     e.target.style.backgroundColor = 'white'
   }
 }
 
 function clickColor(e) {
-  if (!e.target.style.backgroundColor &&
-    e.target.style.backgroundColor !== playerOne.mainColor &&
+  if (
+    currentPlayer === playerOne &&
+    (e.target.style.backgroundColor === "white" ||
+      e.target.style.backgroundColor === playerOne.hoverColor) &&
     e.target.style.backgroundColor !== playerTwo.mainColor
   ) {
-    e.target.style.backgroundColor = currentPlayer.mainColor;
-    switchPlayer();
+    e.target.style.backgroundColor = playerOne.mainColor;
+    currentPlayer = playerTwo;
+  } else if (
+    currentPlayer === playerTwo &&
+    (e.target.style.backgroundColor === "white" ||
+      e.target.style.backgroundColor === currentPlayer.hoverColor) &&
+    e.target.style.backgroundColor !== playerOne.mainColor
+  ) {
+    e.target.style.backgroundColor = playerTwo.mainColor;
+    currentPlayer = playerOne;
   }
 }
 
 tdTags.forEach((tdTag) => {
+  tdTag.style.backgroundColor = "white";
   tdTag.addEventListener("mouseover", mouseOver);
   tdTag.addEventListener("mouseout", mouseOut);
   tdTag.addEventListener("click", clickColor);
