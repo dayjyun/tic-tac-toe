@@ -35,7 +35,7 @@ newGameButton.addEventListener("click", () => {
     tdTag.style.backgroundColor = "white";
   });
   // if (currentPlayer === playerOne) {
-    currentPlayer = playerOne;
+  currentPlayer = playerOne;
   // } else {
   //   currentPlayer = playerTwo;
   // }
@@ -101,18 +101,17 @@ function clickColor(e) {
   const currentColor = e.target.style.backgroundColor;
 
   if (
-    currentPlayer === playerOne &&
-    e.target.style.backgroundColor === playerOne.hoverColor &&
-    e.target.style.backgroundColor !== playerTwo.mainColor
+    // currentPlayer === playerOne &&
+    currentColor === playerOne.hoverColor
+    // && currentColor !== playerTwo.mainColor
   ) {
     e.target.style.backgroundColor = playerOne.mainColor;
     switchPlayer();
-    // } else if (
-    //   currentPlayer === playerTwo &&
-    //     e.target.style.backgroundColor === currentPlayer.hoverColor &&
-    //   e.target.style.backgroundColor !== playerOne.mainColor
-    // ) {
-  } else {
+  } else if (
+    // currentPlayer === playerTwo &&
+    currentColor === currentPlayer.hoverColor
+    // && currentColor !== playerOne.mainColor
+  ) {
     e.target.style.backgroundColor = playerTwo.mainColor;
     switchPlayer();
   }
