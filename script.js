@@ -217,18 +217,6 @@ function tieGame() {
   return;
 }
 
-// !DELETE *************************************************
-let object = document.createElement("button");
-object.innerText = "OBJECT";
-object.addEventListener("click", (e) => {
-  e.preventDefault();
-  console.log("ONE", playerOne);
-  console.log("TWO", playerTwo);
-  console.log("Current Player", currentPlayer);
-});
-newGameButton.insertAdjacentElement("afterend", object);
-// !DELETE END *********************************************
-
 // Extra
 // Create a user icon in the nav bar.
 // grab player 2 icon
