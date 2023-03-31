@@ -1,4 +1,5 @@
 const tdTags = document.querySelectorAll("td");
+const newGameButton = document.querySelector(".new-game-button");
 const currentPlayerName = document.querySelector(".current-player.name");
 const currentPlayerColor = document.querySelector('.current-player.color')
 let playerOneWins = document.querySelector(".player-one-wins");
@@ -41,22 +42,7 @@ function switchPlayer() {
   currentPlayerName.innerText = currentPlayer.name;
 }
 
-// Game Logic
-
-
-function winner(){
-  // resetGame() // place under newGameButton event listener
-}
-
-function tieGame(){
-  // display tie message
-  // h2 Tie!
-  // resetGame() // place under newGameButton event listener
-  +gameTies.innerText++
-}
-
 // Header
-const newGameButton = document.querySelector(".new-game-button");
 let resetGame = newGameButton.addEventListener("click", () => {
   tdTags.forEach((tdTag) => {
     tdTag.style.backgroundColor = "white";
@@ -97,9 +83,11 @@ function clickColor(e) {
 
   if (currentColor === playerOne.hoverColor) {
     e.target.style.backgroundColor = playerOne.mainColor;
+    checkWinner(playerOne)
     switchPlayer();
   } else if (currentColor === currentPlayer.hoverColor) {
     e.target.style.backgroundColor = playerTwo.mainColor;
+    checkWinner(playerTwo)
     switchPlayer();
   }
 }
@@ -164,6 +152,25 @@ function start() {
   checkPlayer();
 }
 start();
+
+
+// Game Logic
+function checkWinner(){
+  const rows = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+  const cols = [[0, 3, 6], [1, 4, 7], [2, 5, 8]]
+  const cross = [[1, 4, 5], [2, 4, 6]]
+
+  const wins = [...rows, ...cols, ...cross]
+
+  // resetGame() // place under newGameButton event listener. Probably in modal
+}
+
+function tieGame(){
+  // display tie message
+  // h2 Tie!
+  // resetGame() // place under newGameButton event listener
+  +gameTies.innerText++
+}
 
 
 // !DELETE *************************************************
