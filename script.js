@@ -29,12 +29,6 @@ let currentPlayer = playerOne;
 // let currentPlayer = playerTwo;
 let firstPlayer = currentPlayer
 
-function start(){
-  playerOneWins.innerText = playerOne.wins;
-  playerTwoWins.innerText = playerTwo.wins;
-  checkPlayer()
-}
-start()
 
 function checkPlayer() {
   currentPlayer === playerOne ?
@@ -73,6 +67,7 @@ if (blue className count > orange className count){
   currentPlayer = playerOne
 }
 */
+
 function winner(){
   // resetGame() // place under newGameButton event listener
 }
@@ -141,17 +136,6 @@ tdTags.forEach((tdTag) => {
 });
 
 // Section
-// currentPlayerName.innerText = currentPlayer.name ||;
-
-// currentPlayerName.addEventListener('input', (e) => {
-//   if(currentPlayer === playerOne) {
-//     currentPlayerName.innerText = playerOne.name || e.target.placeholder
-//   } else {
-//     currentPlayerName.innerText = playerTwo.name || e.target.placeholder
-//   }
-// })
-
-
 function changeName(e){
   if (e.target.id === "player-one") {
     playerOne.name = e.target.value === "" ? "Player One" : e.target.value;
@@ -170,19 +154,19 @@ function pressedEnter(e){
   }
 }
 
+function inputOutOfFocus(e){
+  if (e.target.placeholder === "" && e.target.id === "player-one") {
+    e.target.placeholder = "Player One";
+  } else if (e.target.placeholder === "" && e.target.id === "player-two") {
+    e.target.placeholder = "Player Two";
+  }
+}
+
 const nameInputBoxes = document.querySelectorAll(".name-input");
 nameInputBoxes.forEach((nameInputBox) => {
   nameInputBox.addEventListener("input", changeName);
   nameInputBox.addEventListener("keydown", pressedEnter);
-
-  // *
-  nameInputBox.addEventListener("blur", (e) => {
-    if (e.target.placeholder === "" && e.target.id === "player-one") {
-      e.target.placeholder = "Player One";
-    } else if (e.target.placeholder === "" && e.target.id === "player-two") {
-      e.target.placeholder = "Player Two";
-    }
-  });
+  nameInputBox.addEventListener("blur", inputOutOfFocus)
 });
 
 
@@ -196,6 +180,14 @@ resetScoreButton.addEventListener('click', (e) => {
   gameTies.innerText = 0
   start()
 })
+
+
+function start() {
+  playerOneWins.innerText = playerOne.wins;
+  playerTwoWins.innerText = playerTwo.wins;
+  checkPlayer();
+}
+start();
 
 
 // !DELETE *************************************************
@@ -217,6 +209,11 @@ newGameButton.insertAdjacentElement("afterend", object);
 // Extra
 // Local Storage?
 // if name exists, then populate score values for player 1 and player 2
+// resetGame()
+
+// button to save game
+// saves playerOne obj (name, wins, mainColor, hoverColor, color)
+// saves playerTwo obj (name, wins, mainColor, hoverColor, color)
 // else create a new instance of the player in the players object
 
 // IF THERE'S LOCAL STORAGE
