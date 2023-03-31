@@ -29,7 +29,7 @@ let playerTwo = {
 let currentPlayer = playerOne;
 // let currentPlayer = playerTwo;
 let firstPlayer = currentPlayer
-
+let ties = 0
 
 function checkPlayer() {
   currentPlayer === playerOne ?
@@ -43,12 +43,15 @@ function switchPlayer() {
 }
 
 // Header
-let resetGame = newGameButton.addEventListener("click", () => {
-  tdTags.forEach((tdTag) => tdTag.style.backgroundColor = "white");
-  checkPlayer();
-  currentPlayer = firstPlayer
-  currentPlayerName.innerText = firstPlayer.name
-});
+// function resetGame(){
+  newGameButton.addEventListener("click", () => {
+    tdTags.forEach((tdTag) => tdTag.style.backgroundColor = "white");
+    checkPlayer();
+    currentPlayer = firstPlayer
+    currentPlayerName.innerText = firstPlayer.name
+  });
+  // newGameButton.dispatchEvent(new Event('click'))
+// }
 
 // Main
 function mouseOver(e) {
@@ -68,10 +71,6 @@ function mouseOut(e) {
     currentColor !== playerOne.mainColor &&
     currentColor !== playerTwo.mainColor) {
       e.target.style.backgroundColor = "white";
-  // } else if (
-  //   currentColor !== playerOne.mainColor &&
-  //   currentColor !== playerTwo.mainColor) {
-  //     e.target.style.backgroundColor = "white";
   }
 }
 
@@ -138,7 +137,8 @@ resetScoreButton.addEventListener('click', (e) => {
   playerTwo.wins = 0
   playerOneWins.innerText = 0
   playerTwoWins.innerText = 0
-  gameTies.innerText = 0
+  ties = 0
+  gameTies.innerText = ties;
   start()
 })
 
@@ -165,7 +165,6 @@ function checkWinner(){
         const cellB = tdTags[b];
         const cellC = tdTags[c];
 
-
         if (
           cellA.style.backgroundColor === currentPlayer.mainColor &&
           cellB.style.backgroundColor === currentPlayer.mainColor &&
@@ -173,13 +172,15 @@ function checkWinner(){
           ) {
             currentPlayer.wins++;
             if (currentPlayer === playerOne) {
-            switchPlayer()
+            // switchPlayer()
             playerOneWins.innerText = playerOne.wins;
           } else {
-            switchPlayer();
+            // switchPlayer();
             playerTwoWins.innerText = playerTwo.wins;
           }
           // Modal
+          // switchPlayer()
+          // !resetGame()
           setTimeout(() => {
             alert(`${currentPlayer.name} wins!`);
           }, 0);
@@ -201,10 +202,9 @@ function tieGame(){
   // display tie message in modal
   // h2 Tie!
   // resetGame()
-  gameTies.innerText += 1
+  ties++
   alert(`tie game`)
   return;
-  // resetGame
 }
 
 
@@ -232,7 +232,6 @@ newGameButton.insertAdjacentElement("afterend", object);
 
 // Local Storage?
 // if name exists, then populate score values for player 1 and player 2
-// resetGame()
 
 // Class to save game
 // saves playerOne obj (name, wins, mainColor, hoverColor, color)
