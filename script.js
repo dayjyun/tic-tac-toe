@@ -82,7 +82,7 @@ function clickColor(e) {
     e.target.style.backgroundColor = playerOne.mainColor;
     checkWinner(playerOne)
     switchPlayer();
-  } else if (currentColor === currentPlayer.hoverColor) {
+  } else if (currentColor === playerTwo.hoverColor) {
     e.target.style.backgroundColor = playerTwo.mainColor;
     checkWinner(playerTwo)
     switchPlayer();
