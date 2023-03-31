@@ -1,21 +1,22 @@
 const tdTags = document.querySelectorAll("td");
+const playerTurn = document.querySelector(".current-player");
 
 let playerOne = {
-  name: "" || "Player One",
+  name: "Player One",
   // mainColor: "#b6dbfc",
-  mainColor: "blue",
   // hoverColor: "#f0f8ff",
+  mainColor: "blue",
   hoverColor: "lightblue",
   value: "X",
   wins: 0,
 };
 
 let playerTwo = {
-  name: "" || "Player Two",
-  mainColor: "red",
+  name: "Player Two",
   // mainColor: "#f8c28e",
-  hoverColor: "pink",
   // hoverColor: "#fff6ec",
+  mainColor: "red",
+  hoverColor: "pink",
   value: "O",
   wins: 0,
 };
@@ -24,29 +25,30 @@ let currentPlayer = playerOne;
 // let currentPlayer = playerTwo;
 
 // Header
-// TODO Have a listener for the .current-player to update based on who's turn it is ***
-// TODO Check if currentPlayer assignment in conditional is working ***
-let nameDisplay = document.querySelector(".player-name");
-nameDisplay.innerText = currentPlayer.name;
+// TODO Have a listener for the .current-player to update based on who's turn it is *** let playerTurn
+
 
 const newGameButton = document.querySelector(".new-game-button");
 newGameButton.addEventListener("click", () => {
   tdTags.forEach((tdTag) => {
     tdTag.style.backgroundColor = "white";
   });
-  // if (currentPlayer === playerOne) {
   currentPlayer = playerOne;
-  // } else {
-  //   currentPlayer = playerTwo;
-  // }
+  playerTurn.innerText = playerOne.name
 });
 
 function switchPlayer() {
-  if (currentPlayer === playerOne) {
-    currentPlayer = playerTwo;
-  } else {
-    currentPlayer = playerOne;
-  }
+  // if (currentPlayer === playerOne) {
+  // currentPlayer = playerTwo
+  // playerTurn.innerText = playerTwo.name;
+  // } else {
+  // currentPlayer = playerOne
+  // playerTurn.innerText = playerOne.name;
+  // }
+
+  currentPlayer = currentPlayer === playerOne ?
+  playerTwo : playerOne
+  playerTurn.innerText = currentPlayer.name
 }
 
 // Main
@@ -110,24 +112,37 @@ tdTags.forEach((tdTag) => {
 });
 
 // Section
-const nameInputBoxes = document.querySelectorAll(".name-input");
-nameInputBoxes.forEach((nameInputBox) => {
-  nameInputBox.addEventListener("click", (e) => {
-    e.target.placeholder = "";
-  });
+// playerTurn.innerText = currentPlayer.name ||;
 
-  nameInputBox.addEventListener("input", (e) => {
-    console.log(e);
-    e.preventDefault();
+
+// playerTurn.addEventListener('input', (e) => {
+//   if(currentPlayer === playerOne) {
+//     playerTurn.innerText = playerOne.name || e.target.placeholder
+//   } else {
+//     playerTurn.innerText = playerTwo.name || e.target.placeholder
+//   }
+// })
+
+
+function changeName(e){
     if (e.target.id === "player-one") {
       playerOne.name = e.target.value;
     } else {
       playerTwo.name = e.target.value;
     }
-    playerName = e.target.value || e.target.placeholder;
-  });
-  // TODO When focus is removed from the input boxes, how to save? ***
 
+    if (currentPlayer === playerOne) {
+      playerTurn.innerText = playerOne.name || e.target.placeholder;
+    } else {
+      playerTurn.innerText = playerTwo.name || e.target.placeholder;
+    }
+}
+
+const nameInputBoxes = document.querySelectorAll(".name-input");
+nameInputBoxes.forEach((nameInputBox) => {
+  nameInputBox.addEventListener("input", changeName);
+
+  // *
   nameInputBox.addEventListener("blur", (e) => {
     if (e.target.placeholder !== "") {
       if (e.target.id === "player-one") {
@@ -142,6 +157,7 @@ nameInputBoxes.forEach((nameInputBox) => {
     }
   });
 
+  // *
   nameInputBox.addEventListener("keydown", (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
