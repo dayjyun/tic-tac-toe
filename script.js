@@ -25,7 +25,7 @@ let currentPlayer = playerOne;
 
 // Header
 // TODO Have a listener for the .current-player to update based on who's turn it is ***
-// TODO Check if currentPlayer assignement in conditional is working ***
+// TODO Check if currentPlayer assignment in conditional is working ***
 let nameDisplay = document.querySelector(".player-name");
 nameDisplay.innerText = currentPlayer.name;
 
@@ -34,11 +34,11 @@ newGameButton.addEventListener("click", () => {
   tdTags.forEach((tdTag) => {
     tdTag.style.backgroundColor = "white";
   });
-  if(currentPlayer === playerOne) {
+  // if (currentPlayer === playerOne) {
     currentPlayer = playerOne;
-  } else {
-    currentPlayer = playerTwo
-  }
+  // } else {
+  //   currentPlayer = playerTwo;
+  // }
 });
 
 function switchPlayer() {
@@ -67,46 +67,54 @@ if (blue className count > orange className count){
 */
 
 function mouseOver(e) {
-  if (currentPlayer === playerOne &&
-     (e.target.style.backgroundColor !== playerOne.mainColor &&
-      e.target.style.backgroundColor !== playerTwo.mainColor)) {
-      e.target.style.backgroundColor = playerOne.hoverColor;
+  if (
+    currentPlayer === playerOne &&
+    e.target.style.backgroundColor !== playerOne.mainColor &&
+    e.target.style.backgroundColor !== playerTwo.mainColor
+  ) {
+    e.target.style.backgroundColor = playerOne.hoverColor;
   } else if (
     currentPlayer === playerTwo &&
-    (e.target.style.backgroundColor !== playerOne.mainColor &&
-     e.target.style.backgroundColor !== playerTwo.mainColor)) {
-     e.target.style.backgroundColor = playerTwo.hoverColor;
+    e.target.style.backgroundColor !== playerOne.mainColor &&
+    e.target.style.backgroundColor !== playerTwo.mainColor
+  ) {
+    e.target.style.backgroundColor = playerTwo.hoverColor;
   }
 }
 function mouseOut(e) {
-  if(currentPlayer === playerOne &&
-    (e.target.style.backgroundColor !== playerOne.mainColor &&
-     e.target.style.backgroundColor !== playerTwo.mainColor)) {
-     e.target.style.backgroundColor = 'white'
-  } else if (currentPlayer === playerTwo &&
-    (e.target.style.backgroundColor !== playerOne.mainColor &&
-     e.target.style.backgroundColor !== playerTwo.mainColor)) {
-     e.target.style.backgroundColor = 'white'
+  if (
+    currentPlayer === playerOne &&
+    e.target.style.backgroundColor !== playerOne.mainColor &&
+    e.target.style.backgroundColor !== playerTwo.mainColor
+  ) {
+    e.target.style.backgroundColor = "white";
+  } else if (
+    currentPlayer === playerTwo &&
+    e.target.style.backgroundColor !== playerOne.mainColor &&
+    e.target.style.backgroundColor !== playerTwo.mainColor
+  ) {
+    e.target.style.backgroundColor = "white";
   }
 }
 
 function clickColor(e) {
+  const currentColor = e.target.style.backgroundColor;
+
   if (
     currentPlayer === playerOne &&
-    (e.target.style.backgroundColor === "white" ||
-      e.target.style.backgroundColor === playerOne.hoverColor) &&
+    e.target.style.backgroundColor === playerOne.hoverColor &&
     e.target.style.backgroundColor !== playerTwo.mainColor
   ) {
     e.target.style.backgroundColor = playerOne.mainColor;
-    currentPlayer = playerTwo;
-  } else if (
-    currentPlayer === playerTwo &&
-    (e.target.style.backgroundColor === "white" ||
-      e.target.style.backgroundColor === currentPlayer.hoverColor) &&
-    e.target.style.backgroundColor !== playerOne.mainColor
-  ) {
+    switchPlayer();
+    // } else if (
+    //   currentPlayer === playerTwo &&
+    //     e.target.style.backgroundColor === currentPlayer.hoverColor &&
+    //   e.target.style.backgroundColor !== playerOne.mainColor
+    // ) {
+  } else {
     e.target.style.backgroundColor = playerTwo.mainColor;
-    currentPlayer = playerOne;
+    switchPlayer();
   }
 }
 
