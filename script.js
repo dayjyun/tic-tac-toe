@@ -174,35 +174,34 @@ function checkWinner(){
             currentPlayer.wins++;
             if (currentPlayer === playerOne) {
             switchPlayer()
-            // playerOne.wins++
             playerOneWins.innerText = playerOne.wins;
           } else {
             switchPlayer();
-            // playerTwo.wins++
             playerTwoWins.innerText = playerTwo.wins;
           }
           // Modal
           setTimeout(() => {
             alert(`${currentPlayer.name} wins!`);
           }, 0);
-        } else {
+          return;
+        }
 
-          // TODO Work on TIE GAME if modal doesn't fix ***
-        const whiteBoxArr = Array.from(tdTags).filter((td) => {
-          return td.style.backgroundColor === "white";
-        });
+      }
+      // TODO Work on TIE GAME if modal doesn't fix ***
+    const whiteBoxArr = Array.from(tdTags).filter((td) => {
+      return td.style.backgroundColor === "white";
+    });
 
-        if (whiteBoxArr.length === 0) {
-          tieGame();
-        }}
-  }
+    if (whiteBoxArr.length === 0) {
+      tieGame();
+    }
 }
 
 function tieGame(){
   // display tie message in modal
   // h2 Tie!
   // resetGame()
-  +gameTies.innerText++
+  gameTies.innerText += 1
   alert(`tie game`)
   return;
   // resetGame
