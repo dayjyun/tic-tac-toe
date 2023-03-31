@@ -1,7 +1,8 @@
 const tdTags = document.querySelectorAll("td");
 const newGameButton = document.querySelector(".clear-board-button");
-const modalContainer = document.querySelector('.modal-container')
-const modalButton = document.querySelector('.modal-button')
+const modalContainer = document.querySelector(".modal-container");
+const modalBox = document.querySelector(".moda-box");
+const modalButton = document.querySelector(".modal-button");
 const currentPlayerName = document.querySelector(".current-player.name");
 const currentPlayerColor = document.querySelector(".current-player.color");
 let playerOneWins = document.querySelector(".player-one-wins");
@@ -55,10 +56,11 @@ function clearBoard(e) {
   checkPlayer();
   currentPlayer = firstPlayer;
   currentPlayerName.innerText = firstPlayer.name;
-  modalContainer.style.display = 'none'
+  modalContainer.style.display = "none";
 }
 
 modalButton.addEventListener("click", clearBoard);
+modalContainer.addEventListener("click", clearBoard);
 
 // Header
 newGameButton.addEventListener("click", clearBoard);
