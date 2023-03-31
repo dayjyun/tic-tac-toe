@@ -38,14 +38,6 @@ newGameButton.addEventListener("click", () => {
 });
 
 function switchPlayer() {
-  // if (currentPlayer === playerOne) {
-  // currentPlayer = playerTwo
-  // playerTurn.innerText = playerTwo.name;
-  // } else {
-  // currentPlayer = playerOne
-  // playerTurn.innerText = playerOne.name;
-  // }
-
   currentPlayer = currentPlayer === playerOne ?
   playerTwo : playerOne
   playerTurn.innerText = currentPlayer.name
