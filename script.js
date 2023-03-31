@@ -34,7 +34,7 @@ newGameButton.addEventListener("click", () => {
     tdTag.style.backgroundColor = "white";
   });
   currentPlayer = playerOne;
-  playerTurn.innerText = playerOne.name
+  playerTurn.innerText = currentPlayer.name
 });
 
 function switchPlayer() {
