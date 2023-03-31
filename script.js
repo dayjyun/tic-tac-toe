@@ -1,5 +1,6 @@
 const tdTags = document.querySelectorAll("td");
-const currentPlayerTurn = document.querySelector(".current-player");
+const currentPlayerName = document.querySelector(".current-player.name");
+const currentPlayerColor = document.querySelector('.current-player.color')
 let playerOneWins = document.querySelector(".player-one-wins");
 let playerTwoWins = document.querySelector(".player-two-wins");
 let gameTies = document.querySelector(".game-ties");
@@ -23,6 +24,7 @@ let playerTwo = {
   value: "O",
   wins: 2,
 };
+
 let currentPlayer = playerOne;
 // let currentPlayer = playerTwo;
 let firstPlayer = currentPlayer
@@ -36,13 +38,13 @@ start()
 
 function checkPlayer() {
   currentPlayer === playerOne ?
-  currentPlayerTurn.innerText = playerOne.name :
-  currentPlayerTurn.innerText = playerTwo.name;
+  currentPlayerName.innerText = playerOne.name :
+  currentPlayerName.innerText = playerTwo.name;
 }
 
 function switchPlayer() {
   currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
-  currentPlayerTurn.innerText = currentPlayer.name;
+  currentPlayerName.innerText = currentPlayer.name;
 }
 
 // Game Logic
@@ -52,6 +54,17 @@ max amount of times a user can select is 5
 2 blue 2 orange
 3 blue 3 orange
 4 blue 4 orange
+5 blue -> tie game
+
+winning conditions
+[0, 1, 2],
+[3, 4, 5],
+[6, 7, 8],
+[0, 3, 6],
+[1, 4, 7],
+[2, 5, 8],
+[1, 4, 5],
+[2, 4, 6]
 
 loop through td arr
 if (blue className count > orange className count){
@@ -60,22 +73,27 @@ if (blue className count > orange className count){
   currentPlayer = playerOne
 }
 */
-
+function winner(){
+  // resetGame() // place under newGameButton event listener
+}
 
 function tieGame(){
+  // display tie message
+  // h2 Tie!
+  // resetGame() // place under newGameButton event listener
   +gameTies.innerText++
 }
 
 // Header
 const newGameButton = document.querySelector(".new-game-button");
-newGameButton.addEventListener("click", () => {
+let resetGame = newGameButton.addEventListener("click", () => {
   tdTags.forEach((tdTag) => {
     tdTag.style.backgroundColor = "white";
   });
 
   checkPlayer();
   currentPlayer = firstPlayer
-  currentPlayerTurn.innerText = firstPlayer.name
+  currentPlayerName.innerText = firstPlayer.name
 });
 
 // Main
@@ -123,39 +141,25 @@ tdTags.forEach((tdTag) => {
 });
 
 // Section
-// currentPlayerTurn.innerText = currentPlayer.name ||;
+// currentPlayerName.innerText = currentPlayer.name ||;
 
-// currentPlayerTurn.addEventListener('input', (e) => {
+// currentPlayerName.addEventListener('input', (e) => {
 //   if(currentPlayer === playerOne) {
-//     currentPlayerTurn.innerText = playerOne.name || e.target.placeholder
+//     currentPlayerName.innerText = playerOne.name || e.target.placeholder
 //   } else {
-//     currentPlayerTurn.innerText = playerTwo.name || e.target.placeholder
+//     currentPlayerName.innerText = playerTwo.name || e.target.placeholder
 //   }
 // })
 
 
 function changeName(e){
   if (e.target.id === "player-one") {
-    playerOne.name = e.target.value;
+    playerOne.name = e.target.value === "" ? "Player One" : e.target.value;
   } else {
-    playerTwo.name = e.target.value;
+    playerTwo.name = e.target.value === "" ? "Player Two" : e.target.value;
   }
 
   checkPlayer()
-  // if (currentPlayer === playerOne) {
-  //   currentPlayerTurn.innerText = playerOne.name;
-  // } else {
-  //   currentPlayerTurn.innerText = playerTwo.name;
-  // }
-
-  // TODO Fix user input name when name is returned to empty ***
-  // if(!e.target.value || e.target.value === ""){
-  //   currentPlayerTurn.innerText = e.target.placeholder
-  // }
-
-  // if(e.keyCode === 8 && !e.target.value){
-  //   currentPlayerTurn.innerText = e.target.placeholder;
-  // }
 }
 
 function pressedEnter(e){
