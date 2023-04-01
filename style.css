@@ -157,6 +157,8 @@ section {
   align-items: center;
   width: 100%;
   min-height: 2rem;
+  font-size: 1.2rem;
+  color: rgb(154, 154, 154);
 }
 
 .reset-score-container {

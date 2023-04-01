@@ -9,6 +9,7 @@ const pointsArr = document.querySelectorAll('.points')
 const winsSpan = document.querySelectorAll(".wins > *");
 let playerOneWins = document.querySelector(".player-one-wins");
 let playerTwoWins = document.querySelector(".player-two-wins");
+const lightGray = "rgb(154, 154, 154)";
 let gameTies = document.querySelector(".game-ties");
 let ties = 0;
 
@@ -154,7 +155,7 @@ resetScoreButton.addEventListener("click", (e) => {
   ties = 0;
   gameTies.innerText = ties;
   winsSpan.forEach((win) => {
-    win.style.color = "black";
+    win.style.color = lightGray;
     win.style.fontWeight = "500";
   });
   start();
@@ -219,13 +220,6 @@ function tieGame() {
   return;
 }
 
-function start() {
-  playerOneWins.innerText = playerOne.wins;
-  playerTwoWins.innerText = playerTwo.wins;
-  checkPlayer();
-}
-start();
-
 function winningColor(){
   let playerOnePoints = +pointsArr[0].innerText
   let playerTwoPoints = +pointsArr[1].innerText
@@ -238,8 +232,16 @@ function winningColor(){
     winsSpan[1].style.fontWeight = "800";
   } else {
     winsSpan.forEach(win => {
-      win.style.color = 'black'
+      win.style.color = lightGray;
       win.style.fontWeight = '500'
     })
   }
 }
+
+
+function start() {
+  playerOneWins.innerText = playerOne.wins;
+  playerTwoWins.innerText = playerTwo.wins;
+  checkPlayer();
+}
+start();
