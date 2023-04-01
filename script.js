@@ -46,9 +46,13 @@ function gameModal(n) {
   const modal = document.querySelector(".modal-container");
   modal.style.display = "block";
   const winnerText = document.querySelector(".winner-info");
+  const playerOneName = document.querySelector('.player-name-modal.one')
+  const playerTwoName = document.querySelector('.player-name-modal.two')
 
   if (n === 1) {
-    winnerText.innerText = `${currentPlayer.name} won!`;
+    winnerText.innerText = `${currentPlayer.name} Won!`;
+    playerOneName.innerText = playerOne.name
+    playerTwoName.innerText = playerTwo.name;
   } else {
     winnerText.innerText = `Tie!`;
   }
