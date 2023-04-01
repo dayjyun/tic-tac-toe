@@ -5,9 +5,12 @@ const modalBox = document.querySelector(".modal-box");
 const modalButton = document.querySelector(".modal-button");
 const currentPlayerName = document.querySelector(".current-player.name");
 const currentPlayerColor = document.querySelector(".current-player.color");
+const pointsArr = document.querySelectorAll('.points')
+const winsSpan = document.querySelectorAll(".wins > *");
 let playerOneWins = document.querySelector(".player-one-wins");
 let playerTwoWins = document.querySelector(".player-two-wins");
 let gameTies = document.querySelector(".game-ties");
+let ties = 0;
 
 let playerOne = {
   name: "Player One",
@@ -26,7 +29,6 @@ let playerTwo = {
 let currentPlayer = playerOne;
 // let currentPlayer = playerTwo;
 let firstPlayer = currentPlayer;
-let ties = 0;
 
 function checkPlayer() {
   currentPlayer === playerOne
@@ -151,15 +153,13 @@ resetScoreButton.addEventListener("click", (e) => {
   playerTwoWins.innerText = 0;
   ties = 0;
   gameTies.innerText = ties;
+  winsSpan.forEach((win) => {
+    win.style.color = "black";
+    win.style.fontWeight = "500";
+  });
   start();
 });
 
-function start() {
-  playerOneWins.innerText = playerOne.wins;
-  playerTwoWins.innerText = playerTwo.wins;
-  checkPlayer();
-}
-start();
 
 // Game Logic
 function checkWinner() {
@@ -189,7 +189,7 @@ function checkWinner() {
     if (
       cellA.style.backgroundColor === currentPlayer.mainColor &&
       cellB.style.backgroundColor === currentPlayer.mainColor &&
-      (cellC.style.backgroundColor === currentPlayer.mainColor && cellC.style.backgroundColor === currentPlayer.hoverColor)
+      cellC.style.backgroundColor === currentPlayer.mainColor
     ) {
       currentPlayer.wins++;
       if (currentPlayer === playerOne) {
@@ -198,6 +198,7 @@ function checkWinner() {
         playerTwoWins.innerText = playerTwo.wins;
       }
 
+      winningColor()
       gameModal(1);
     }
   }
@@ -218,17 +219,27 @@ function tieGame() {
   return;
 }
 
-// Extra
-// Create a user icon in the nav bar.
-// grab player 2 icon
-// add event listener when clicked, it toggles the CPU to play
+function start() {
+  playerOneWins.innerText = playerOne.wins;
+  playerTwoWins.innerText = playerTwo.wins;
+  checkPlayer();
+}
+start();
 
-// IF THERE'S LOCAL STORAGE
-// This loads all the saved names for player two
-// if name exists, then populate score values for player 1 and player 2
-// name.toLowerCase()
+function winningColor(){
+  let playerOnePoints = +pointsArr[0].innerText
+  let playerTwoPoints = +pointsArr[1].innerText
 
-// Class to create players
-// saves playerOne obj (name, mainColor, hoverColor, wins)
-// saves playerTwo obj (name, mainColor, hoverColor, wins)
-// else create a new instance of the player in the players object
+  if(playerOnePoints > playerTwoPoints){
+    winsSpan[0].style.color = "green"
+    winsSpan[0].style.fontWeight = '800'
+  } else if (playerOnePoints < playerTwoPoints) {
+    winsSpan[1].style.color = "green";
+    winsSpan[1].style.fontWeight = "800";
+  } else {
+    winsSpan.forEach(win => {
+      win.style.color = 'black'
+      win.style.fontWeight = '500'
+    })
+  }
+}
