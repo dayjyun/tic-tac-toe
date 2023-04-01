@@ -189,7 +189,7 @@ function checkWinner() {
     if (
       cellA.style.backgroundColor === currentPlayer.mainColor &&
       cellB.style.backgroundColor === currentPlayer.mainColor &&
-      cellC.style.backgroundColor === currentPlayer.mainColor
+      (cellC.style.backgroundColor === currentPlayer.mainColor && cellC.style.backgroundColor === currentPlayer.hoverColor)
     ) {
       currentPlayer.wins++;
       if (currentPlayer === playerOne) {
