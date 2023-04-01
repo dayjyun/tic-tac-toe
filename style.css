@@ -139,6 +139,11 @@ section {
 }
 
 .name-input:focus {
+  font-style: italic;
+  color: rgb(54, 54, 54)
+}
+
+.name-input:focus {
   outline: 2px solid gray;
 }
 
@@ -171,6 +176,7 @@ section {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
+  margin: 0 auto;
 }
 
 .modal-box {
@@ -187,7 +193,7 @@ section {
   align-items: center;
 }
 
-.modal-header h2,
+.winner-info,
 .modal-body {
   text-align: center;
 }
@@ -195,10 +201,10 @@ section {
 .modal-footer {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
 }
 
 .modal-button {
+  margin-top: 10px;
   color: white;
   padding: 10px 20px;
   border: none;
