@@ -225,11 +225,10 @@ function tieGame() {
 
 // IF THERE'S LOCAL STORAGE
 // This loads all the saved names for player two
-
-// Local Storage?
 // if name exists, then populate score values for player 1 and player 2
+// name.toLowerCase()
 
-// Class to save game
-// saves playerOne obj (name, wins, mainColor, hoverColor, color)
-// saves playerTwo obj (name, wins, mainColor, hoverColor, color)
+// Class to create players
+// saves playerOne obj (name, mainColor, hoverColor, wins)
+// saves playerTwo obj (name, mainColor, hoverColor, wins)
 // else create a new instance of the player in the players object
