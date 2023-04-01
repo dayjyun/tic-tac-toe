@@ -23,6 +23,7 @@ body {
   flex-direction: column;
   justify-content: space-between; */
   /* height: 100vh; */
+  min-height: 100vh;
 }
 
 /* ******************************** Top ************************************* */
@@ -213,24 +214,15 @@ section {
 /* ************************************ Footer ********************************* */
 
 footer {
-
-/* padding: 1rem 0; */
-
-/* position: absolute; */
-/* margin: 1rem 0; */
-/* bottom: 0; */
-/* width: 100%; */
-
-display: flex;
-justify-content: space-evenly;
-align-items: center;
-color: #1f1e1e;
-  bottom: 100;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #1f1e1e;
+  bottom: 0;
   height: 5.5rem;
   width: 60%;
   min-width: 20rem;
   margin: 0 auto;
-  /* position: absolute; */
 }
 
 /* .footer-container {

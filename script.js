@@ -7,20 +7,20 @@ const currentPlayerName = document.querySelector(".current-player.name");
 const currentPlayerColor = document.querySelector(".current-player.color");
 let playerOneWins = document.querySelector(".player-one-wins");
 let playerTwoWins = document.querySelector(".player-two-wins");
-let gameTies = +document.querySelector(".game-ties");
+let gameTies = document.querySelector(".game-ties");
 
 let playerOne = {
   name: "Player One",
   mainColor: "blue",
   hoverColor: "lightblue",
-  wins: 3,
+  wins: 0,
 };
 
 let playerTwo = {
   name: "Player Two",
   mainColor: "red",
   hoverColor: "pink",
-  wins: 2,
+  wins: 0,
 };
 
 let currentPlayer = playerOne;
@@ -207,13 +207,14 @@ function checkWinner() {
   });
 
   if (whiteBoxArr.length === 0) {
+    ties++;
     tieGame();
   }
 }
 
 function tieGame() {
   gameModal(0);
-  ties++;
+  gameTies.innerText = ties;
   return;
 }
 
