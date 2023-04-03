@@ -14,8 +14,6 @@ const lightGray = "rgb(154, 154, 154)";
 let gameTies = document.querySelector(".game-ties");
 let gameTiesModal = document.querySelector('.game-ties.modal')
 
-console.log(gameTiesModal)
-
 let playerOne = {
   id: 1,
   name: "Player One",
@@ -78,10 +76,9 @@ function gameModal(n) {
     playerOneWins.innerText = playerOne.wins;
     playerTwoWins.innerText = playerTwo.wins;
   } else {
-    // ties++
+    winnerText.innerText = `Tie!`
     gameTies.innerText = ties;
     gameTiesModal.innerText = ties;
-    // gameTiesModal.style.backgroundColor = 'red'
   }
 }
 
@@ -207,20 +204,26 @@ function checkWinner() {
       }
       winningColor();
       gameModal(1);
-      // checkTies()
+      return;
     }
   }
-  checkTies();
+  checkTies()
 }
 
 function checkTies() {
-  const allCellsFilled = Array.from(tdTags).every(
-    (cell) =>
-      cell.classList.contains(playerOne.id) ||
-      cell.classList.contains(playerTwo.id)
-  );
+  let hasEmptyCell = false;
 
-  if (allCellsFilled) {
+  for (let i = 0; i < tdTags.length; i++) {
+    if (
+      !tdTags[i].classList.contains(playerOne.id) &&
+      !tdTags[i].classList.contains(playerTwo.id)
+    ) {
+      hasEmptyCell = true;
+      break;
+    }
+  }
+
+  if (!hasEmptyCell) {
     ties++
     gameModal(0);
   }
