@@ -101,6 +101,10 @@ td {
   width: 5rem;
 }
 
+td:hover {
+  cursor: pointer;
+  outline: 3px solid black;
+}
 
 .table-top td {
   border-top: none;
@@ -125,11 +129,6 @@ td {
   border-left: none;
 }
 
-
-td:hover {
-  cursor: pointer;
-  outline: 3px solid black;
-}
 
 /* *********************************** Section ********************************* */
 
@@ -189,8 +188,8 @@ section {
 
 .color-picker {
   cursor: pointer;
-  height: 1.5em;
-  width: 3rem;
+  height: 2em;
+  width: 4rem;
 }
 
 .game-stats {

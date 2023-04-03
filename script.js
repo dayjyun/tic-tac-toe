@@ -16,6 +16,7 @@ let gameTies = document.querySelector(".game-ties");
 let ties = 0;
 
 let playerOne = {
+  id: 1,
   name: "Player One",
   // mainColor: "blue",
   mainColor: "#0000ff",
@@ -24,6 +25,7 @@ let playerOne = {
 };
 
 let playerTwo = {
+  id: 2,
   name: "Player Two",
   // mainColor: "red",
   mainColor: "#Ff0000",
@@ -54,15 +56,10 @@ function checkPlayer() {
   firstPlayer = currentPlayer;
 }
 
-console.log(currentPlayer.mainColor);
-
-// function changeColor() {
 colorPicker.addEventListener("blur", (e) => {
   const color = e.target.value;
-  console.log({ color });
   currentPlayer.mainColor = color;
 });
-// }
 
 function switchPlayer() {
   currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
@@ -94,15 +91,16 @@ function gameModal(n) {
 }
 
 function clearBoard(e) {
-  tdTags.forEach((tdTag) => (tdTag.style.backgroundColor = "white"));
+  tdTags.forEach((tdTag) => {
+    tdTag.style.backgroundColor = "white"
+    tdTag.classList.remove(playerOne.id)
+    tdTag.classList.remove(playerTwo.id)
+  });
   currentPlayer = firstPlayer;
   checkPlayer();
   currentPlayerName.innerText = firstPlayer.name;
-  // currentPlayerColor.style.backgroundColor = currentPlayer.mainColor;
   colorPicker.value = currentPlayer.mainColor;
   modalContainer.style.display = "none";
-  firstPlayerToggleButton.disabled = false;
-  firstPlayerToggleButton.classList.remove("remove-border");
 }
 
 modalButton.addEventListener("click", clearBoard);
@@ -136,29 +134,24 @@ newGameButton.addEventListener("click", clearBoard);
 //   // }
 // }
 
-function clickColor(e) {
+function choosePlayerColor(e) {
   const currentColor = e.target.style.backgroundColor;
 
   // if (currentColor === playerOne.hoverColor) {
   //   e.target.style.backgroundColor = playerOne.mainColor;
-  //   checkWinner(playerOne);
+  //   checkWinner();
   //   switchPlayer();
-  //   firstPlayerToggleButton.disabled = true;
-  //   firstPlayerToggleButton.classList.add("remove-border");
   // } else if (currentColor === playerTwo.hoverColor) {
   //   e.target.style.backgroundColor = playerTwo.mainColor;
-  //   checkWinner(playerTwo);
+  //   checkWinner();
   //   switchPlayer();
-  //   firstPlayerToggleButton.disabled = true;
-  //   firstPlayerToggleButton.classList.add("remove-border");
   // }
 
   if (currentColor === "white") {
     e.target.style.backgroundColor = currentPlayer.mainColor;
+    e.target.classList.add(currentPlayer.id);
     checkWinner();
     switchPlayer();
-    firstPlayerToggleButton.disabled = true;
-    firstPlayerToggleButton.classList.add("remove-border");
   }
 }
 
@@ -166,7 +159,7 @@ tdTags.forEach((tdTag) => {
   tdTag.style.backgroundColor = "white";
   // tdTag.addEventListener("mouseover", mouseOver);
   // tdTag.addEventListener("mouseout", mouseOut);
-  tdTag.addEventListener("click", clickColor);
+  tdTag.addEventListener("click", choosePlayerColor);
 });
 
 // Section
@@ -244,10 +237,26 @@ function checkWinner() {
     const cellB = tdTags[b];
     const cellC = tdTags[c];
 
+    // if (
+    //   cellA.style.backgroundColor === currentPlayer.mainColor &&
+    //   cellB.style.backgroundColor === currentPlayer.mainColor &&
+    //   cellC.style.backgroundColor === currentPlayer.mainColor
+    // ) {
+    //   currentPlayer.wins++;
+    //   if (currentPlayer === playerOne) {
+    //     playerOneWins.innerText = playerOne.wins;
+    //   } else {
+    //     playerTwoWins.innerText = playerTwo.wins;
+    //   }
+
+    //   winningColor();
+    //   gameModal(1);
+    // }
+
     if (
-      cellA.style.backgroundColor === currentPlayer.mainColor &&
-      cellB.style.backgroundColor === currentPlayer.mainColor &&
-      cellC.style.backgroundColor === currentPlayer.mainColor
+      cellA.classList.contains(currentPlayer.id) &&
+      cellB.classList.contains(currentPlayer.id) &&
+      cellC.classList.contains(currentPlayer.id)
     ) {
       currentPlayer.wins++;
       if (currentPlayer === playerOne) {
@@ -255,12 +264,15 @@ function checkWinner() {
       } else {
         playerTwoWins.innerText = playerTwo.wins;
       }
-
       winningColor();
       gameModal(1);
     }
   }
+  // check tie else?
+  // checkTies()
+}
 
+function checkTies() {
   const whiteBoxArr = Array.from(tdTags).filter((td) => {
     return td.style.backgroundColor === "white";
   });
@@ -293,6 +305,7 @@ function winningColor() {
       win.style.fontWeight = "500";
     });
   }
+  // switchPlayer()
 }
 
 function start() {
