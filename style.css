@@ -65,6 +65,15 @@ main {
   position: relative;
 }
 
+.turn-info-container-toggle {
+  top: 0;
+  right: 30rem;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .toggle-button {
   background-color: transparent;
   border: 1px solid rgb(203, 203, 203);
@@ -75,16 +84,6 @@ main {
 .remove-border {
   border: none;
 }
-
-.turn-info-container-toggle {
-  top: 0;
-  right: 30rem;
-  margin: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 
 .table-container {
   padding: 1rem 0;
