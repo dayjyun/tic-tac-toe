@@ -99,6 +99,7 @@ td {
   border: 2px solid #adadad;
   height: 5rem;
   width: 5rem;
+  padding: 3rem;
 }
 
 td:hover {
