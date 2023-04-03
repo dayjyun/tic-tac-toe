@@ -61,6 +61,31 @@ main {
   margin: 0 auto;
 }
 
+.board-info {
+  position: relative;
+}
+
+.toggle-button {
+  background-color: transparent;
+  border: 1px solid rgb(203, 203, 203);
+  border-radius: 10px;
+  width: 8rem;
+}
+
+.remove-border {
+  border: none;
+}
+
+.turn-info-container-toggle {
+  top: 0;
+  right: 30rem;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .table-container {
   padding: 1rem 0;
 }
@@ -78,6 +103,7 @@ td {
 
 td:hover {
   cursor: pointer;
+  outline: 3px solid black;
 }
 
 .table-top td {
@@ -102,6 +128,7 @@ td:hover {
   border-bottom: none;
   border-left: none;
 }
+
 
 /* *********************************** Section ********************************* */
 
@@ -149,6 +176,20 @@ section {
   color: #363636;
   font-style: italic;
   outline: 2px solid gray;
+}
+
+/* .current-player.color { */
+  /* height: 1.5em;
+  width: 3rem;
+  background-color: transparent;
+  border: 1px solid rgb(187, 186, 186);
+  border-radius: 3px */
+/* } */
+
+.color-picker {
+  cursor: pointer;
+  height: 2em;
+  width: 4rem;
 }
 
 .game-stats {
@@ -239,10 +280,10 @@ footer > div {
   border-radius: 5px;
   background-color: #fefefe;
   margin: 15% auto;
-  padding: 1rem 3rem;
+  padding: 11rem 3rem;
   border: 1px solid #888;
   width: 30rem;
-  height: 18rem;
+  height: 20rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -289,7 +330,7 @@ footer > div {
 }
 
 .modal-button {
-  margin-top: 10px;
+  margin: 1.5rem 0;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -298,3 +339,12 @@ footer > div {
   box-shadow: inset 0px -3px 7px 0px #29bbff;
   background: linear-gradient(#2dabf9, #0688fa);
 }
+
+/* .highlight-box {
+  border: 3px solid rgb(3, 3, 3);
+} */
+
+/* .highlight-box:hover {
+  border: 3px solid black;
+  border-right: 3px solid black;
+} */
