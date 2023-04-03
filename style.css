@@ -101,9 +101,6 @@ td {
   width: 5rem;
 }
 
-td:hover {
-  cursor: pointer;
-}
 
 .table-top td {
   border-top: none;
@@ -126,6 +123,12 @@ td:hover {
 .table-end td {
   border-bottom: none;
   border-left: none;
+}
+
+
+td:hover {
+  cursor: pointer;
+  outline: 3px solid black;
 }
 
 /* *********************************** Section ********************************* */
@@ -176,15 +179,16 @@ section {
   outline: 2px solid gray;
 }
 
-.current-player.color {
+/* .current-player.color { */
   /* height: 1.5em;
   width: 3rem;
   background-color: transparent;
   border: 1px solid rgb(187, 186, 186);
   border-radius: 3px */
-}
+/* } */
 
 .color-picker {
+  cursor: pointer;
   height: 1.5em;
   width: 3rem;
 }
@@ -336,3 +340,12 @@ footer > div {
   box-shadow: inset 0px -3px 7px 0px #29bbff;
   background: linear-gradient(#2dabf9, #0688fa);
 }
+
+/* .highlight-box {
+  border: 3px solid rgb(3, 3, 3);
+} */
+
+/* .highlight-box:hover {
+  border: 3px solid black;
+  border-right: 3px solid black;
+} */

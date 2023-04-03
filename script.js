@@ -1,10 +1,12 @@
+const firstPlayerToggleButton = document.querySelector(".toggle-button");
 const tdTags = document.querySelectorAll("td");
 const newGameButton = document.querySelector(".clear-board-button");
 const modalContainer = document.querySelector(".modal-container");
 const modalBox = document.querySelector(".modal-box");
 const modalButton = document.querySelector(".modal-button");
 const currentPlayerName = document.querySelector(".current-player.name");
-const currentPlayerColor = document.querySelector(".current-player.color");
+const colorPicker = document.querySelector(".color-picker");
+// const currentPlayerColor = document.querySelector(".current-player.color");
 const pointsArr = document.querySelectorAll(".points");
 const winsSpan = document.querySelectorAll(".wins > *");
 let playerOneWins = document.querySelector(".player-wins.one.section");
@@ -15,14 +17,16 @@ let ties = 0;
 
 let playerOne = {
   name: "Player One",
-  mainColor: "blue",
+  // mainColor: "blue",
+  mainColor: "#0000ff",
   hoverColor: "lightblue",
   wins: 0,
 };
 
 let playerTwo = {
   name: "Player Two",
-  mainColor: "red",
+  // mainColor: "red",
+  mainColor: "#Ff0000",
   hoverColor: "pink",
   wins: 0,
 };
@@ -31,13 +35,9 @@ let currentPlayer = playerOne;
 // let currentPlayer = playerTwo;
 let firstPlayer = currentPlayer;
 
-// if (currentPlayer === playerOne){
-//   currentPlayerColor.style.backgroundColor = playerOne.mainColor
-// } else {
-//   currentPlayerColor.style.backgroundColor = playerTwo.mainColor
-// }
-
-const firstPlayerToggleButton = document.querySelector(".toggle-button");
+document.addEventListener("DOMContentLoaded", () => {
+  colorPicker.value = currentPlayer.mainColor;
+});
 
 firstPlayerToggleButton.addEventListener("click", (e) => {
   switchPlayer();
@@ -49,24 +49,26 @@ function checkPlayer() {
     ? (currentPlayerName.innerText = playerOne.name)
     : (currentPlayerName.innerText = playerTwo.name);
 
-  currentPlayerColor.style.backgroundColor = currentPlayer.mainColor;
+  // currentPlayerColor.style.backgroundColor = currentPlayer.mainColor;
+  colorPicker.value = currentPlayer.mainColor;
   firstPlayer = currentPlayer;
 }
 
-const colorPicker = document.querySelector('.color-picker')
+console.log(currentPlayer.mainColor);
 
 // function changeColor() {
-  colorPicker.addEventListener('blur', (e) => {
-    const color = e.target.value
-    console.log({color})
-    currentPlayer.mainColor = color;
-  })
+colorPicker.addEventListener("blur", (e) => {
+  const color = e.target.value;
+  console.log({ color });
+  currentPlayer.mainColor = color;
+});
 // }
 
 function switchPlayer() {
   currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
   currentPlayerName.innerText = currentPlayer.name;
-  currentPlayerColor.style.backgroundColor = currentPlayer.mainColor;
+  // currentPlayerColor.style.backgroundColor = currentPlayer.mainColor;
+  colorPicker.value = currentPlayer.mainColor;
 }
 
 function gameModal(n) {
@@ -96,7 +98,8 @@ function clearBoard(e) {
   currentPlayer = firstPlayer;
   checkPlayer();
   currentPlayerName.innerText = firstPlayer.name;
-  currentPlayerColor.style.backgroundColor = currentPlayer.mainColor;
+  // currentPlayerColor.style.backgroundColor = currentPlayer.mainColor;
+  colorPicker.value = currentPlayer.mainColor;
   modalContainer.style.display = "none";
   firstPlayerToggleButton.disabled = false;
   firstPlayerToggleButton.classList.remove("remove-border");
@@ -109,39 +112,50 @@ modalContainer.addEventListener("click", clearBoard);
 newGameButton.addEventListener("click", clearBoard);
 
 // Main
-function mouseOver(e) {
-  const bgIsWhite = e.target.style.backgroundColor === "white";
+// function mouseOver(e) {
+//   const bgIsWhite = e.target.style.backgroundColor === "white";
 
-  if (currentPlayer === playerOne && bgIsWhite) {
-    e.target.style.backgroundColor = playerOne.hoverColor;
-  } else if (currentPlayer === playerTwo && bgIsWhite) {
-    e.target.style.backgroundColor = playerTwo.hoverColor;
-  }
-}
+//   if (currentPlayer === playerOne && bgIsWhite) {
+//     // e.target.style.backgroundColor = playerOne.hoverColor;
+//     e.target.classList.add("highlight-box");
+//   } else if (currentPlayer === playerTwo && bgIsWhite) {
+//     // e.target.style.backgroundColor = playerTwo.hoverColor;
+//     e.target.classList.add("highlight-box");
+//   }
+// }
 
-function mouseOut(e) {
-  const currentColor = e.target.style.backgroundColor;
+// function mouseOut(e) {
+//   const currentColor = e.target.style.backgroundColor;
 
-  if (
-    currentColor !== playerOne.mainColor &&
-    currentColor !== playerTwo.mainColor
-  ) {
-    e.target.style.backgroundColor = "white";
-  }
-}
+//   // if (
+//   //   currentColor !== playerOne.mainColor &&
+//   //   currentColor !== playerTwo.mainColor
+//   // ) {
+//   // e.target.style.backgroundColor = "white";
+//   e.target.classList.remove("highlight-box");
+//   // }
+// }
 
 function clickColor(e) {
   const currentColor = e.target.style.backgroundColor;
 
-  if (currentColor === playerOne.hoverColor) {
-    e.target.style.backgroundColor = playerOne.mainColor;
-    checkWinner(playerOne);
-    switchPlayer();
-    firstPlayerToggleButton.disabled = true;
-    firstPlayerToggleButton.classList.add("remove-border");
-  } else if (currentColor === playerTwo.hoverColor) {
-    e.target.style.backgroundColor = playerTwo.mainColor;
-    checkWinner(playerTwo);
+  // if (currentColor === playerOne.hoverColor) {
+  //   e.target.style.backgroundColor = playerOne.mainColor;
+  //   checkWinner(playerOne);
+  //   switchPlayer();
+  //   firstPlayerToggleButton.disabled = true;
+  //   firstPlayerToggleButton.classList.add("remove-border");
+  // } else if (currentColor === playerTwo.hoverColor) {
+  //   e.target.style.backgroundColor = playerTwo.mainColor;
+  //   checkWinner(playerTwo);
+  //   switchPlayer();
+  //   firstPlayerToggleButton.disabled = true;
+  //   firstPlayerToggleButton.classList.add("remove-border");
+  // }
+
+  if (currentColor === "white") {
+    e.target.style.backgroundColor = currentPlayer.mainColor;
+    checkWinner();
     switchPlayer();
     firstPlayerToggleButton.disabled = true;
     firstPlayerToggleButton.classList.add("remove-border");
@@ -150,8 +164,8 @@ function clickColor(e) {
 
 tdTags.forEach((tdTag) => {
   tdTag.style.backgroundColor = "white";
-  tdTag.addEventListener("mouseover", mouseOver);
-  tdTag.addEventListener("mouseout", mouseOut);
+  // tdTag.addEventListener("mouseover", mouseOver);
+  // tdTag.addEventListener("mouseout", mouseOut);
   tdTag.addEventListener("click", clickColor);
 });
 
