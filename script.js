@@ -154,6 +154,7 @@ resetScoreButton.addEventListener("click", (e) => {
 
 
 // Modal
+// One modal is used for both winner and tie games. Removes excess page and assigns designated header
 function gameModal(n) {
   modalContainer.style.display = "block";
   document.body.style.overflow = 'hidden'
@@ -240,7 +241,7 @@ function checkTies() {
   }
 }
 
-
+// Displays the lead player's number in color
 function winningColor() {
   let playerOnePoints = +pointsArr[0].innerText;
   let playerTwoPoints = +pointsArr[1].innerText;
@@ -265,3 +266,8 @@ function start() {
   checkPlayer();
 }
 start();
+
+// Local Storage
+let playerDataSerialized = JSON.stringify({playerOne, playerTwo})
+localStorage.setItem("playerData", playerDataSerialized);
+let playerDataDeserialized = JSON.parse(localStorage.getItem('playerData'))
