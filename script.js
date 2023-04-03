@@ -6,35 +6,32 @@ const modalBox = document.querySelector(".modal-box");
 const modalButton = document.querySelector(".modal-button");
 const currentPlayerName = document.querySelector(".current-player.name");
 const colorPicker = document.querySelector(".color-picker");
-// const currentPlayerColor = document.querySelector(".current-player.color");
 const pointsArr = document.querySelectorAll(".points");
 const winsSpan = document.querySelectorAll(".wins > *");
 let playerOneWins = document.querySelector(".player-wins.one.section");
 let playerTwoWins = document.querySelector(".player-wins.two.section");
 const lightGray = "rgb(154, 154, 154)";
 let gameTies = document.querySelector(".game-ties");
-let ties = 0;
+let gameTiesModal = document.querySelector('.game-ties.modal')
+
+console.log(gameTiesModal)
 
 let playerOne = {
   id: 1,
   name: "Player One",
-  // mainColor: "blue",
   mainColor: "#0000ff",
-  hoverColor: "lightblue",
   wins: 0,
 };
 
 let playerTwo = {
   id: 2,
   name: "Player Two",
-  // mainColor: "red",
   mainColor: "#Ff0000",
-  hoverColor: "pink",
   wins: 0,
 };
 
+let ties = 0;
 let currentPlayer = playerOne;
-// let currentPlayer = playerTwo;
 let firstPlayer = currentPlayer;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -51,7 +48,6 @@ function checkPlayer() {
     ? (currentPlayerName.innerText = playerOne.name)
     : (currentPlayerName.innerText = playerTwo.name);
 
-  // currentPlayerColor.style.backgroundColor = currentPlayer.mainColor;
   colorPicker.value = currentPlayer.mainColor;
   firstPlayer = currentPlayer;
 }
@@ -64,19 +60,16 @@ colorPicker.addEventListener("blur", (e) => {
 function switchPlayer() {
   currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
   currentPlayerName.innerText = currentPlayer.name;
-  // currentPlayerColor.style.backgroundColor = currentPlayer.mainColor;
   colorPicker.value = currentPlayer.mainColor;
 }
 
 function gameModal(n) {
-  const modal = document.querySelector(".modal-container");
-  modal.style.display = "block";
+  modalContainer.style.display = "block";
   const winnerText = document.querySelector(".winner-info");
   const playerOneName = document.querySelector(".player-name-modal.one");
   const playerTwoName = document.querySelector(".player-name-modal.two");
   const playerOneWins = document.querySelector(".player-wins.one.modal");
   const playerTwoWins = document.querySelector(".player-wins.two.modal");
-  const gameTiesModal = document.querySelector(".game-ties.modal");
 
   if (n === 1) {
     winnerText.innerText = `${currentPlayer.name} Won!`;
@@ -84,9 +77,11 @@ function gameModal(n) {
     playerTwoName.innerText = playerTwo.name;
     playerOneWins.innerText = playerOne.wins;
     playerTwoWins.innerText = playerTwo.wins;
-    gameTiesModal.innerText = gameTies.innerText;
   } else {
-    winnerText.innerText = `Tie!`;
+    // ties++
+    gameTies.innerText = ties;
+    gameTiesModal.innerText = ties;
+    // gameTiesModal.style.backgroundColor = 'red'
   }
 }
 
@@ -109,43 +104,8 @@ modalContainer.addEventListener("click", clearBoard);
 // Header
 newGameButton.addEventListener("click", clearBoard);
 
-// Main
-// function mouseOver(e) {
-//   const bgIsWhite = e.target.style.backgroundColor === "white";
-
-//   if (currentPlayer === playerOne && bgIsWhite) {
-//     // e.target.style.backgroundColor = playerOne.hoverColor;
-//     e.target.classList.add("highlight-box");
-//   } else if (currentPlayer === playerTwo && bgIsWhite) {
-//     // e.target.style.backgroundColor = playerTwo.hoverColor;
-//     e.target.classList.add("highlight-box");
-//   }
-// }
-
-// function mouseOut(e) {
-//   const currentColor = e.target.style.backgroundColor;
-
-//   // if (
-//   //   currentColor !== playerOne.mainColor &&
-//   //   currentColor !== playerTwo.mainColor
-//   // ) {
-//   // e.target.style.backgroundColor = "white";
-//   e.target.classList.remove("highlight-box");
-//   // }
-// }
-
 function choosePlayerColor(e) {
   const currentColor = e.target.style.backgroundColor;
-
-  // if (currentColor === playerOne.hoverColor) {
-  //   e.target.style.backgroundColor = playerOne.mainColor;
-  //   checkWinner();
-  //   switchPlayer();
-  // } else if (currentColor === playerTwo.hoverColor) {
-  //   e.target.style.backgroundColor = playerTwo.mainColor;
-  //   checkWinner();
-  //   switchPlayer();
-  // }
 
   if (currentColor === "white") {
     e.target.style.backgroundColor = currentPlayer.mainColor;
@@ -157,8 +117,6 @@ function choosePlayerColor(e) {
 
 tdTags.forEach((tdTag) => {
   tdTag.style.backgroundColor = "white";
-  // tdTag.addEventListener("mouseover", mouseOver);
-  // tdTag.addEventListener("mouseout", mouseOut);
   tdTag.addEventListener("click", choosePlayerColor);
 });
 
@@ -204,7 +162,6 @@ resetScoreButton.addEventListener("click", (e) => {
   playerOneWins.innerText = 0;
   playerTwoWins.innerText = 0;
   ties = 0;
-  gameTies.innerText = ties;
   winsSpan.forEach((win) => {
     win.style.color = lightGray;
     win.style.fontWeight = "500";
@@ -237,22 +194,6 @@ function checkWinner() {
     const cellB = tdTags[b];
     const cellC = tdTags[c];
 
-    // if (
-    //   cellA.style.backgroundColor === currentPlayer.mainColor &&
-    //   cellB.style.backgroundColor === currentPlayer.mainColor &&
-    //   cellC.style.backgroundColor === currentPlayer.mainColor
-    // ) {
-    //   currentPlayer.wins++;
-    //   if (currentPlayer === playerOne) {
-    //     playerOneWins.innerText = playerOne.wins;
-    //   } else {
-    //     playerTwoWins.innerText = playerTwo.wins;
-    //   }
-
-    //   winningColor();
-    //   gameModal(1);
-    // }
-
     if (
       cellA.classList.contains(currentPlayer.id) &&
       cellB.classList.contains(currentPlayer.id) &&
@@ -266,28 +207,25 @@ function checkWinner() {
       }
       winningColor();
       gameModal(1);
+      // checkTies()
     }
   }
-  // check tie else?
-  // checkTies()
+  checkTies();
 }
 
 function checkTies() {
-  const whiteBoxArr = Array.from(tdTags).filter((td) => {
-    return td.style.backgroundColor === "white";
-  });
+  const allCellsFilled = Array.from(tdTags).every(
+    (cell) =>
+      cell.classList.contains(playerOne.id) ||
+      cell.classList.contains(playerTwo.id)
+  );
 
-  if (whiteBoxArr.length === 0) {
-    ties++;
-    tieGame();
+  if (allCellsFilled) {
+    ties++
+    gameModal(0);
   }
 }
 
-function tieGame() {
-  gameModal(0);
-  gameTies.innerText = ties;
-  return;
-}
 
 function winningColor() {
   let playerOnePoints = +pointsArr[0].innerText;
