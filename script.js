@@ -34,9 +34,9 @@ let ties = 0;
 let currentPlayer = playerOne;
 let firstPlayer = currentPlayer;
 
-document.addEventListener("DOMContentLoaded", () => {
-  colorPicker.value = currentPlayer.mainColor;
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//   colorPicker.value = currentPlayer.mainColor;
+// });
 
 firstPlayerToggleButton.addEventListener("click", (e) => {
   switchPlayer();
@@ -50,17 +50,20 @@ function checkPlayer() {
 
   colorPicker.value = currentPlayer.mainColor;
   firstPlayer = currentPlayer;
+  saveGameData();
 }
 
 colorPicker.addEventListener("blur", (e) => {
   const color = e.target.value;
   currentPlayer.mainColor = color;
+  saveGameData();
 });
 
 function switchPlayer() {
   currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
   currentPlayerName.innerText = currentPlayer.name;
   colorPicker.value = currentPlayer.mainColor;
+  saveGameData();
 }
 
 
@@ -77,6 +80,7 @@ function clearBoard(e) {
   currentPlayerName.innerText = firstPlayer.name;
   colorPicker.value = currentPlayer.mainColor;
   modalContainer.style.display = "none";
+  saveGameData();
 }
 
 modalButton.addEventListener("click", clearBoard);
@@ -95,6 +99,7 @@ function choosePlayerColor(e) {
     switchPlayer();
     firstPlayerToggleButton.disabled = true;
   }
+  saveGameData();
 }
 
 tdTags.forEach((tdTag) => {
@@ -111,6 +116,7 @@ function changeName(e) {
   }
 
   checkPlayer();
+  saveGameData();
 }
 
 function pressedEnter(e) {
@@ -119,6 +125,7 @@ function pressedEnter(e) {
     e.target.disabled = true;
     e.target.disabled = false;
   }
+  saveGameData();
 }
 
 function inputOutOfFocus(e) {
@@ -127,6 +134,7 @@ function inputOutOfFocus(e) {
   } else if (e.target.placeholder === "" && e.target.id === "player-two") {
     e.target.placeholder = "Player Two";
   }
+  saveGameData();
 }
 
 const nameInputBoxes = document.querySelectorAll(".name-input");
@@ -134,6 +142,7 @@ nameInputBoxes.forEach((nameInputBox) => {
   nameInputBox.addEventListener("input", changeName);
   nameInputBox.addEventListener("keydown", pressedEnter);
   nameInputBox.addEventListener("blur", inputOutOfFocus);
+  saveGameData();
 });
 
 // Displays the lead player's number in color
@@ -168,6 +177,7 @@ resetScoreButton.addEventListener("click", (e) => {
     win.style.color = lightGray;
     win.style.fontWeight = "500";
   });
+  saveGameData();
   start();
 });
 
