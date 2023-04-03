@@ -20,31 +20,35 @@
         <button class="clear-board-button">Clear Board</button>
       </nav>
     </header>
-    <main>
-      <div class="turn-info-container">
-        <button id="toggle-button"><span class="player-info-toggle">Color</span> Is First</button>
-      </div>
-      <h2><span class="current-player name">Player One</span>'s Turn</h2>
-      <div class="table-container">
-        <table>
-          <tr class="table-top">
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr class="table-mid">
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr class="table-end">
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </table>
-      </div>
-    </main>
+    <div class="board-info">
+      <main>
+        <h2><span class="current-player name">Player One</span>'s Turn</h2>
+        <div class="turn-info-container-toggle">
+          <button id="toggle-button">
+            <span class="player-info-toggle">Switch</span>
+          </button>
+        </div>
+        <div class="table-container">
+          <table>
+            <tr class="table-top">
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr class="table-mid">
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr class="table-end">
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+      </main>
+    </div>
     <section>
       <div class="player-info-container">
         <div class="player-info-top">

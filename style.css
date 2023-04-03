@@ -61,13 +61,23 @@ main {
   margin: 0 auto;
 }
 
-.turn-info-container {
 
-  height: 2rem;
+.board-info {
+  position: relative;
+
+}
+
+.turn-info-container-toggle {
+  top: 0;
+  right: 30rem;
+  margin: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  /* border: 2px solid red; */
 }
+
+
 
 .table-container {
   padding: 1rem 0;

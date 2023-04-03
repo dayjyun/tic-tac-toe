@@ -31,10 +31,10 @@ let currentPlayer = playerOne;
 // let currentPlayer = playerTwo;
 let firstPlayer = currentPlayer;
 
-const toggleButton = document.getElementById("toggle-button");
+const firstPlayerToggleButton = document.getElementById("toggle-button");
 const changePlayer = document.getElementById("current-player");
 
-toggleButton.addEventListener("click", () => {
+firstPlayerToggleButton.addEventListener("click", () => {
   switchPlayer()
   checkPlayer()
 });
@@ -43,6 +43,7 @@ function checkPlayer() {
   currentPlayer === playerOne
     ? (currentPlayerName.innerText = playerOne.name)
     : (currentPlayerName.innerText = playerTwo.name);
+  firstPlayer = currentPlayer
 }
 
 function switchPlayer() {
@@ -74,11 +75,11 @@ function gameModal(n) {
 
 function clearBoard(e) {
   tdTags.forEach((tdTag) => (tdTag.style.backgroundColor = "white"));
-  checkPlayer();
   currentPlayer = firstPlayer;
+  checkPlayer();
   currentPlayerName.innerText = firstPlayer.name;
   modalContainer.style.display = "none";
-  toggleButton.disabled = false;
+  firstPlayerToggleButton.disabled = false;
 }
 
 modalButton.addEventListener("click", clearBoard);
@@ -116,12 +117,12 @@ function clickColor(e) {
     e.target.style.backgroundColor = playerOne.mainColor;
     checkWinner(playerOne);
     switchPlayer();
-    toggleButton.disabled = true;
+    firstPlayerToggleButton.disabled = true;
   } else if (currentColor === playerTwo.hoverColor) {
     e.target.style.backgroundColor = playerTwo.mainColor;
     checkWinner(playerTwo);
     switchPlayer();
-    toggleButton.disabled = true;
+    firstPlayerToggleButton.disabled = true;
   }
 }
 
