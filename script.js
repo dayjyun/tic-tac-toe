@@ -53,6 +53,16 @@ function checkPlayer() {
   firstPlayer = currentPlayer;
 }
 
+const colorPicker = document.querySelector('.color-picker')
+
+// function changeColor() {
+  colorPicker.addEventListener('blur', (e) => {
+    const color = e.target.value
+    console.log({color})
+    currentPlayer.mainColor = color;
+  })
+// }
+
 function switchPlayer() {
   currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
   currentPlayerName.innerText = currentPlayer.name;
