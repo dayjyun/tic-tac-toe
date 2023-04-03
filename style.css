@@ -255,12 +255,12 @@ footer > div {
 
 .modal-container {
   display: none;
-  position: absolute;
+  position: fixed;
   z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
-  height: 200%;
+  height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
   margin: 0 auto;
@@ -279,11 +279,11 @@ footer > div {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-
+  animation-duration: 0.4s;
+  margin: 30% auto 0;
+  transform: translateY(-50%);
+  animation-name: slide-down;
+  animation-duration: .5s;
 }
 
 .modal-box > h2 {
@@ -336,12 +336,11 @@ footer > div {
   background: linear-gradient(#2dabf9, #0688fa);
 }
 
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
+@keyframes slide-down {
+  0% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
 }
