@@ -65,6 +65,7 @@ function switchPlayer() {
 
 function gameModal(n) {
   modalContainer.style.display = "block";
+  document.body.style.overflow = 'hidden'
   const winnerText = document.querySelector(".winner-info");
   const playerOneName = document.querySelector(".player-name-modal.one");
   const playerTwoName = document.querySelector(".player-name-modal.two");
@@ -91,6 +92,7 @@ function clearBoard(e) {
     tdTag.classList.remove(playerOne.id)
     tdTag.classList.remove(playerTwo.id)
   });
+  document.body.style.overflow = 'visible'
   firstPlayerToggleButton.disabled = false;
   currentPlayer = firstPlayer;
   checkPlayer();
@@ -113,7 +115,6 @@ function choosePlayerColor(e) {
     e.target.classList.add(currentPlayer.id);
     checkWinner();
     switchPlayer();
-    // !HERE!!!!
     firstPlayerToggleButton.disabled = true;
   }
 }

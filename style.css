@@ -112,6 +112,7 @@ td:hover {
 }
 
 .table-top td:last-child,
+.table-mid td:last-child,
 .table-end td:last-child {
   border-right: none;
 }
@@ -120,9 +121,6 @@ td:hover {
   border-left: none;
 }
 
-.table-mid td:last-child {
-  border-right: none;
-}
 
 .table-end td {
   border-bottom: none;
@@ -266,7 +264,9 @@ footer > div {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
   margin: 0 auto;
+
 }
+
 
 .modal-box {
   border-radius: 5px;
@@ -280,6 +280,11 @@ footer > div {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+
 }
 
 .modal-box > h2 {
@@ -330,4 +335,19 @@ footer > div {
   cursor: pointer;
   box-shadow: inset 0px -3px 7px 0px #29bbff;
   background: linear-gradient(#2dabf9, #0688fa);
+}
+
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+.stop-scroll {
+  height: 100%;
+  overflow: hidden;
 }
