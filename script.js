@@ -72,7 +72,6 @@ function gameModal(n) {
   const playerTwoWins = document.querySelector(".player-wins.two.modal");
 
   if (n === 1) {
-
     winnerText.innerText = `${currentPlayer.name} Won!`;
     playerOneName.innerText = playerOne.name;
     playerTwoName.innerText = playerTwo.name;
@@ -92,6 +91,7 @@ function clearBoard(e) {
     tdTag.classList.remove(playerOne.id)
     tdTag.classList.remove(playerTwo.id)
   });
+  firstPlayerToggleButton.disabled = false;
   currentPlayer = firstPlayer;
   checkPlayer();
   currentPlayerName.innerText = firstPlayer.name;
@@ -113,6 +113,8 @@ function choosePlayerColor(e) {
     e.target.classList.add(currentPlayer.id);
     checkWinner();
     switchPlayer();
+    // !HERE!!!!
+    firstPlayerToggleButton.disabled = true;
   }
 }
 
