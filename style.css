@@ -61,10 +61,19 @@ main {
   margin: 0 auto;
 }
 
-
 .board-info {
   position: relative;
+}
 
+.toggle-button {
+  background-color: transparent;
+  border: 1px solid rgb(203, 203, 203);
+  border-radius: 10px;
+  width: 8rem;
+}
+
+.remove-border {
+  border: none;
 }
 
 .turn-info-container-toggle {
@@ -74,9 +83,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 2px solid red; */
 }
-
 
 
 .table-container {

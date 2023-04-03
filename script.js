@@ -31,10 +31,9 @@ let currentPlayer = playerOne;
 // let currentPlayer = playerTwo;
 let firstPlayer = currentPlayer;
 
-const firstPlayerToggleButton = document.getElementById("toggle-button");
-const changePlayer = document.getElementById("current-player");
+const firstPlayerToggleButton = document.querySelector(".toggle-button");
 
-firstPlayerToggleButton.addEventListener("click", () => {
+firstPlayerToggleButton.addEventListener("click", (e) => {
   switchPlayer()
   checkPlayer()
 });
@@ -80,6 +79,7 @@ function clearBoard(e) {
   currentPlayerName.innerText = firstPlayer.name;
   modalContainer.style.display = "none";
   firstPlayerToggleButton.disabled = false;
+  firstPlayerToggleButton.classList.remove("remove-border");
 }
 
 modalButton.addEventListener("click", clearBoard);
@@ -118,11 +118,13 @@ function clickColor(e) {
     checkWinner(playerOne);
     switchPlayer();
     firstPlayerToggleButton.disabled = true;
+    firstPlayerToggleButton.classList.add("remove-border");
   } else if (currentColor === playerTwo.hoverColor) {
     e.target.style.backgroundColor = playerTwo.mainColor;
     checkWinner(playerTwo);
     switchPlayer();
     firstPlayerToggleButton.disabled = true;
+    firstPlayerToggleButton.classList.add("remove-border");
   }
 }
 
