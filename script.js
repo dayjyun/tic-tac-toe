@@ -7,8 +7,8 @@ const currentPlayerName = document.querySelector(".current-player.name");
 const currentPlayerColor = document.querySelector(".current-player.color");
 const pointsArr = document.querySelectorAll('.points')
 const winsSpan = document.querySelectorAll(".wins > *");
-let playerOneWins = document.querySelector(".player-one-wins");
-let playerTwoWins = document.querySelector(".player-two-wins");
+let playerOneWins = document.querySelector(".player-wins.one.section");
+let playerTwoWins = document.querySelector(".player-wins.two.section");
 const lightGray = "rgb(154, 154, 154)";
 let gameTies = document.querySelector(".game-ties");
 let ties = 0;
@@ -30,6 +30,14 @@ let playerTwo = {
 let currentPlayer = playerOne;
 // let currentPlayer = playerTwo;
 let firstPlayer = currentPlayer;
+
+const toggleButton = document.getElementById("toggle-button");
+const changePlayer = document.getElementById("current-player");
+
+toggleButton.addEventListener("click", () => {
+  switchPlayer()
+  checkPlayer()
+});
 
 function checkPlayer() {
   currentPlayer === playerOne
@@ -70,6 +78,7 @@ function clearBoard(e) {
   currentPlayer = firstPlayer;
   currentPlayerName.innerText = firstPlayer.name;
   modalContainer.style.display = "none";
+  toggleButton.disabled = false;
 }
 
 modalButton.addEventListener("click", clearBoard);
@@ -107,10 +116,12 @@ function clickColor(e) {
     e.target.style.backgroundColor = playerOne.mainColor;
     checkWinner(playerOne);
     switchPlayer();
+    toggleButton.disabled = true;
   } else if (currentColor === playerTwo.hoverColor) {
     e.target.style.backgroundColor = playerTwo.mainColor;
     checkWinner(playerTwo);
     switchPlayer();
+    toggleButton.disabled = true;
   }
 }
 
