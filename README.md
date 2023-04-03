@@ -2,5 +2,10 @@
 
 ## Future
 More fun along the way!
-- [ ] The player choose to go second
+- [ ] AI opponent
 - [ ] Player can personalize their background color
+
+Credits
+Feedback
+- [Jeff Ou](https://github.com/pophero110)
+- [Dominique Akers](https://github.com/Dommy99)
