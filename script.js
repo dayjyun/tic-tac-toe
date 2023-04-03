@@ -5,7 +5,7 @@ const modalBox = document.querySelector(".modal-box");
 const modalButton = document.querySelector(".modal-button");
 const currentPlayerName = document.querySelector(".current-player.name");
 const currentPlayerColor = document.querySelector(".current-player.color");
-const pointsArr = document.querySelectorAll('.points')
+const pointsArr = document.querySelectorAll(".points");
 const winsSpan = document.querySelectorAll(".wins > *");
 let playerOneWins = document.querySelector(".player-wins.one.section");
 let playerTwoWins = document.querySelector(".player-wins.two.section");
@@ -31,42 +31,51 @@ let currentPlayer = playerOne;
 // let currentPlayer = playerTwo;
 let firstPlayer = currentPlayer;
 
+// if (currentPlayer === playerOne){
+//   currentPlayerColor.style.backgroundColor = playerOne.mainColor
+// } else {
+//   currentPlayerColor.style.backgroundColor = playerTwo.mainColor
+// }
+
 const firstPlayerToggleButton = document.querySelector(".toggle-button");
 
 firstPlayerToggleButton.addEventListener("click", (e) => {
-  switchPlayer()
-  checkPlayer()
+  switchPlayer();
+  checkPlayer();
 });
 
 function checkPlayer() {
   currentPlayer === playerOne
     ? (currentPlayerName.innerText = playerOne.name)
     : (currentPlayerName.innerText = playerTwo.name);
-  firstPlayer = currentPlayer
+
+  currentPlayerColor.style.backgroundColor = currentPlayer.mainColor;
+  firstPlayer = currentPlayer;
 }
 
 function switchPlayer() {
   currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
   currentPlayerName.innerText = currentPlayer.name;
+  currentPlayerColor.style.backgroundColor = currentPlayer.mainColor;
 }
 
 function gameModal(n) {
   const modal = document.querySelector(".modal-container");
   modal.style.display = "block";
   const winnerText = document.querySelector(".winner-info");
-  const playerOneName = document.querySelector('.player-name-modal.one')
-  const playerTwoName = document.querySelector('.player-name-modal.two')
-  const playerOneWins = document.querySelector('.player-wins.one.modal')
-  const playerTwoWins = document.querySelector('.player-wins.two.modal')
-  const gameTiesModal = document.querySelector('.game-ties.modal')
+  const playerOneName = document.querySelector(".player-name-modal.one");
+  const playerTwoName = document.querySelector(".player-name-modal.two");
+  const playerOneWins = document.querySelector(".player-wins.one.modal");
+  const playerTwoWins = document.querySelector(".player-wins.two.modal");
+  const gameTiesModal = document.querySelector(".game-ties.modal");
 
   if (n === 1) {
     winnerText.innerText = `${currentPlayer.name} Won!`;
-    playerOneName.innerText = playerOne.name
+    playerOneName.innerText = playerOne.name;
     playerTwoName.innerText = playerTwo.name;
-    playerOneWins.innerText = playerOne.wins
-    playerTwoWins.innerText = playerTwo.wins
-    gameTiesModal.innerText = gameTies.innerText
+    playerOneWins.innerText = playerOne.wins;
+    playerTwoWins.innerText = playerTwo.wins;
+    gameTiesModal.innerText = gameTies.innerText;
   } else {
     winnerText.innerText = `Tie!`;
   }
@@ -77,6 +86,7 @@ function clearBoard(e) {
   currentPlayer = firstPlayer;
   checkPlayer();
   currentPlayerName.innerText = firstPlayer.name;
+  currentPlayerColor.style.backgroundColor = currentPlayer.mainColor;
   modalContainer.style.display = "none";
   firstPlayerToggleButton.disabled = false;
   firstPlayerToggleButton.classList.remove("remove-border");
@@ -185,7 +195,6 @@ resetScoreButton.addEventListener("click", (e) => {
   start();
 });
 
-
 // Game Logic
 function checkWinner() {
   const rows = [
@@ -223,7 +232,7 @@ function checkWinner() {
         playerTwoWins.innerText = playerTwo.wins;
       }
 
-      winningColor()
+      winningColor();
       gameModal(1);
     }
   }
@@ -244,24 +253,23 @@ function tieGame() {
   return;
 }
 
-function winningColor(){
-  let playerOnePoints = +pointsArr[0].innerText
-  let playerTwoPoints = +pointsArr[1].innerText
+function winningColor() {
+  let playerOnePoints = +pointsArr[0].innerText;
+  let playerTwoPoints = +pointsArr[1].innerText;
 
-  if(playerOnePoints > playerTwoPoints){
-    winsSpan[0].style.color = "green"
-    winsSpan[0].style.fontWeight = '800'
+  if (playerOnePoints > playerTwoPoints) {
+    winsSpan[0].style.color = "green";
+    winsSpan[0].style.fontWeight = "800";
   } else if (playerOnePoints < playerTwoPoints) {
     winsSpan[1].style.color = "green";
     winsSpan[1].style.fontWeight = "800";
   } else {
-    winsSpan.forEach(win => {
+    winsSpan.forEach((win) => {
       win.style.color = lightGray;
-      win.style.fontWeight = '500'
-    })
+      win.style.fontWeight = "500";
+    });
   }
 }
-
 
 function start() {
   playerOneWins.innerText = playerOne.wins;
