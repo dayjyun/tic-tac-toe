@@ -8,8 +8,10 @@ const currentPlayerName = document.querySelector(".current-player.name");
 const colorPicker = document.querySelector(".color-picker");
 const pointsArr = document.querySelectorAll(".points");
 const winsSpan = document.querySelectorAll(".wins > *");
-let playerOneWins = document.querySelector(".player-wins.one.section");
-let playerTwoWins = document.querySelector(".player-wins.two.section");
+// let playerOneWins = document.querySelector(".player-wins.one.section");
+// let playerTwoWins = document.querySelector(".player-wins.two.section");
+const playerOneWins = document.querySelector(".player-wins.one.section");
+const playerTwoWins = document.querySelector(".player-wins.two.section");
 const lightGray = "rgb(154, 154, 154)";
 let gameTies = document.querySelector(".game-ties");
 let gameTiesModal = document.querySelector('.game-ties.modal')
@@ -70,11 +72,13 @@ function gameModal(n) {
   const playerTwoWins = document.querySelector(".player-wins.two.modal");
 
   if (n === 1) {
+
     winnerText.innerText = `${currentPlayer.name} Won!`;
     playerOneName.innerText = playerOne.name;
     playerTwoName.innerText = playerTwo.name;
     playerOneWins.innerText = playerOne.wins;
     playerTwoWins.innerText = playerTwo.wins;
+    switchPlayer()
   } else {
     winnerText.innerText = `Tie!`
     gameTies.innerText = ties;
@@ -166,6 +170,7 @@ resetScoreButton.addEventListener("click", (e) => {
   });
   start();
 });
+
 
 // Game Logic
 function checkWinner() {
