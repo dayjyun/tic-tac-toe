@@ -112,6 +112,7 @@ td:hover {
 }
 
 .table-top td:last-child,
+.table-mid td:last-child,
 .table-end td:last-child {
   border-right: none;
 }
@@ -120,9 +121,6 @@ td:hover {
   border-left: none;
 }
 
-.table-mid td:last-child {
-  border-right: none;
-}
 
 .table-end td {
   border-bottom: none;
@@ -280,6 +278,11 @@ footer > div {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  animation-duration: 0.4s;
+  margin: 30% auto 0;
+  transform: translateY(-50%);
+  animation-name: slide-down;
+  animation-duration: .5s;
 }
 
 .modal-box > h2 {
@@ -330,4 +333,13 @@ footer > div {
   cursor: pointer;
   box-shadow: inset 0px -3px 7px 0px #29bbff;
   background: linear-gradient(#2dabf9, #0688fa);
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
 }

@@ -63,28 +63,6 @@ function switchPlayer() {
   colorPicker.value = currentPlayer.mainColor;
 }
 
-function gameModal(n) {
-  modalContainer.style.display = "block";
-  const winnerText = document.querySelector(".winner-info");
-  const playerOneName = document.querySelector(".player-name-modal.one");
-  const playerTwoName = document.querySelector(".player-name-modal.two");
-  const playerOneWins = document.querySelector(".player-wins.one.modal");
-  const playerTwoWins = document.querySelector(".player-wins.two.modal");
-
-  if (n === 1) {
-
-    winnerText.innerText = `${currentPlayer.name} Won!`;
-    playerOneName.innerText = playerOne.name;
-    playerTwoName.innerText = playerTwo.name;
-    playerOneWins.innerText = playerOne.wins;
-    playerTwoWins.innerText = playerTwo.wins;
-    switchPlayer()
-  } else {
-    winnerText.innerText = `Tie!`
-    gameTies.innerText = ties;
-    gameTiesModal.innerText = ties;
-  }
-}
 
 function clearBoard(e) {
   tdTags.forEach((tdTag) => {
@@ -92,6 +70,8 @@ function clearBoard(e) {
     tdTag.classList.remove(playerOne.id)
     tdTag.classList.remove(playerTwo.id)
   });
+  document.body.style.overflow = 'visible'
+  firstPlayerToggleButton.disabled = false;
   currentPlayer = firstPlayer;
   checkPlayer();
   currentPlayerName.innerText = firstPlayer.name;
@@ -113,6 +93,7 @@ function choosePlayerColor(e) {
     e.target.classList.add(currentPlayer.id);
     checkWinner();
     switchPlayer();
+    firstPlayerToggleButton.disabled = true;
   }
 }
 
@@ -171,6 +152,30 @@ resetScoreButton.addEventListener("click", (e) => {
   start();
 });
 
+
+// Modal
+function gameModal(n) {
+  modalContainer.style.display = "block";
+  document.body.style.overflow = 'hidden'
+  const winnerText = document.querySelector(".winner-info");
+  const playerOneName = document.querySelector(".player-name-modal.one");
+  const playerTwoName = document.querySelector(".player-name-modal.two");
+  const playerOneWins = document.querySelector(".player-wins.one.modal");
+  const playerTwoWins = document.querySelector(".player-wins.two.modal");
+
+  if (n === 1) {
+    winnerText.innerText = `${currentPlayer.name} Won!`;
+    playerOneName.innerText = playerOne.name;
+    playerTwoName.innerText = playerTwo.name;
+    playerOneWins.innerText = playerOne.wins;
+    playerTwoWins.innerText = playerTwo.wins;
+    switchPlayer()
+  } else {
+    winnerText.innerText = `Tie!`
+    gameTies.innerText = ties;
+    gameTiesModal.innerText = ties;
+  }
+}
 
 // Game Logic
 function checkWinner() {
