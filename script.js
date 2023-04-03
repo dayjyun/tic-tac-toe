@@ -34,10 +34,6 @@ let ties = 0;
 let currentPlayer = playerOne;
 let firstPlayer = currentPlayer;
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   colorPicker.value = currentPlayer.mainColor;
-// });
-
 firstPlayerToggleButton.addEventListener("click", (e) => {
   switchPlayer();
   checkPlayer();
@@ -283,17 +279,25 @@ function saveGameData() {
   localStorage.setItem("gameData", gameData);
 }
 
-function loadGameData(){
+function loadGameData() {
   let gameData = JSON.parse(localStorage.getItem("playerData"));
-  if(!gameData) return;
+  if (!gameData) return;
 
+  ties = gameData.ties;
+  currentPlayer = gameData.currentPlayer;
+  playerOne = gameData.playerOne;
+  playerTwo = gameData.playerTwo;
+  checkPlayer();
+  playerOneWins.innerText = playerOne.wins;
+  playerTwoWins.innerText = playerTwo.wins;
+  gameTies.innerText = ties;
 }
-
 
 function start() {
   playerOneWins.innerText = playerOne.wins;
   playerTwoWins.innerText = playerTwo.wins;
   checkPlayer();
   saveGameData()
+  loadGameData()
 }
 start();
