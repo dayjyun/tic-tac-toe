@@ -156,9 +156,10 @@ resetScoreButton.addEventListener("click", (e) => {
   e.preventDefault();
   playerOne.wins = 0;
   playerTwo.wins = 0;
+  ties = 0;
   playerOneWins.innerText = 0;
   playerTwoWins.innerText = 0;
-  ties = 0;
+  gameTies.innerText = ties;
   winsSpan.forEach((win) => {
     win.style.color = lightGray;
     win.style.fontWeight = "500";
@@ -246,7 +247,6 @@ function winningColor() {
       win.style.fontWeight = "500";
     });
   }
-  // switchPlayer()
 }
 
 function start() {
