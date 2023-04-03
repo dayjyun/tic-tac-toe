@@ -136,6 +136,25 @@ nameInputBoxes.forEach((nameInputBox) => {
   nameInputBox.addEventListener("blur", inputOutOfFocus);
 });
 
+// Displays the lead player's number in color
+function winningColor() {
+  let playerOnePoints = +pointsArr[0].innerText;
+  let playerTwoPoints = +pointsArr[1].innerText;
+
+  if (playerOnePoints > playerTwoPoints) {
+    winsSpan[0].style.color = "green";
+    winsSpan[0].style.fontWeight = "800";
+  } else if (playerOnePoints < playerTwoPoints) {
+    winsSpan[1].style.color = "green";
+    winsSpan[1].style.fontWeight = "800";
+  } else {
+    winsSpan.forEach((win) => {
+      win.style.color = lightGray;
+      win.style.fontWeight = "500";
+    });
+  }
+}
+
 const resetScoreButton = document.querySelector(".reset-score-button");
 resetScoreButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -209,6 +228,7 @@ function checkWinner() {
       cellC.classList.contains(currentPlayer.id)
     ) {
       currentPlayer.wins++;
+      saveGameData();
       if (currentPlayer === playerOne) {
         playerOneWins.innerText = playerOne.wins;
       } else {
@@ -237,37 +257,33 @@ function checkTies() {
 
   if (!hasEmptyCell) {
     ties++
+    saveGameData();
     gameModal(0);
   }
 }
 
-// Displays the lead player's number in color
-function winningColor() {
-  let playerOnePoints = +pointsArr[0].innerText;
-  let playerTwoPoints = +pointsArr[1].innerText;
 
-  if (playerOnePoints > playerTwoPoints) {
-    winsSpan[0].style.color = "green";
-    winsSpan[0].style.fontWeight = "800";
-  } else if (playerOnePoints < playerTwoPoints) {
-    winsSpan[1].style.color = "green";
-    winsSpan[1].style.fontWeight = "800";
-  } else {
-    winsSpan.forEach((win) => {
-      win.style.color = lightGray;
-      win.style.fontWeight = "500";
-    });
-  }
+// Local Storage
+// let playerDataSerialized = JSON.stringify({playerOne, playerTwo})
+// localStorage.setItem("playerData", playerDataSerialized);
+let playerDataDeserialized = JSON.parse(localStorage.getItem('playerData'))
+
+function saveGameData() {
+  let gameData = JSON.stringify({ playerOne, playerTwo, ties, currentPlayer})
+  localStorage.setItem("gameData", gameData);
 }
+
+function loadGameData(){
+  let gameData = JSON.parse(localStorage.getItem("playerData"));
+  if(!gameData) return;
+
+}
+
 
 function start() {
   playerOneWins.innerText = playerOne.wins;
   playerTwoWins.innerText = playerTwo.wins;
   checkPlayer();
+  saveGameData()
 }
 start();
-
-// Local Storage
-let playerDataSerialized = JSON.stringify({playerOne, playerTwo})
-localStorage.setItem("playerData", playerDataSerialized);
-let playerDataDeserialized = JSON.parse(localStorage.getItem('playerData'))
