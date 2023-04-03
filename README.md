@@ -3,7 +3,7 @@
 ## Future
 More fun along the way!
 - [ ] AI opponent
-- [ ] Player can personalize their background color
+- [ ] Play online with other players
 
 Credits
 Feedback
