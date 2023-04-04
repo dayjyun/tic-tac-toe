@@ -65,6 +65,15 @@ main {
   position: relative;
 }
 
+.turn-info-container-toggle {
+  top: 0;
+  right: 30rem;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .toggle-button {
   background-color: transparent;
   border: 1px solid rgb(203, 203, 203);
@@ -75,16 +84,6 @@ main {
 .remove-border {
   border: none;
 }
-
-.turn-info-container-toggle {
-  top: 0;
-  right: 30rem;
-  margin: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 
 .table-container {
   padding: 1rem 0;
@@ -99,6 +98,7 @@ td {
   border: 2px solid #adadad;
   height: 5rem;
   width: 5rem;
+  padding: 3rem;
 }
 
 td:hover {
@@ -112,6 +112,7 @@ td:hover {
 }
 
 .table-top td:last-child,
+.table-mid td:last-child,
 .table-end td:last-child {
   border-right: none;
 }
@@ -120,9 +121,6 @@ td:hover {
   border-left: none;
 }
 
-.table-mid td:last-child {
-  border-right: none;
-}
 
 .table-end td {
   border-bottom: none;
@@ -177,14 +175,6 @@ section {
   font-style: italic;
   outline: 2px solid gray;
 }
-
-/* .current-player.color { */
-  /* height: 1.5em;
-  width: 3rem;
-  background-color: transparent;
-  border: 1px solid rgb(187, 186, 186);
-  border-radius: 3px */
-/* } */
 
 .color-picker {
   cursor: pointer;
@@ -288,6 +278,11 @@ footer > div {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  animation-duration: 0.4s;
+  margin: 30% auto 0;
+  transform: translateY(-50%);
+  animation-name: slide-down;
+  animation-duration: .5s;
 }
 
 .modal-box > h2 {
@@ -340,11 +335,11 @@ footer > div {
   background: linear-gradient(#2dabf9, #0688fa);
 }
 
-/* .highlight-box {
-  border: 3px solid rgb(3, 3, 3);
-} */
-
-/* .highlight-box:hover {
-  border: 3px solid black;
-  border-right: 3px solid black;
-} */
+@keyframes slide-down {
+  0% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
