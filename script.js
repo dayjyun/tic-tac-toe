@@ -43,7 +43,6 @@ firstPlayerToggleButton.addEventListener("click", (e) => {
   switchPlayerSound.play()
   switchPlayer();
   checkPlayer();
-  // TODO SOUND
 });
 
 function checkPlayer() {
