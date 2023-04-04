@@ -188,8 +188,11 @@ function gameModal(n) {
   const playerTwoName = document.querySelector(".player-name-modal.two");
   const playerOneWins = document.querySelector(".player-wins.one.modal");
   const playerTwoWins = document.querySelector(".player-wins.two.modal");
+  const winSound = new Audio('./media/win.mp3')
 
   if (n === 1) {
+    // TODO Winning Audio ********************************
+    winSound.play()
     winnerText.innerText = `${currentPlayer.name} Won!`;
     playerOneName.innerText = playerOne.name;
     playerTwoName.innerText = playerTwo.name;
@@ -197,6 +200,7 @@ function gameModal(n) {
     playerTwoWins.innerText = playerTwo.wins;
     switchPlayer()
   } else {
+    // TODO TIE AUDIO ************************************
     winnerText.innerText = `Tie!`
     gameTies.innerText = ties;
     gameTiesModal.innerText = ties;
@@ -276,7 +280,9 @@ let playerDataDeserialized = JSON.parse(localStorage.getItem('playerData'))
 
 function saveGameData() {
   let gameData = JSON.stringify({ playerOne, playerTwo, ties, currentPlayer})
+  // console.log("1", gameData);
   localStorage.setItem("gameData", gameData);
+  // console.log("2",gameData)
 }
 
 function loadGameData() {
@@ -291,15 +297,18 @@ function loadGameData() {
   playerOneWins.innerText = playerOne.wins;
   playerTwoWins.innerText = playerTwo.wins;
   gameTies.innerText = ties;
+
 }
 
 function start() {
   playerOneWins.innerText = playerOne.wins;
   playerTwoWins.innerText = playerTwo.wins;
   checkPlayer();
-  saveGameData()
   loadGameData()
 }
+
+document.addEventListener('DOMContentLoaded', loadGameData)
+
 start();
 
 // localStorage.setItem('key', 'value is working')
