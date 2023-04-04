@@ -1,15 +1,13 @@
 const firstPlayerToggleButton = document.querySelector(".toggle-button");
 const tdTags = document.querySelectorAll("td");
-const newGameButton = document.querySelector(".clear-board-button");
+const newGameBoardButton = document.querySelector(".clear-board-button");
 const modalContainer = document.querySelector(".modal-container");
 const modalBox = document.querySelector(".modal-box");
 const modalButton = document.querySelector(".modal-button");
 const currentPlayerName = document.querySelector(".current-player.name");
-const colorPicker = document.querySelector(".color-picker");
+const playerColorChoice = document.querySelector(".color-picker");
 const pointsArr = document.querySelectorAll(".points");
 const winsSpan = document.querySelectorAll(".wins > *");
-// let playerOneWins = document.querySelector(".player-wins.one.section");
-// let playerTwoWins = document.querySelector(".player-wins.two.section");
 const playerOneWins = document.querySelector(".player-wins.one.section");
 const playerTwoWins = document.querySelector(".player-wins.two.section");
 const lightGray = "rgb(154, 154, 154)";
@@ -25,14 +23,14 @@ let gameTiesModal = document.querySelector('.game-ties.modal')
 let playerOne = {
   id: 1,
   name: "Player One",
-  mainColor: "#0000ff",
+  color: "#0000ff",
   wins: 0,
 };
 
 let playerTwo = {
   id: 2,
   name: "Player Two",
-  mainColor: "#Ff0000",
+  color: "#Ff0000",
   wins: 0,
 };
 
@@ -51,25 +49,24 @@ function checkPlayer() {
     ? (currentPlayerName.innerText = playerOne.name)
     : (currentPlayerName.innerText = playerTwo.name);
 
-  colorPicker.value = currentPlayer.mainColor;
+  playerColorChoice.value = currentPlayer.color;
   firstPlayer = currentPlayer;
   saveGameData();
 }
 
-colorPicker.addEventListener("blur", (e) => {
+playerColorChoice.addEventListener("blur", (e) => {
   changeColorSound.play();
   const color = e.target.value;
-  currentPlayer.mainColor = color;
+  currentPlayer.color = color;
   saveGameData();
 });
 
 function switchPlayer() {
   currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
   currentPlayerName.innerText = currentPlayer.name;
-  colorPicker.value = currentPlayer.mainColor;
+  playerColorChoice.value = currentPlayer.color;
   saveGameData();
 }
-
 
 function clearBoard(e) {
   tdTags.forEach((tdTag) => {
@@ -82,23 +79,20 @@ function clearBoard(e) {
   currentPlayer = firstPlayer;
   checkPlayer();
   currentPlayerName.innerText = firstPlayer.name;
-  colorPicker.value = currentPlayer.mainColor;
+  playerColorChoice.value = currentPlayer.color;
   modalContainer.style.display = "none";
   saveGameData();
 }
 
-modalButton.addEventListener("click", clearBoard);
-modalContainer.addEventListener("click", clearBoard);
-
 // Header
-newGameButton.addEventListener("click", clearBoard);
+newGameBoardButton.addEventListener("click", clearBoard);
 
-function choosePlayerColor(e) {
+function playerSelectBox(e) {
   const currentColor = e.target.style.backgroundColor;
   placeBoxSound.play()
 
   if (currentColor === "white") {
-    e.target.style.backgroundColor = currentPlayer.mainColor;
+    e.target.style.backgroundColor = currentPlayer.color;
     e.target.classList.add(currentPlayer.id);
     checkWinner();
     switchPlayer();
@@ -107,12 +101,15 @@ function choosePlayerColor(e) {
   saveGameData();
 }
 
+// Creates and event listener to click on each box
+// Assigns the background color of white for the event listener
 tdTags.forEach((tdTag) => {
   tdTag.style.backgroundColor = "white";
-  tdTag.addEventListener("click", choosePlayerColor);
+  tdTag.addEventListener("click", playerSelectBox);
 });
 
 // Section
+// 1
 function changeName(e) {
   if (e.target.id === "player-one") {
     playerOne.name = e.target.value === "" ? "Player One" : e.target.value;
@@ -124,6 +121,7 @@ function changeName(e) {
   saveGameData();
 }
 
+// 2
 function pressedEnter(e) {
   if (e.keyCode === 13) {
     e.preventDefault();
@@ -133,6 +131,7 @@ function pressedEnter(e) {
   saveGameData();
 }
 
+// 3
 function inputOutOfFocus(e) {
   if (e.target.placeholder === "" && e.target.id === "player-one") {
     e.target.placeholder = "Player One";
@@ -143,12 +142,12 @@ function inputOutOfFocus(e) {
   saveGameData();
 }
 
+// Different methods for input box if user presses enter, clicks away, and to update name
 const nameInputBoxes = document.querySelectorAll(".name-input");
 nameInputBoxes.forEach((nameInputBox) => {
-  nameInputBox.addEventListener("input", changeName);
-  nameInputBox.addEventListener("keydown", pressedEnter);
-  nameInputBox.addEventListener("blur", inputOutOfFocus);
-  // saveGameData();
+  nameInputBox.addEventListener("input", changeName); // 1
+  nameInputBox.addEventListener("keydown", pressedEnter); // 2
+  nameInputBox.addEventListener("blur", inputOutOfFocus); // 3
 });
 
 // Displays the lead player's number in color
@@ -216,6 +215,11 @@ function gameModal(n) {
   }
 }
 
+// When button is clicked
+modalButton.addEventListener("click", clearBoard);
+// When user clicks outside of modal. Does the same functionality as modalButton
+modalContainer.addEventListener("click", clearBoard);
+
 // Game Logic
 function checkWinner() {
   const rows = [
@@ -282,16 +286,9 @@ function checkTies() {
 }
 
 
-// Local Storage
-// let playerDataSerialized = JSON.stringify({playerOne, playerTwo})
-// localStorage.setItem("playerData", playerDataSerialized);
-// let playerDataDeserialized = JSON.parse(localStorage.getItem('playerData'))
-
 function saveGameData() {
   let gameData = JSON.stringify({ playerOne, playerTwo, ties, currentPlayer})
-  // console.log("1", gameData);
   localStorage.setItem("gameData", gameData);
-  // console.log("2",gameData)
 }
 
 function loadGameData() {
@@ -306,7 +303,6 @@ function loadGameData() {
   playerOneWins.innerText = playerOne.wins;
   playerTwoWins.innerText = playerTwo.wins;
   gameTies.innerText = ties;
-
 }
 
 function start() {
@@ -319,5 +315,3 @@ function start() {
 document.addEventListener('DOMContentLoaded', loadGameData)
 
 start();
-
-// localStorage.setItem('key', 'value is working')
