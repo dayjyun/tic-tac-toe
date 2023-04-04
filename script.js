@@ -120,7 +120,6 @@ function changeName(e) {
     playerTwo.name = e.target.value === "" ? "Player Two" : e.target.value;
   }
 
-  changeColorSound.play();
   checkPlayer();
   saveGameData();
 }
@@ -131,7 +130,6 @@ function pressedEnter(e) {
     e.target.disabled = true;
     e.target.disabled = false;
   }
-  changeColorSound.play();
   saveGameData();
 }
 
@@ -150,7 +148,7 @@ nameInputBoxes.forEach((nameInputBox) => {
   nameInputBox.addEventListener("input", changeName);
   nameInputBox.addEventListener("keydown", pressedEnter);
   nameInputBox.addEventListener("blur", inputOutOfFocus);
-  saveGameData();
+  // saveGameData();
 });
 
 // Displays the lead player's number in color
