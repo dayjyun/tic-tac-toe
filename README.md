@@ -16,7 +16,7 @@ The game is built with a simple interface using HTML, CSS, and JavaScript. HTML 
 ## Wireframe
 The original wireframe for the website layout
 
-<img width="500" alt="wireframe" src="./media/tic-tac-toe_wireframe.png">
+<img width="400" alt="wireframe" src="./media/tic-tac-toe_wireframe.png">
 
 # Color Selection
 Freely choose your assortment of colors. The game keep tracks of your move at all times
