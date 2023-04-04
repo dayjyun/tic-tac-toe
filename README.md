@@ -21,12 +21,12 @@ The original wireframe for the website layout
 # Color Selection
 Freely choose your assortment of colors. The game keep tracks of your move at all times
 
-<img width="500" alt="color selection box" src="./media/color_selection.png">
+<img width="300" alt="color selection box" src="./media/color_selection.png">
 
 # Mobile Integration
 The game is mobile friendly, so you can play on the go!
 
-<img width="500" alt="color selection box" src="./media/mobile_view.png">
+<img width="300" alt="color selection box" src="./media/mobile_view.png">
 
 # Features
 Is it really a game if you can't play it? The Tic-Tac-Toe game offers a variety of features to make your experience more enjoyable
