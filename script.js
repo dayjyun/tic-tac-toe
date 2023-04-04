@@ -17,6 +17,7 @@ const winSound = new Audio("./media/win.mp3");
 const tieSound = new Audio("./media/draw.mp3");
 const clearBoardSound = new Audio('./media/clear.mp3')
 const placeBoxSound = new Audio('./media/place.mp3')
+const switchPlayerSound = new Audio('./media/change_player.mp3')
 let gameTies = document.querySelector(".game-ties");
 let gameTiesModal = document.querySelector('.game-ties.modal')
 
@@ -39,6 +40,7 @@ let currentPlayer = playerOne;
 let firstPlayer = currentPlayer;
 
 firstPlayerToggleButton.addEventListener("click", (e) => {
+  switchPlayerSound.play()
   switchPlayer();
   checkPlayer();
   // TODO SOUND
