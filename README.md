@@ -77,4 +77,4 @@ There's always plans for improving the game in the future so look out for more f
 - [ ] Play online with other players
 
 Credits
-A special thanks to [Jeff Ou](https://github.com/pophero110) and [Dominique Akers](https://github.com/Dommy99) for their feedback on the Tic-Tac-Toe game.
+A special thanks to [Jeff Ou](https://github.com/pophero110) and [Dominique Akers](https://github.com/Dommy99) during development.
