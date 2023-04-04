@@ -60,13 +60,19 @@ if (e.target.id === "player-one") {
 ```
 
 Another section that I had a fun time figuring out is updating the input color based on a user's turn. In other words, the input box where a user can choose their designated color switches to the current player's color. As each player would take a turn, the color box would change color along with the game.
-```
 
+A simple function would resolve the issue by assuring the game to display the correct information for the given player at their given turn.
+```
+function switchPlayer() {
+  currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
+  currentPlayerName.innerText = currentPlayer.name;
+  playerColorChoice.value = currentPlayer.color;
+}
 ```
 
 ## Future
 More fun along the way!
-- [ ] Local Storage
+- [ ] Local Storage to save points and opponent history
 - [ ] AI opponent
 - [ ] Play online with other players
 
