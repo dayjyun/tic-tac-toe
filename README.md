@@ -13,6 +13,8 @@ The game is built with a simple interface using HTML, CSS, and JavaScript. HTML 
 - HTML
 
 ## **Snapshots**
+Look through the [user stories](https://github.com/dayjyun/tic-tac-toe/wiki/User-Stories) for the list of features
+
 ## Wireframe
 The original wireframe for the website layout
 
