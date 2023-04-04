@@ -234,13 +234,13 @@ function checkWinner() {
       cellC.classList.contains(currentPlayer.id)
     ) {
       currentPlayer.wins++;
-      saveGameData();
       if (currentPlayer === playerOne) {
         playerOneWins.innerText = playerOne.wins;
       } else {
         playerTwoWins.innerText = playerTwo.wins;
       }
       winningColor();
+      saveGameData();
       gameModal(1);
       return;
     }
@@ -301,3 +301,5 @@ function start() {
   loadGameData()
 }
 start();
+
+// localStorage.setItem('key', 'value is working')
