@@ -18,6 +18,7 @@ const tieSound = new Audio("./media/draw.mp3");
 const clearBoardSound = new Audio('./media/clear.mp3')
 const placeBoxSound = new Audio('./media/place.mp3')
 const switchPlayerSound = new Audio('./media/change_player.mp3')
+const changeColorSound = new Audio("./media/change_color.mp3")
 let gameTies = document.querySelector(".game-ties");
 let gameTiesModal = document.querySelector('.game-ties.modal')
 
@@ -56,6 +57,7 @@ function checkPlayer() {
 }
 
 colorPicker.addEventListener("blur", (e) => {
+  changeColorSound.play();
   const color = e.target.value;
   currentPlayer.mainColor = color;
   saveGameData();
@@ -118,6 +120,7 @@ function changeName(e) {
     playerTwo.name = e.target.value === "" ? "Player Two" : e.target.value;
   }
 
+  changeColorSound.play();
   checkPlayer();
   saveGameData();
 }
@@ -128,6 +131,7 @@ function pressedEnter(e) {
     e.target.disabled = true;
     e.target.disabled = false;
   }
+  changeColorSound.play();
   saveGameData();
 }
 
@@ -137,6 +141,7 @@ function inputOutOfFocus(e) {
   } else if (e.target.placeholder === "" && e.target.id === "player-two") {
     e.target.placeholder = "Player Two";
   }
+  changeColorSound.play();
   saveGameData();
 }
 
