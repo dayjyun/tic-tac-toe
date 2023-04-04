@@ -13,6 +13,10 @@ const winsSpan = document.querySelectorAll(".wins > *");
 const playerOneWins = document.querySelector(".player-wins.one.section");
 const playerTwoWins = document.querySelector(".player-wins.two.section");
 const lightGray = "rgb(154, 154, 154)";
+const winSound = new Audio("./media/win.mp3");
+const tieSound = new Audio("./media/draw.mp3");
+const clearBoardSound = new Audio('./media/clear.mp3')
+const placeBoxSound = new Audio('./media/place.mp3')
 let gameTies = document.querySelector(".game-ties");
 let gameTiesModal = document.querySelector('.game-ties.modal')
 
@@ -37,6 +41,7 @@ let firstPlayer = currentPlayer;
 firstPlayerToggleButton.addEventListener("click", (e) => {
   switchPlayer();
   checkPlayer();
+  // TODO SOUND
 });
 
 function checkPlayer() {
@@ -87,6 +92,7 @@ newGameButton.addEventListener("click", clearBoard);
 
 function choosePlayerColor(e) {
   const currentColor = e.target.style.backgroundColor;
+  placeBoxSound.play()
 
   if (currentColor === "white") {
     e.target.style.backgroundColor = currentPlayer.mainColor;
@@ -163,6 +169,7 @@ function winningColor() {
 const resetScoreButton = document.querySelector(".reset-score-button");
 resetScoreButton.addEventListener("click", (e) => {
   e.preventDefault();
+  clearBoardSound.play()
   playerOne.wins = 0;
   playerTwo.wins = 0;
   ties = 0;
@@ -188,10 +195,8 @@ function gameModal(n) {
   const playerTwoName = document.querySelector(".player-name-modal.two");
   const playerOneWins = document.querySelector(".player-wins.one.modal");
   const playerTwoWins = document.querySelector(".player-wins.two.modal");
-  const winSound = new Audio('./media/win.mp3')
 
   if (n === 1) {
-    // TODO Winning Audio ********************************
     winSound.play()
     winnerText.innerText = `${currentPlayer.name} Won!`;
     playerOneName.innerText = playerOne.name;
@@ -200,7 +205,7 @@ function gameModal(n) {
     playerTwoWins.innerText = playerTwo.wins;
     switchPlayer()
   } else {
-    // TODO TIE AUDIO ************************************
+    tieSound.play()
     winnerText.innerText = `Tie!`
     gameTies.innerText = ties;
     gameTiesModal.innerText = ties;
@@ -276,7 +281,7 @@ function checkTies() {
 // Local Storage
 // let playerDataSerialized = JSON.stringify({playerOne, playerTwo})
 // localStorage.setItem("playerData", playerDataSerialized);
-let playerDataDeserialized = JSON.parse(localStorage.getItem('playerData'))
+// let playerDataDeserialized = JSON.parse(localStorage.getItem('playerData'))
 
 function saveGameData() {
   let gameData = JSON.stringify({ playerOne, playerTwo, ties, currentPlayer})
